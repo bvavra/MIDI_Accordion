@@ -26,6 +26,9 @@
 
 MIDI_CREATE_DEFAULT_INSTANCE();
 
+int velocity = 127; //Max Velocity (range is 0-127)
+int channel = 1; //MIDI Channel 1 (out of 16)
+
 void setup() {
   MIDI.begin(1);
   // Set MIDI baud rate. MIDI has a single baud rate of 31250,
@@ -34,8 +37,6 @@ void setup() {
 }
 
 void loop() {
-  int velocity = 127; //Max Velocity (range is 0-127)
-  int channel = 1; //MIDI Channel 1 (out of 16)
   // Play notes from F3 (53) to A6 (93):
   for (int note = 53; note <= 93; note ++) {
     // Send a NoteOn message, wait a second, turn the note off
