@@ -1,12 +1,14 @@
 /* 
-* 2x2 matrix of Interruptors
+* 4 Interruptors - suggest trying 2x2, 1x4, and 4x1
 * At this point most of this code is pulled directly from AccordionMega's code.
 */
 
-char DIGITAL_COLUMNS[] = { 9, 10 };
+char DIGITAL_COLUMNS[] = { 9, 10, 11, 12 };
 
 //Note: in this example we're only using two bits from each byte
 int KeysStatus[] = {  
+  B0000000,
+  B0000000,
   B0000000,
   B0000000
 };
@@ -18,17 +20,22 @@ byte reg_values = 0;
 
 void setup()
 {
-    Serial.begin(9600);
-    //Digital pins start turned off
-    for (int i=0; i<sizeof(DIGITAL_COLUMNS);i++){ 
-        pinMode(DIGITAL_COLUMNS[i],OUTPUT);
-        digitalWrite(DIGITAL_COLUMNS[i], LOW);
-    }
+  Serial.begin(9600);
+  //Digital pins start turned off
+  for (int i=0; i<sizeof(DIGITAL_COLUMNS);i++){ 
+      pinMode(DIGITAL_COLUMNS[i],OUTPUT);
+      digitalWrite(DIGITAL_COLUMNS[i], LOW);
+  }
 
-    //PortC as input 
-    DDRC = B00000000;
-    //Turn on pullup resistors
-    PORTC = B11111111;
+  //Arduino UNO has different port letters than the MEGA,
+  //so this check is required for this code to be compatible with both boards.
+  #if defined (__AVR_ATmega328P__)//UNO
+    DDRC = B00000000;  // PortC as input (for Arduino Uno)
+    PORTC = B11111111; // turn on pullup resistors
+  #elif defined (__AVR_ATmega2560__)//MEGA
+    DDRF = B00000000;  // PortF as input (for Arduino Mega)
+    PORTF = B11111111; // turn on pullup resistors
+  #endif
 }
 
 void loop()
@@ -38,21 +45,22 @@ void loop()
     digitalWrite(DIGITAL_COLUMNS[i], HIGH);
     delayMicroseconds(500);//TODO - play around with this number a bit
     
-    //PINB = 8-13 (14/15 don't work), PINC = analog 0-5 (6/7 don't work), PIND = 0-7
-    reg_values = ~PINC;
+    #if defined (__AVR_ATmega328P__)
+      reg_values = ~PINC;
+    #elif defined (__AVR_ATmega2560__)
+      reg_values = ~PINF;
+    #endif
     
     digitalWrite(DIGITAL_COLUMNS[i], LOW);
 
     if (reg_values != KeysStatus[i]){
-    //Serial.println(reg_values, BIN);
       if (reg_values > KeysStatus[i]){             
         check_key(reg_values ^ KeysStatus[i],i,true);  //sending modified bits only
       }
       else {
         check_key(reg_values ^ KeysStatus[i],i,false); //sending modified bits only
-      }       
+      }           
     }
-    
   }
 }
 
@@ -76,8 +84,9 @@ void check_key(int reg, int group, boolean up){
 
 //The right two most bits turn on because those pins don't exist on the Uno
 const char right_notes_midi_numbers[][8] = {
-  {60,59,58,57,56,55},//54,53},
-  {68,67,66,65,64,63},//62,61},
+  {53,55,57,59,60,62,64,65},//Added for test setup
+  {60,59,58,57,56,55,54,53},
+  {68,67,66,65,64,63,62,61},
   {76,75,74,73,72,71,70,69},
   {84,83,82,81,80,79,78,77},
   {92,91,90,89,88,87,86,85},
@@ -97,10 +106,7 @@ void note_midi(int group, int position, boolean on){
 
   pitch = right_notes_midi_numbers[group][position];
   curr_register = 0;
-  
-  Serial.println("===");
-  Serial.print("Analog Read: ");
-  Serial.println(analogRead(2));
+
   if(on) {
     str_warn = "Note on ";
     midi_cmd = midi_channel2 | 0x90;
@@ -117,6 +123,7 @@ void note_midi(int group, int position, boolean on){
     Serial.println(KeysStatus[group], BIN);
     midi_vel = 0;
   }
+    
   Serial.print(str_warn);
   Serial.print(pitch,DEC);
   Serial.print(" Vel: ");
@@ -132,8 +139,8 @@ void note_midi(int group, int position, boolean on){
     //Serial1.print(midi_cmd, BYTE);
     //Serial1.print(notes_to_play, BYTE);
     //Serial1.print(midi_vel, BYTE);
-    //Serial.print(" ");
-    //Serial.println(notes_to_play,DEC);
+    Serial.print(" ");
+    Serial.println(notes_to_play,DEC);
   }
 
 }

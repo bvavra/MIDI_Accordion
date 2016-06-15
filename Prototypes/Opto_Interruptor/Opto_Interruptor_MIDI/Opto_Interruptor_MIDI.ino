@@ -1,9 +1,17 @@
 /* 
-* 4x1 matrix of Interruptors
+* 2x2 matrix of Interruptors
 * At this point most of this code is pulled directly from AccordionMega's code.
+* Same as Prototype 2, but with MIDI printing instead
 */
+#include <MIDI.h>
+#include <midi_Defs.h>
+#include <midi_Message.h>
+#include <midi_Namespace.h>
+#include <midi_Settings.h>
 
-char DIGITAL_COLUMNS[] = { 2,3,4,5 };
+MIDI_CREATE_DEFAULT_INSTANCE();
+
+char DIGITAL_COLUMNS[] = { 9,10,11,12 };
 
 //Note: in this example we're only using two bits from each byte
 int KeysStatus[] = {  
@@ -20,17 +28,24 @@ byte reg_values = 0;
 
 void setup()
 {
-    Serial.begin(9600);
+    MIDI.begin(1);
+    //  Set MIDI baud rate:
+    Serial.begin(115200);
     //Digital pins start turned off
     for (int i=0; i<sizeof(DIGITAL_COLUMNS);i++){ 
         pinMode(DIGITAL_COLUMNS[i],OUTPUT);
-        digitalWrite(DIGITAL_COLUMNS[i], LOW);
+        digitalWrite(DIGITAL_COLUMNS[i], HIGH);
     }
 
-    //PortF as input 
-    DDRF = B00000000;
-    //Turn on pullup resistors
-    PORTF = B11111111;
+    //Arduino UNO has different port letters than the MEGA,
+    //so this check is required for this code to be compatible with both boards.
+    #if defined (__AVR_ATmega328P__)//UNO
+      DDRC = B00000000;  // PortC as input (for Arduino Uno)
+      PORTC = B11111111; // turn on pullup resistors
+    #elif defined (__AVR_ATmega2560__)//MEGA
+      DDRF = B00000000;  // PortF as input (for Arduino Mega)
+      PORTF = B11111111; // turn on pullup resistors
+    #endif
 }
 
 void loop()
@@ -38,25 +53,13 @@ void loop()
   for (int i=0; i<sizeof(DIGITAL_COLUMNS);i++){ 
     //I wonder if we can replace this with direct port write for speed?
     digitalWrite(DIGITAL_COLUMNS[i], HIGH);
-    delayMicroseconds(12000);//TODO - play around with this number a bit
-
-    //delay(10);
+    delayMicroseconds(500);//
     
-    //PINF = analog 0-7, PINK = analog 8-15
-    reg_values = ~PINF;
-//    Serial.print("Pin ");
-//    Serial.print(i+2);
-//    Serial.print(": ");
-//    Serial.println(analogRead(0));
-
-//    Serial.println(" ");
-//    Serial.print(" Previous Values for group ");
-//    Serial.print(i);
-//    Serial.print(": ");
-//    Serial.println(KeysStatus[i], BIN);
-//    Serial.print(" Values Read: ");
-//    Serial.println(reg_values, BIN);
-    
+    #if defined (__AVR_ATmega328P__)//UNO
+      reg_values = ~PINC;
+    #elif defined (__AVR_ATmega2560__)//MEGA
+      reg_values = ~PINF;
+    #endif  
     
     digitalWrite(DIGITAL_COLUMNS[i], LOW);
 
@@ -89,12 +92,12 @@ void check_key(int reg, int group, boolean up){
    }
 }
 
-//The right two most bits turn on because those pins don't exist on the Uno
+//Note: On the UNO the right two most bits turn on 
+//because those pins don't exist
 const char right_notes_midi_numbers[][8] = {
-  {53,55,57,59,60,62,64,65},//Added for test setup
-  {55,59,58,57,56,55,54,53},
-  {57,67,66,65,64,63,62,61},
-  {59,75,74,73,72,71,70,69},
+  {60,59,58,57,56,55,54,53},
+  {68,67,66,65,64,63,62,61},
+  {76,75,74,73,72,71,70,69},
   {84,83,82,81,80,79,78,77},
   {92,91,90,89,88,87,86,85},
   {0,0,0,0,0,0,0,93}
@@ -107,49 +110,33 @@ char notes_to_play;
 void note_midi(int group, int position, boolean on){
   int pitch;
   String str_warn;
-  char midi_cmd;
+  int midi_cmd = 1;
   char curr_register = 0;
-  int midi_vel;
-
-  pitch = right_notes_midi_numbers[group][position];
+  int midi_vel = 0;
+  
   curr_register = 0;
+  
+  //TODO - figure out MIDI channels
 
   if(on) {
-    str_warn = "Note on ";
-    midi_cmd = midi_channel2 | 0x90;
+    //midi_cmd = midi_channel2 | 0x90;
     KeysStatus[group] |= (1 << position);  //setting bit value
-    Serial.print(" Changed Status: ");
-    Serial.println(KeysStatus[group], BIN);
     midi_vel = 127;
   }
   else if(~on) {
-    str_warn = "Note off ";
-    midi_cmd = midi_channel2 | 0x80;
+    //midi_cmd = midi_channel2 | 0x80;
     KeysStatus[group] &= ~(1 << position);  //setting bit value
-    Serial.print(" Changed Status: ");
-    Serial.println(KeysStatus[group], BIN);
     midi_vel = 0;
   }
-  Serial.print("Analog: ");
-  Serial.println(analogRead(0));
-    
-  Serial.print(str_warn);
-  Serial.print(pitch,DEC);
-  Serial.print(" Vel: ");
-  Serial.println(midi_vel);
-  Serial.print(" Group: ");
-  Serial.println(group);
-  Serial.print(" Position: ");
-  Serial.println(position);
   
-  notes_to_play = right_notes_midi_numbers[group][position];
-  if (notes_to_play){
-    //TODO - replace with ArduinoMIDI library command
-    //Serial1.print(midi_cmd, BYTE);
-    //Serial1.print(notes_to_play, BYTE);
-    //Serial1.print(midi_vel, BYTE);
-    Serial.print(" ");
-    Serial.println(notes_to_play,DEC);
+  pitch = right_notes_midi_numbers[group][position];
+  if (pitch){
+    if(on) {
+      MIDI.sendNoteOn(pitch,midi_vel,midi_cmd);
+    }
+    else if(~on) {
+      MIDI.sendNoteOff(pitch,midi_vel,midi_cmd);
+    }
   }
 
 }
