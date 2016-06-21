@@ -1,6 +1,6 @@
 /* 
-* 2x2 matrix of Interruptors
-* At this point most of this code is pulled directly from AccordionMega's code.
+* Matrix of Interruptors - it's recommended to try 2x2, 1x4, and 4x1, but this code supports up to 8x4 as written.
+* At this point much of this code is pulled directly from AccordionMega's code.
 * Same as Prototype 2, but with MIDI printing instead
 */
 #include <MIDI.h>
@@ -11,9 +11,9 @@
 
 MIDI_CREATE_DEFAULT_INSTANCE();
 
-char DIGITAL_COLUMNS[] = { 9,10,11,12 };
-
-//Note: in this example we're only using two bits from each byte
+//This prototype currently supports 4 digital pins, 
+//but you can add as many as you want by extending the two arrays below:
+char DIGITAL_COLUMNS[] = { 9, 10, 11, 12 };
 int KeysStatus[] = {  
   B0000000,
   B0000000,
@@ -21,7 +21,7 @@ int KeysStatus[] = {
   B0000000
 };
 
-//this is the value of all pins from the analog port (7 and 6 don't exist on UNO)
+//this is the value of all pins from the analog port (Note: analog pins 7 and 6 don't exist on UNO)
 //B00000000
 //B76543210
 byte reg_values = 0;
@@ -34,7 +34,7 @@ void setup()
     //Digital pins start turned off
     for (int i=0; i<sizeof(DIGITAL_COLUMNS);i++){ 
         pinMode(DIGITAL_COLUMNS[i],OUTPUT);
-        digitalWrite(DIGITAL_COLUMNS[i], HIGH);
+        digitalWrite(DIGITAL_COLUMNS[i], LOW);
     }
 
     //Arduino UNO has different port letters than the MEGA,
@@ -64,16 +64,17 @@ void loop()
     digitalWrite(DIGITAL_COLUMNS[i], LOW);
 
     if (reg_values != KeysStatus[i]){
-      if (reg_values > KeysStatus[i]){             
-        check_key(reg_values ^ KeysStatus[i],i,true);  //sending modified bits only
+      if (reg_values > KeysStatus[i]){ //if it's greater, we're turning the note on; else, turning it off.
+        check_key(reg_values ^ KeysStatus[i],i,true);  //using bit-wise OR to send modified bits only
       }
       else {
-        check_key(reg_values ^ KeysStatus[i],i,false); //sending modified bits only
+        check_key(reg_values ^ KeysStatus[i],i,false); //using bit-wise OR to send modified bits only
       }           
     }
   }
 }
 
+//Instead of iterating the array from 0-7, use a binary search to find the modified bits faster
 void check_key(int reg, int group, boolean up){
    // saving 4 iterations, dividing byte by 2
    if (reg & 0xF0) {
@@ -92,8 +93,9 @@ void check_key(int reg, int group, boolean up){
    }
 }
 
-//Note: On the UNO the right two most bits turn on 
-//because those pins don't exist
+//This is the mapping of pitches on the right hand of the accordion.
+//Note: The right two most bits will always turn on for the UNO because those pins don't exist.
+//You can stop this from happening by commenting out the right-most two values in the top row.
 const char right_notes_midi_numbers[][8] = {
   {60,59,58,57,56,55,54,53},
   {68,67,66,65,64,63,62,61},
@@ -103,28 +105,19 @@ const char right_notes_midi_numbers[][8] = {
   {0,0,0,0,0,0,0,93}
 };
 
-byte midi_channel1 = 0;
-byte midi_channel2 = 1;
-char notes_to_play;
-
 void note_midi(int group, int position, boolean on){
-  int pitch;
-  String str_warn;
-  int midi_cmd = 1;
-  char curr_register = 0;
-  int midi_vel = 0;
   
-  curr_register = 0;
+  int pitch;
+  int midi_cmd = 1;
+  int midi_vel = 0;
   
   //TODO - figure out MIDI channels
 
   if(on) {
-    //midi_cmd = midi_channel2 | 0x90;
     KeysStatus[group] |= (1 << position);  //setting bit value
     midi_vel = 127;
   }
   else if(~on) {
-    //midi_cmd = midi_channel2 | 0x80;
     KeysStatus[group] &= ~(1 << position);  //setting bit value
     midi_vel = 0;
   }

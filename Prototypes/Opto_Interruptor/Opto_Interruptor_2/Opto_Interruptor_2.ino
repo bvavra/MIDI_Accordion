@@ -104,11 +104,9 @@ void note_midi(int group, int position, boolean on){
   String str_warn;
   byte midi_channel = 1;
   char midi_cmd;
-  char curr_register = 0;
   int midi_vel;
 
   pitch = right_notes_midi_numbers[group][position];
-  curr_register = 0;
 
   if(on) {
     str_warn = "Note on ";
