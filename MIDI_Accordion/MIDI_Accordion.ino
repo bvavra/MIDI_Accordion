@@ -80,10 +80,11 @@ void setup()
 
 void loop()
 {
-  //scan each of the three analog pins used for the left hand
-  scan_keys(left_hand_pins, sizeof(left_hand_pins), LeftKeysStatus, true); 
-  //scan each of the 6 analog pins used for the right hand
-  scan_keys(right_hand_pins, sizeof(right_hand_pins), RightKeysStatus, false); 
+  //Alternate between scanning the left hand pins and right hand pins to reduce delay
+  for (int i=0; i<6;i++){ 
+    scan_key(right_hand_pins[i], i, RightKeysStatus[i], false);
+    scan_key(left_hand_pins[i%3], i%3, LeftKeysStatus[i%3], true);
+  }
 }
 
 void scan_keys(char *pins, int pinLength, int *KeysStatus, bool left) {
@@ -93,9 +94,9 @@ void scan_keys(char *pins, int pinLength, int *KeysStatus, bool left) {
 }
 
 void scan_key(int pin, int index, byte PinStatus, bool left) {
-  //I wonder if we can replace this with direct port write for speed?
+  //I wonder if we can replace this with direct port write for even better performance?
   digitalWrite(pin, HIGH);
-  delayMicroseconds(500);
+  delayMicroseconds(250);//was able to cut this in half by alternating between left and right
   
   if (left) {
     reg_values = ~PINF;
