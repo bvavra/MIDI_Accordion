@@ -11,8 +11,7 @@
 
 MIDI_CREATE_DEFAULT_INSTANCE();
 
-boolean DEBUG = false;//set to true to print serial messages, false to send MIDI data
-//TODO - set up second serial port so we can do both
+#define DEBUG//uncomment this line to print serial messages, comment to send MIDI data
 
 char left_hand_pins[] = { 10, 11, 12 };
 // array to store up/down status of left keys
@@ -22,6 +21,7 @@ int LeftKeysStatus[] = {
   B0000000
 };
 //todo - remap correctly once optos are set (36-59)
+//36-47 are the bass notes, 48-59 are the chord notes
 const char left_notes_midi_numbers[][8] = {
   {59,58,57,56,55,54,53,52},
   {51,50,49,48,47,46,45,44},
@@ -48,27 +48,24 @@ const char right_notes_midi_numbers[][8] = {
   {0,0,0,0,0,0,0,93}
 };
 
-byte reg_values = 0;
-
 void setup()
 {
-  if(DEBUG){
+  #ifdef DEBUG
     //Set serial baud rate:
     Serial.begin(9600);
-  }
-  else {
+  #else
     MIDI.begin(1);
     //Set MIDI baud rate:
     Serial.begin(115200);
-  }
+  #endif
   //Digital pins start turned off
   for (int i=0; i<sizeof(left_hand_pins);i++){ 
-      pinMode(left_hand_pins[i],OUTPUT);
-      digitalWrite(left_hand_pins[i], LOW);
+    pinMode(left_hand_pins[i],OUTPUT);
+    digitalWrite(left_hand_pins[i], LOW);
   }
   for (int i=0; i<sizeof(right_hand_pins);i++){ 
-      pinMode(right_hand_pins[i],OUTPUT);
-      digitalWrite(right_hand_pins[i], LOW);
+    pinMode(right_hand_pins[i],OUTPUT);
+    digitalWrite(right_hand_pins[i], LOW);
   }
 
   DDRF = B00000000;  // PortF as input (for left hand)
@@ -80,72 +77,77 @@ void setup()
 
 void loop()
 {
-  //Alternate between scanning the left hand pins and right hand pins to reduce delay
+  //Alternate between scanning the left and right hand pins 
+  //to reduce necessary delay between reads
   for (int i=0; i<6;i++){ 
-    scan_key(right_hand_pins[i], i, RightKeysStatus[i], false);
-    scan_key(left_hand_pins[i%3], i%3, LeftKeysStatus[i%3], true);
+    scan_pin(right_hand_pins[i], i, RightKeysStatus[i], false);
+    scan_pin(left_hand_pins[i%3], i%3, LeftKeysStatus[i%3], true);
   }
 }
 
+//This function is currently unused
 void scan_keys(char *pins, int pinLength, int *KeysStatus, bool left) {
   for (int i=0; i<pinLength;i++){ 
-    scan_key(pins[i], i, KeysStatus[i], left);
+    scan_pin(pins[i], i, KeysStatus[i], left);
   }
 }
 
-void scan_key(int pin, int index, byte PinStatus, bool left) {
-  //I wonder if we can replace this with direct port write for even better performance?
+byte reg_values = 0;
+
+//Read the analog port value for the given pin
+//If something changed, trigger MIDI signal
+void scan_pin(int pin, int index, byte PinStatus, bool left) {
+  //TODO - I wonder if we can replace this with direct port write for even better performance?
   digitalWrite(pin, HIGH);
+  //A slight delay is needed here or else we'll be reading the previous pin
   delayMicroseconds(250);//was able to cut this in half by alternating between left and right
-  
   if (left) {
     reg_values = ~PINF;
   }
   else {
     reg_values = ~PINK;
   }
-  
   digitalWrite(pin, LOW);
 
-  if (reg_values != PinStatus){
-    if (reg_values > PinStatus){ //if it's greater, we're turning the note on; else, turning it off.
-      check_key(reg_values ^ PinStatus,index,true, left);  //using bit-wise OR to send modified bits only
+  //check if something changed
+  if (reg_values != PinStatus){ 
+    //if the byte value is greater, we're turning the note on; else, turning it off.
+    if (reg_values > PinStatus){
+      //using bit-wise OR to send modified bits only
+      check_key(reg_values ^ PinStatus, index, true, left); 
     }
     else {
-      check_key(reg_values ^ PinStatus,index,false, left); //using bit-wise OR to send modified bits only
+      check_key(reg_values ^ PinStatus, index, false, left);
     }
   }
 }
 
-//Instead of iterating the array from 0-7, use a binary search to find the modified bits faster
-void check_key(int reg, int group, boolean up, boolean left){
-  Serial.print("Change! ");
- // saving 4 iterations, dividing byte by 2
- if (reg & 0xF0) {
-   for(int i=0; i<4; i++){
-     if ((reg >> 4+i) & 1){
-       note_midi(group,i+4,up,left);
-     }
-   }
- }
- else if (reg & 0x0F) { 
-  for(int i=0; i<4; i++){
-     if ((reg >> i) & 1){
-       note_midi(group,i,up,left);
-     }
-   }
- }
+//Check to see which bits have changed and send the appropriate midi message
+//Instead of iterating the array from 0-7, use binary search to find the modified bits faster
+void check_key(int reg, int group, boolean on, boolean left){
+  // saving 4 iterations, dividing byte by 2
+  if (reg & 0xF0) {
+    for(int i=0; i<4; i++){
+      if ((reg >> 4+i) & 1){
+        note_midi(group, i+4, on, left);
+      }
+    }
+  }
+  else if (reg & 0x0F) { 
+    for(int i=0; i<4; i++){
+      if ((reg >> i) & 1){
+        note_midi(group, i, on, left);
+      }
+    }
+  }
 }
 
 void note_midi(int group, int position, boolean on, boolean left){
   int pitch;
-  int midi_cmd = 1;
+  int channel = 1;
   int midi_vel = 0;
-  
-  //TODO - figure out MIDI channels (right = ch 1, left bass = ch 2, left chords = ch 3)
   //TODO - figure out velocity
 
-  //TODO - pass in keysStatus instead of making another if(left) check?
   if (left){
     if (on){
       LeftKeysStatus[group] |= (1 << position);  //setting bit value
@@ -156,6 +158,12 @@ void note_midi(int group, int position, boolean on, boolean left){
       midi_vel = 0;
     }
     pitch = left_notes_midi_numbers[group][position];
+    if(pitch < 48) {
+      channel = 2;
+    }
+    else {
+      channel = 3;
+    }
   }
   else{
     if(on) {
@@ -167,10 +175,11 @@ void note_midi(int group, int position, boolean on, boolean left){
       midi_vel = 0;
     }
     pitch = right_notes_midi_numbers[group][position];
+    channel = 1;
   }
 
   if (pitch){
-    if(DEBUG) {
+    #ifdef DEBUG
       Serial.print("Note ");
       if(on){
         Serial.print("on: ");
@@ -179,15 +188,14 @@ void note_midi(int group, int position, boolean on, boolean left){
         Serial.print("off: ");
       }
       Serial.println(pitch);
-    }
-    else {
+    #else
       if(on) {
-        MIDI.sendNoteOn(pitch,midi_vel,midi_cmd);
+        MIDI.sendNoteOn(pitch, midi_vel, channel);
       }
-      else if(~on) {
-        MIDI.sendNoteOff(pitch,midi_vel,midi_cmd);
+      else {
+        MIDI.sendNoteOff(pitch, midi_vel, channel);
       }
-    }
+    #endif
   }
 
 }
