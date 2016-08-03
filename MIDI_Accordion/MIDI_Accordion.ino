@@ -11,6 +11,8 @@
 
 MIDI_CREATE_DEFAULT_INSTANCE();
 
+int CC_Volume = 7;//Control Change code for volume
+
 #define DEBUG//uncomment this line to print serial messages, comment to send MIDI data
 
 char left_hand_pins[] = { 10, 11, 12 };
@@ -83,6 +85,9 @@ void loop()
     scan_pin(right_hand_pins[i], i, RightKeysStatus[i], false);
     scan_pin(left_hand_pins[i%3], i%3, LeftKeysStatus[i%3], true);
   }
+  //Original
+//  scan_keys(left_hand_pins, sizeof(left_hand_pins), LeftKeysStatus, true);
+//  scan_keys(right_hand_pins, sizeof(right_hand_pins), RightKeysStatus, false);
 }
 
 //This function is currently unused
@@ -145,17 +150,16 @@ void check_key(int reg, int group, boolean on, boolean left){
 void note_midi(int group, int position, boolean on, boolean left){
   int pitch;
   int channel = 1;
-  int midi_vel = 0;
-  //TODO - figure out velocity
+  int midi_vel = 127;
+  //TODO - if enabled, get dynamic velocity from BMP and set here
+  //MIDI.sendControlChange(CC_Volume,midi_vel,channel);
 
   if (left){
     if (on){
       LeftKeysStatus[group] |= (1 << position);  //setting bit value
-      midi_vel = 127;
     }
     else {
       LeftKeysStatus[group] &= ~(1 << position);  //setting bit value
-      midi_vel = 0;
     }
     pitch = left_notes_midi_numbers[group][position];
     if(pitch < 48) {
@@ -168,15 +172,16 @@ void note_midi(int group, int position, boolean on, boolean left){
   else{
     if(on) {
       RightKeysStatus[group] |= (1 << position);  //setting bit value
-      midi_vel = 127;
     }
     else {
       RightKeysStatus[group] &= ~(1 << position);  //setting bit value
-      midi_vel = 0;
     }
     pitch = right_notes_midi_numbers[group][position];
     channel = 1;
   }
+
+  //TODO - figure out dynamic velocity
+  //MIDI.sendControlChange(CC_Volume,midi_vel,channel);
 
   if (pitch){
     #ifdef DEBUG
