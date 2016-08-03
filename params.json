@@ -1,0 +1,6 @@
+{
+  "name": "Midi Accordion",
+  "tagline": "Steps and code for building an Arduino-powered MIDI accordion",
+  "body": "# Arduino MIDI Accordion\r\nSteps and code for building an Arduino-powered MIDI accordion (based off Dmitry Yegorenkov's AccordionMega project: https://github.com/accordion-mega/AccordionMega)\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
