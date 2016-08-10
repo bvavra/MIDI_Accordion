@@ -22,12 +22,13 @@ int LeftKeysStatus[] = {
   B0000000,
   B0000000
 };
-//todo - remap correctly once optos are set (36-59)
+//Note: Based on how the opto-interruptors are laid out,
+//You will likely have to remap their pitch numbers (36-59)
 //36-47 are the bass notes, 48-59 are the chord notes
 const char left_notes_midi_numbers[][8] = {
-  {59,58,57,56,55,54,53,52},
-  {51,50,49,48,47,46,45,44},
-  {43,42,41,40,39,38,37,36}
+  {38,39,40,41,53,52,51,50},
+  {46,47,36,37,49,48,59,58},
+  {42,43,44,45,57,56,55,54}
 };
 
 char right_hand_pins[] = { 2, 3, 4, 5, 6, 7 };
@@ -40,7 +41,8 @@ int RightKeysStatus[] = {
   B0000000,
   B0000000
 };
-//todo - remap correctly once optos are set  (53-93)
+//Note: Based on how the opto-interruptors are laid out,
+//You will likely have to remap their pitch numbers (53-93)
 const char right_notes_midi_numbers[][8] = {
   {60,59,58,57,56,55,54,53},
   {68,67,66,65,64,63,62,61},
