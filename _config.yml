@@ -25,7 +25,7 @@ description: DIY Arduino MIDI Accordion
 navbar-links:
   Home: "http://bvavra.github.io/MIDI_Accordion"
   About: "about"
-  Author: ""https://bvavra.github.io/""
+  Author: "https://bvavra.github.io/"
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
