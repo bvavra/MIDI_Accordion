@@ -27,7 +27,7 @@ navbar-links:
   About: "about"
   Instructions:
     - Overview: "overview"
-    - Sending MIDI: "_posts/midi"
+    - Sending MIDI: "midi"
     - MIDI Playback: "midi-playback"
     - Mapping Input: "opto-interruptor"
     - Accordion Setup: "accordion"
