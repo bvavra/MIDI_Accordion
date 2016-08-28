@@ -13,7 +13,7 @@ MIDI_CREATE_DEFAULT_INSTANCE();
 
 int CC_Volume = 7;//Control Change code for volume
 
-#define DEBUG//uncomment this line to print serial messages, comment to send MIDI data
+//#define DEBUG//uncomment this line to print serial messages, comment to send MIDI data
 
 char left_hand_pins[] = { 10, 11, 12 };
 // array to store up/down status of left keys
@@ -26,9 +26,9 @@ int LeftKeysStatus[] = {
 //You will likely have to remap their pitch numbers (36-59)
 //36-47 are the bass notes, 48-59 are the chord notes
 const char left_notes_midi_numbers[][8] = {
-  {50,51,52,53,41,40,39,38},
-  {58,59,48,49,37,36,47,46},
-  {54,55,56,57,45,44,43,42}
+  {57,56,55,54,41,40,39,38},
+  {49,48,59,58,37,36,47,46},
+  {53,52,51,50,45,44,43,42}
 };
 
 char right_hand_pins[] = { 2, 3, 4, 5, 6, 7 };
