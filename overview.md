@@ -1,10 +1,16 @@
 ---
 layout: page
-title: About me
-subtitle: Some stuff you may or may not want to know
+title: Overview
+subtitle: I made a MIDI Accordion, and you can too!
 ---
 
-//Add stuff here.
+//TODO - discuss the following:
+- General project requirements (what we need to accomplish)
+- Required skills
+- Required tools
+- Required parts
+
+And then jump off from here!
 
 ### Header
 

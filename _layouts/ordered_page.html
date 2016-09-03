@@ -1,0 +1,51 @@
+---
+layout: base
+---
+
+{% include header.html type="page" %}
+
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      {{ content }}
+	  <!-- I took this from posts 
+	  TODO - see if we can add these variables to the individual pages and link to other pages...
+	  -->
+	  {% if page.tags.size > 0 %}
+        <div class="blog-tags">
+          Tags:
+          {% if site.link-tags %}
+          {% for tag in page.tags %}
+            <a href="/tag/{{ tag }}">{{ tag }}</a>
+          {% endfor %}
+          {% else %}
+            {{ page.tags | join: ", " }}
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if page.social-share %}
+        {% include social-share.html %}
+      {% endif %}
+
+      <ul class="pager blog-pager">
+        {% if page.previous.url %}
+        <li class="previous">
+          <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">&larr; {{page.previous.title}}</a>
+        </li>
+        {% endif %}
+        {% if page.next.url %}
+        <li class="next">
+          <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">{{page.next.title}} &rarr;</a>
+        </li>
+        {% endif %}
+      </ul>
+	  
+	    {% if page.comments %}
+        <div class="disqus-comments">
+	        {% include disqus.html %}
+        </div>
+	    {% endif %}
+    </div>
+  </div>
+</div>

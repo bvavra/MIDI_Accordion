@@ -1,11 +1,11 @@
 ---
 layout: page
-title: About me
-subtitle: Some stuff you may or may not want to know
+title: About the MIDI Accordion project
+subtitle: Some background info
 ---
 
-//Add stuff here.
+//This is where I'll talk about how I decided to start this project.  This will be similar to the wiki I initially followed.
 
 ### Header
 
-//Add more stuff here...
+//I'll also look into discussing my own qualification for this project, and my desire to put all this into this page.
