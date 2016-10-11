@@ -13,7 +13,7 @@ subtitle: Turning bytes into notes
 # Create a MIDI port on the Arduino (see MIDI tutorial).
 # Use Serial to MIDI conversion software to send Serial data coming from the Arduino to a virtual MIDI port.
 
-I tried both solutions but was only able to get #2 to work, so that’s the one I’ll be elaborating on.
+I tried both solutions but was only able to get #2 to work, so that's the one I'll be elaborating on.
 
 **You will need:**
 
@@ -26,7 +26,7 @@ I tried both solutions but was only able to get #2 to work, so that’s the one I’
 
 ## Solution #1
 
-In theory, for solution #1 all you should need is to follow the [MIDI tutorial on the Arduino website](https://www.arduino.cc/en/Tutorial/Midi)  and you should be done - when you plug in the MIDI cable from the arduino’s MIDI connector to the PC the PC should automatically recognize it as a MIDI port and receive MIDI data.  This didn’t work for me and I’m not sure why - if I run into latency problems with my current setup I’ll revisit this.
+In theory, for solution #1 all you should need is to follow the [MIDI tutorial on the Arduino website](https://www.arduino.cc/en/Tutorial/Midi)  and you should be done - when you plug in the MIDI cable from the arduino's MIDI connector to the PC the PC should automatically recognize it as a MIDI port and receive MIDI data.  This didn't work for me and I'm not sure why - if I run into latency problems with my current setup I'll revisit this.
 
 <insert music keyboard to pc diagram here>
 
@@ -58,9 +58,9 @@ I decided to go with LoopMIDI because I liked having the communication display (
 
 **Virtual MIDI Controller Software**
 
-Any virtual MIDI controller will get the job done, so you can pick your favorite.  Logic (Mac) and Reason (Mac, Windows) are two popular options.  I'll be using Reason for my final project; it’s overqualified for the job, but it offers a wide variety of high quality sounds with practically limitless configuration ability.
+Any virtual MIDI controller will get the job done, so you can pick your favorite.  Logic (Mac) and Reason (Mac, Windows) are two popular options.  I'll be using Reason for my final project; it's overqualified for the job, but it offers a wide variety of high quality sounds with practically limitless configuration ability.
 
-If you don’t have a virtual MIDI controller program and don’t want to shell out the money for a high-end MIDI sequencer, I recommend using [Virtual MIDI Piano Keyboard](https://sourceforge.net/projects/vmpk/) which is free, compatible with Windows/Mac/Linux, and comes with the FluidSynth MIDI OUT driver, which is vastly superior to Microsoft GS Wavetable Synth in both sound quality and response time.
+If you don't have a virtual MIDI controller program and don't want to shell out the money for a high-end MIDI sequencer, I recommend using [Virtual MIDI Piano Keyboard](https://sourceforge.net/projects/vmpk/) which is free, compatible with Windows/Mac/Linux, and comes with the FluidSynth MIDI OUT driver, which is vastly superior to Microsoft GS Wavetable Synth in both sound quality and response time.
 
 **Steps**
 
@@ -72,14 +72,14 @@ Once all of the software is installed, perform the following steps to hook every
  - Select your Arduino port as the Serial port
  - Select the virtual MIDI port you created in Step 2 as MIDI Out
   - At this point, if done correctly, you should see MIDI data going through. <insert image of hairless MIDI here>
-# On your MIDI controller program, create a MIDI connection to the virtual MIDI port.  This step greatly depends on your program; here’s how to do it in Reason and VMPK: <insert images of reason and vmpk here>
+# On your MIDI controller program, create a MIDI connection to the virtual MIDI port.  This step greatly depends on your program; here's how to do it in Reason and VMPK: <insert images of reason and vmpk here>
 
-And that’s it - if done correctly, any MIDI messages being sent from the Arduino should now be playing back on your computer.
+And that's it - if done correctly, any MIDI messages being sent from the Arduino should now be playing back on your computer.
 
 **Troubleshooting**
 
-- I can’t upload code changes to the Arduino.
- - You can’t update the Arduino code while the COM port is in use by the MIDI<->Serial bridge, so you have to turn it off (including debug messages) when uploading new code to the Arduino.
+- I can't upload code changes to the Arduino.
+ - You can't update the Arduino code while the COM port is in use by the MIDI<->Serial bridge, so you have to turn it off (including debug messages) when uploading new code to the Arduino.
  - If you try uploading quickly after plugging it in, sometimes it fails to find the COM port.  More often than not unplugging and replugging the USB cable seems to do the trick.
 
 **Credit**
