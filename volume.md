@@ -4,8 +4,4 @@ title: About me
 subtitle: Some stuff you may or may not want to know
 ---
 
-//Add stuff here.
-
-### Header
-
-//Add more stuff here...
+//This will be the tutorial for using the BMP sensor to allow dynamic expression using the bellows.
