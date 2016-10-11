@@ -19,19 +19,19 @@ subtitle: How to MIDI with Arduino
 
 ## Solution
 
-The [MIDI Tutorial on the Arduino website](https://www.arduino.cc/en/Tutorial/Midi) provides a brief overview of how MIDI data is structured, along with some links to more extensive information. <TODO - include links>  For the sake of this project and this tutorial in particular I'll give you the tl;dr:
+The [MIDI Tutorial on the Arduino website](https://www.arduino.cc/en/Tutorial/Midi) provides a brief overview of how MIDI data is structured, along with some links to more extensive information. /*TODO - include links*/  For the sake of this project and this tutorial in particular I'll give you the tl;dr:
 
-- <todo>
+- //todo
 
 **Steps**
 
-# Install the [Arduino MIDI Library](http://playground.arduino.cc/Main/MIDILibrary) to your Arduino IDE.
-# <todo>
+1. Install the [Arduino MIDI Library](http://playground.arduino.cc/Main/MIDILibrary) to your Arduino IDE.
+2. //todo
 
 **Troubleshooting**
 
-<todo>
+//todo
 
 **Credit**
 
-<thank the makers of arduino midi library>
+//TODO thank the makers of arduino midi library

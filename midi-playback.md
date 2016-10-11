@@ -10,8 +10,8 @@ subtitle: Turning bytes into notes
 
 **The Problem:** Arduino communicates with the PC over a Serial port, but we want to communicate using MIDI.  We need a way to convert the serial output into something the PC understands to be a MIDI port.  There are two ways to solve this problem:
 
-# Create a MIDI port on the Arduino (see MIDI tutorial).
-# Use Serial to MIDI conversion software to send Serial data coming from the Arduino to a virtual MIDI port.
+1. Create a MIDI port on the Arduino (see MIDI tutorial).
+2. Use Serial to MIDI conversion software to send Serial data coming from the Arduino to a virtual MIDI port.
 
 I tried both solutions but was only able to get #2 to work, so that's the one I'll be elaborating on.
 
@@ -36,7 +36,7 @@ In theory, for solution #1 all you should need is to follow the [MIDI tutorial o
 
 For solving the Serial to MIDI conversion on the PC side, we need two pieces of software: one to convert the serial output from the Arduino to MIDI, and a virtual MIDI port to connect the converted output to your MIDI playback software of choice.
 
-<insert serial to midi conversion diagram here, along with a brief explanation of each component>
+/*insert serial to midi conversion diagram here, along with a brief explanation of each component*/
 
 **Serial to MIDI conversion software**
 
@@ -66,13 +66,13 @@ If you don't have a virtual MIDI controller program and don't want to shell out 
 
 Once all of the software is installed, perform the following steps to hook everything up:
 
-# Upload your Circuit code to the Arduino (requires the Arduino MIDI Library).
-# Start your Virtual MIDI port.
-# Open your Serial-to-MIDI program:
+1. Upload your Circuit code to the Arduino (requires the Arduino MIDI Library).
+2. Start your Virtual MIDI port.
+3. Open your Serial-to-MIDI program:
  - Select your Arduino port as the Serial port
  - Select the virtual MIDI port you created in Step 2 as MIDI Out
-  - At this point, if done correctly, you should see MIDI data going through. <insert image of hairless MIDI here>
-# On your MIDI controller program, create a MIDI connection to the virtual MIDI port.  This step greatly depends on your program; here's how to do it in Reason and VMPK: <insert images of reason and vmpk here>
+  - At this point, if done correctly, you should see MIDI data going through. /*insert image of hairless MIDI here*/
+4. On your MIDI controller program, create a MIDI connection to the virtual MIDI port.  This step greatly depends on your program; here's how to do it in Reason and VMPK: /*insert images of reason and vmpk here*/
 
 And that's it - if done correctly, any MIDI messages being sent from the Arduino should now be playing back on your computer.
 
@@ -84,4 +84,4 @@ And that's it - if done correctly, any MIDI messages being sent from the Arduino
 
 **Credit**
 
-<thank the makers of Hairless MIDI, LoopMIDI, and VMPK here>
+/*thank the makers of Hairless MIDI, LoopMIDI, and VMPK here*/
