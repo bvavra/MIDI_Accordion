@@ -11,6 +11,9 @@
 url: "http://bvavra.github.io/MIDI_Accordion"
 baseurl: "/MIDI_Accordion"
 
+# Need this to prevent breakage from copying/pasting text from Google Docs:
+encoding: UTF-8
+
 # Of course don't forget to change the username and projectname to YOUR username and project
 
 # Name of website
