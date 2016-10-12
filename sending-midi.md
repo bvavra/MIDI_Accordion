@@ -82,12 +82,21 @@ Now for the program we want to execute:
     
 All the program is doing is playing one note at a time for 1 second each from F3 to A6, which is the full range of the accordion right hand.
 
-Now let's run the program:
+Now let's run the program.  If you open the output window, you'll probably see something like this:
+
+![midi_output_9600](images/midi_output_9600.jpg)
+
+Not very informative - let's change the baud rate of the output window to match our MIDI baud rate of 115200:
+
+![midi_output_115200](images/midi_output_115200.jpg)
+
+Still not great, but you can kind of see things like numbers going up and such, so it sort of looks like it's doing what we expect (if you see something remotely like this, you're good).  To make sure, though, we really need to hear what the output sounds like, and [that's what the next tutorial is for](midi-playback)!
 
 **Troubleshooting**
 
-//todo
+> "The program won't compile!"
+- This program was written to work with the Arduino Uno and the Arduino Mega.  If you're running this program on a different Arduino (such as the Arduino Due) you may need to alter the MIDI_CREATE_CUSTOM_INSTANCE function call accordingly.  See the [Arduino MIDI Library Documentation](http://arduinomidilib.fortyseveneffects.com/a00020.html#a95faae7d93fc1a603f99cc7ad92d72bf) for details.
 
 **Credit**
 
-//TODO thank the makers of arduino midi library
+- Thank you to the makers of the [Arduino MIDI Library](https://github.com/FortySevenEffects/arduino_midi_library) for making an awesome, comprehensive library for using MIDI aith the Arduino.
