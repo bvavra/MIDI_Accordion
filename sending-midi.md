@@ -88,7 +88,7 @@ Now let's run the program.  If you open the output window, you'll probably see s
 
 Not very informative - let's change the baud rate of the output window to match our MIDI baud rate of 115200:
 
-![midi_output_115200](https://github.com/bvavra/MIDI_Accordion/blob/gh-pages/img/midi_output_115200.JPG)
+![midi_output_115200](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/gh-pages/img/midi_output_115200.JPG)
 
 Still not great, but you can kind of see things like numbers going up and such, so it sort of looks like it's doing what we expect (if you see something remotely like this, you're good).  To make sure, though, we really need to hear what the output sounds like, and [that's what the next tutorial is for](../midi-playback)!
 
