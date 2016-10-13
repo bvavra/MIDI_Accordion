@@ -15,9 +15,8 @@ Have the Arduino send MIDI data to the computer.
 We need to make sure whatever data we send follows the MIDI protocol in order for the data to be interpreted properly.  We will use the [Arduino MIDI library](http://playground.arduino.cc/Main/MIDILibrary) to make it simple for us.
 
 **You will need:**
-
 - Arduino (Uno, Mega, etc)
-    - If you're reading this and ready to try this tutorial, I'm assuming that you have a vague idea of how to compile, upload, and run Arduino programs.  If not, I recommend picking up an Arduino Getting Started Kit, checking out the [Getting Started Guide](https://www.arduino.cc/en/Guide/HomePage), and building a few prototypes to get a feel for how the Arduino works before before jumping into this tutorial.
+    - If you're reading this and ready to try this tutorial, I'm assuming that you have a vague idea of how to compile, upload, and run Arduino programs.  If not, I recommend picking up an [Arduino Getting Started Kit](https://www.amazon.com/s/ref=nb_sb_ss_c_1_18?url=search-alias%3Daps&field-keywords=arduino+getting+started+kit&sprefix=arduino+getting+st%2Caps%2C202), checking out the [Getting Started Guide](https://www.arduino.cc/en/Guide/HomePage), and building a few prototypes to get a feel for how the Arduino works before before jumping into this tutorial.
 - [MIDI Accordion's MIDI Tutorial](https://github.com/bvavra/MIDI_Accordion/tree/master/Prototypes/MIDI_Tutorial)
 - [Arduino MIDI Library](http://playground.arduino.cc/Main/MIDILibrary)
 
@@ -35,6 +34,7 @@ The [MIDI Tutorial on the Arduino website](https://www.arduino.cc/en/Tutorial/Mi
 Again, there's a lot more to it than this, and I'll dive into details in future sections when necessary, but this is all you need to knnow for this tutorial.
 
 ### Steps
+
 
 1. Install the [Arduino MIDI Library](http://playground.arduino.cc/Main/MIDILibrary) to your Arduino IDE.
     - See [Installing Additional Arduino Libraries](https://www.arduino.cc/en/Guide/Libraries) for details on how to do this.
@@ -84,9 +84,9 @@ Now for the program we want to execute:
       }
     }
     
-All the program is doing is playing one note at a time for 1 second each from F3 to A6, which is the full range of the accordion right hand.  If you're not familiar with Arduino code and don't quite understand how this syntax works, [check out the reference for For loops](https://www.arduino.cc/en/Reference/For).
+All the program is doing is playing one note at a time for 1 second each from F3 to A6, which is the [full range of the accordion right hand](https://en.wikipedia.org/wiki/Piano_accordion).  If you're not familiar with Arduino code and don't quite understand how this syntax works, [check out the reference for For loops](https://www.arduino.cc/en/Reference/For).
 
-Now let's run the program.  If you open the output window, you'll probably see something like this:
+Now let's upload and run the program.  If you open the output window, you'll probably see something like this:
 
 ![midi_output_9600](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/gh-pages/img/midi_output_9600.JPG)
 
@@ -98,7 +98,8 @@ Still not great, but you can kind of see things like numbers going up and such, 
 
 ### Troubleshooting
 
-> "When I try to upload and run the program I get an error saying 'can't open device "\\.\COM#"'"
+> When I try to upload and run the program I get an error saying: 
+> avrdude: ser_open(): can't open device "\\.\COM#"
 
 - Make sure that the selected Board matches your Arduino board and the select Port matches the Port number created when you installed the Arduino.
 - Sometimes, if you unplug the Arduino, make a code change, re-plug it in, and reupload the code, it might not recognize that it's plugged in immediately.  Try unplugging and replugging it in again and then re-upload the code.
@@ -109,4 +110,4 @@ Still not great, but you can kind of see things like numbers going up and such, 
 
 ### Credit
 
-- Thank you to the makers of the [Arduino MIDI Library](https://github.com/FortySevenEffects/arduino_midi_library) for making an awesome, comprehensive library for using MIDI with the Arduino.
+- Thank you to [FortySevenEffects](https://github.com/FortySevenEffects), maker of the [Arduino MIDI Library](https://github.com/FortySevenEffects/arduino_midi_library), for building an awesome, comprehensive library for easily using MIDI with the Arduino.
