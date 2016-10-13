@@ -23,17 +23,21 @@
 #include <midi_Message.h>
 #include <midi_Namespace.h>
 #include <midi_Settings.h>
+struct MySettings : public midi::DefaultSettings
+{
+   // Set MIDI baud rate. MIDI has a default baud rate of 31250,
+   // but we're setting our baud rate higher in order to 
+   // properly decode and read outgoing MIDI data on the computer.
+   static const long BaudRate = 115200;
+};
 
-MIDI_CREATE_DEFAULT_INSTANCE();
+MIDI_CREATE_CUSTOM_INSTANCE(HardwareSerial, Serial, MIDI, MySettings);
 
-int velocity = 127; //Max Velocity (range is 0-127)
-int channel = 1; //MIDI Channel 1 (out of 16)
+const int velocity = 127; //Max Velocity (range is 0-127)
+const int channel = 1; //MIDI Channel 1 (out of 16)
 
 void setup() {
-  MIDI.begin(1);
-  // Set MIDI baud rate. MIDI has a single baud rate of 31250,
-  // but we're setting the serial baud rate higher to help reduce latency.
-  Serial.begin(115200);
+  MIDI.begin();
 }
 
 void loop() {
