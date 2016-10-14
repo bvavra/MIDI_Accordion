@@ -15,6 +15,7 @@ Have the Arduino send MIDI data to the computer.
 We need to make sure whatever data we send follows the MIDI protocol in order for the data to be interpreted properly.  We will use the [Arduino MIDI library](http://playground.arduino.cc/Main/MIDILibrary) to make it simple for us.
 
 **You will need:**
+
 - Arduino (Uno, Mega, etc)
     - If you're reading this and ready to try this tutorial, I'm assuming that you have a vague idea of how to compile, upload, and run Arduino programs.  If not, I recommend picking up an [Arduino Getting Started Kit](https://www.amazon.com/s/ref=nb_sb_ss_c_1_18?url=search-alias%3Daps&field-keywords=arduino+getting+started+kit&sprefix=arduino+getting+st%2Caps%2C202), checking out the [Getting Started Guide](https://www.arduino.cc/en/Guide/HomePage), and building a few prototypes to get a feel for how the Arduino works before before jumping into this tutorial.
 - [MIDI Accordion's MIDI Tutorial](https://github.com/bvavra/MIDI_Accordion/tree/master/Prototypes/MIDI_Tutorial)

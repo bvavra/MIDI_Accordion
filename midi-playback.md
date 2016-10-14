@@ -4,25 +4,39 @@ title: MIDI Playback
 subtitle: Turning bytes into notes
 ---
 
+So now that we have our Arduino sending MIDI data, it's time to turn that data into music!
+
 //This will be the tutorial for taking the midi data from the Arduino and turning it into computer-realized sound.  Include some more info about the MIDI protocol, some info about layout and diagram of how everything's connected, and detailed isntructions for putting everything together (with links to third-party software).
 
-**Goal:** Have the Arduino send MIDI data to the PC and have the PC recognize the data as MIDI and play it back for us using software that supports MIDI Input and Output (e.g. Reason, Logic, etc).
+### Goal
 
-**The Problem:** Arduino communicates with the PC over a Serial port, but we want to communicate using MIDI.  We need a way to convert the serial output into something the PC understands to be a MIDI port.  There are two ways to solve this problem:
+Have the Arduino send MIDI data to the PC and have the PC recognize the data as MIDI and play it back for us using software that supports MIDI Input and Output (e.g. Reason, Logic, etc).
 
-1. Create a MIDI port on the Arduino (see MIDI tutorial).
+### The Problem
+
+Arduino communicates with the PC over a Serial port, but we want to communicate using MIDI.  We need a way to convert the serial output into something the PC understands to be a MIDI port.  There are two ways to solve this problem, and both have theri pros and cons:
+
+1. [Create a MIDI port on the Arduino](https://www.arduino.cc/en/Tutorial/Midi) - this allows you to plug the Arduino into the computer with a [MIDI-to-USB cable](https://www.amazon.com/USB-MIDI-Converter-Keyboard-Window/dp/B0047AVN3M)
+    - Pros:
+	    - Computers instantly recognize the Arduino as a MIDI device - no virtual MIDI software required (which means less to setup before playing and less latency).
+	- Cons:
+	    - No wireless option: you're tethered to the computer
 2. Use Serial to MIDI conversion software to send Serial data coming from the Arduino to a virtual MIDI port.
+    - Pros:
+	    - Works with any incoming serial data from any source (USB, Bluetooth, WiFi, etc.).
+	- Cons:
+	    - Requires installing two programs and running them every time you want to play.
 
-I tried both solutions but was only able to get #2 to work, so that's the one I'll be elaborating on.
+After weighing both options I decided that having a wireless option was more important to me than easy plug-n-play capabilities, so I went with Option 2.  That being said, that's the option I will be elaborating on in this tutorial.  If you prefer Option 1 for your project, you should just be able to follow the Arduino website's [MIDI tutorial](https://www.arduino.cc/en/Tutorial/Midi) to get that option working.
 
 **You will need:**
 
 - Arduino (Uno, Mega, etc)
 - For Option 1 Only:
--- MIDI-USB cable
--- MIDI connector PIN
--- 2x220 Ohm resistors
--- Wires
+    - MIDI-USB cable
+    - MIDI connector PIN
+    - 2x220Ω resistors
+    - Wires
 
 ## Solution #1
 
