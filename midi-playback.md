@@ -16,11 +16,11 @@ Have the Arduino send MIDI data to the PC and have the PC recognize the data as 
 
 Arduino communicates with the PC over a Serial port, but we want to communicate using MIDI.  We need a way to convert the serial output into something the PC understands to be a MIDI port.  There are two ways to solve this problem, and both have theri pros and cons:
 
-1. [Create a MIDI port on the Arduino](https://www.arduino.cc/en/Tutorial/Midi) - this allows you to plug the Arduino into the computer with a [MIDI-to-USB cable](https://www.amazon.com/USB-MIDI-Converter-Keyboard-Window/dp/B0047AVN3M)
+1. [Create a MIDI port on the Arduino](https://www.arduino.cc/en/Tutorial/Midi) - this allows you to plug the Arduino into the computer with a [MIDI-to-USB cable](https://www.amazon.com/USB-MIDI-Converter-Keyboard-Window/dp/B0047AVN3M).
     - Pros:
 	    - Computers instantly recognize the Arduino as a MIDI device - no virtual MIDI software required (which means less to setup before playing and less latency).
 	- Cons:
-	    - No wireless option: you're tethered to the computer
+	    - No wireless option: you're tethered to the computer.
 2. Use Serial to MIDI conversion software to send Serial data coming from the Arduino to a virtual MIDI port.
     - Pros:
 	    - Works with any incoming serial data from any source (USB, Bluetooth, WiFi, etc.).
@@ -32,19 +32,20 @@ After weighing both options I decided that having a wireless option was more imp
 **You will need:**
 
 - Arduino (Uno, Mega, etc)
+- [MIDI Accordion's MIDI Tutorial](https://github.com/bvavra/MIDI_Accordion/tree/master/Prototypes/MIDI_Tutorial)
 - For Option 1 Only:
     - MIDI-USB cable
     - MIDI connector PIN
     - 2x220Ω resistors
-    - Wires
+    - Jumper Wires
 
 ## Solution #1
 
-In theory, for solution #1 all you should need is to follow the [MIDI tutorial on the Arduino website](https://www.arduino.cc/en/Tutorial/Midi)  and you should be done - when you plug in the MIDI cable from the arduino's MIDI connector to the PC the PC should automatically recognize it as a MIDI port and receive MIDI data.  This didn't work for me and I'm not sure why - if I run into latency problems with my current setup I'll revisit this.
+If you prefer Option 1 for your project all you should need is to follow the [MIDI tutorial on the Arduino website](https://www.arduino.cc/en/Tutorial/Midi) and you should be done - when you plug in the MIDI cable from the arduino's MIDI connector to the computer the computer should automatically recognize it as a MIDI port and receive MIDI data.
 
 /*insert music keyboard to pc diagram here*/
 
-**Going further:** [This guy demonstrates how to integrate the MIDI<->USB circuit in the cable into the Arduino.](http://shiftmore.blogspot.com/2010/01/quick-and-dirty-arduino-midi-over-usb.html)  In theory, one could build a plug-n-play MIDI device that would work on any computer using this method.  I personally haven't tried because I would prefer to get my accordion [communicating MIDI data wirelessly via bluetooth](bluetooth), which would not be able to send data in MIDI format.  I've looked into wireless MIDI "cables" and they can be pretty expensive. //TODO - insert link here.
+**Going further:** [This guy demonstrates how to integrate the MIDI<->USB circuit in the cable into the Arduino.](http://shiftmore.blogspot.com/2010/01/quick-and-dirty-arduino-midi-over-usb.html)  In theory, one could build a plug-n-play MIDI device that would work on any computer with any USB cable using this method.  I personally haven't tried because I would prefer to get my accordion [communicating MIDI data wirelessly via bluetooth](bluetooth), which would not be able to send data in MIDI format.  I've looked into wireless MIDI transceivers and [they can be pretty expensive](https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#tbm=shop&q=wireless+midi+to+usb+transceiver).
 
 ## Solution #2
 
