@@ -100,6 +100,7 @@ Still not great, but you can kind of see things like numbers going up and such, 
 ### Troubleshooting
 
 > When I try to upload and run the program I get an error saying: 
+> 
 > avrdude: ser_open(): can't open device "\\.\COM#"
 
 - Make sure that the selected Board matches your Arduino board and the select Port matches the Port number created when you installed the Arduino.
@@ -111,4 +112,4 @@ Still not great, but you can kind of see things like numbers going up and such, 
 
 ### Credit
 
-- Thank you to [FortySevenEffects](https://github.com/FortySevenEffects), maker of the [Arduino MIDI Library](https://github.com/FortySevenEffects/arduino_midi_library), for building an awesome, comprehensive library for easily using MIDI with the Arduino.
+- Thank you to [FortySevenEffects](https://github.com/FortySevenEffects) for making the [Arduino MIDI Library](https://github.com/FortySevenEffects/arduino_midi_library).
