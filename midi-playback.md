@@ -83,7 +83,7 @@ If you don't have a virtual MIDI controller program and don't want to shell out 
 
 Once all of the software is installed, perform the following steps to hook everything up:
 
-1. Upload your MIDI code to the Arduino (see the [previous tutorial](sending-midi) for details).
+1. Upload your MIDI code to the Arduino (see the [previous tutorial](../sending-midi) for details).
 2. Start your virtual MIDI port (if it's not already started).
 3. Open your Serial-to-MIDI program:
     - Select your Arduino port as the Serial port
@@ -102,7 +102,7 @@ Once all of the software is installed, perform the following steps to hook every
 
 And that's it!  If done correctly, any MIDI messages being sent from the Arduino should now be playing back on your computer.  Have some fun playing around with the arduino program (changing notes and duration), and try setting different instruments on your MIDI controller - keep in mind that whatever sounds are available to you now will be hooked up to your accordion when you're done, so start thinking about how you want your accordion to sound.
 
-Up next: [How to map user input to MIDI output.](opto-interruptor)
+Up next: [How to map user input to MIDI output.](../opto-interruptor)
 
 ### Troubleshooting
 
