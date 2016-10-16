@@ -10,7 +10,7 @@ subtitle: I made a MIDI Accordion, and you can too!
 
 ### Required Skills
 
-I've designed this tutorial to have a relatively low barrier of entry, but I will assume you have some knowledge about the following:
+I've designed this tutorial to have a relatively low barrier to entry, but I will assume you have some knowledge about the following:
 
 - **Music**
     - If you want to build a MIDI accordion, I'm assuming you know how to play the accordion or some other musical instrument, and that you have a basic sense of fundamental music theory (e.g. notes and chords).  This is required because you will need to map the accordion keys to MIDI notes by number, and it helps to be able to hear if a chord button sounds right or not when played.
@@ -21,7 +21,16 @@ I've designed this tutorial to have a relatively low barrier of entry, but I wil
 
 If you, like me, have never dabbed into electrical engineering before, you may not have the tools necessary to build a MIDI accordion.  Here are a list of tools I ended up using throughout the project:
 
+//TODO - include images of everything
+
 - Multimeter
+    - This will be your primary debugging tool when putting together prototypes and the final project. //TODO - include links
+- Soldering Iron
+    - Used to solder wires and components together when building the final project.  //TODO - details on 
+- Wire Strippers
+    - Used to cut and strip wires to size.  Can also be used to cut various components as needed.
+- Wire Cutters
+    - Used to trim wires and components after they've been soldered.
 - //TODO
 
 ### Required Parts

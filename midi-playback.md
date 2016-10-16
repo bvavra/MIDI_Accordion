@@ -6,8 +6,6 @@ subtitle: Turning bytes into notes
 
 So now that we have our Arduino sending MIDI data, it's time to turn that data into music!
 
-//This will be the tutorial for taking the midi data from the Arduino and turning it into computer-realized sound.  Include some more info about the MIDI protocol, some info about layout and diagram of how everything's connected, and detailed isntructions for putting everything together (with links to third-party software).
-
 ### Goal
 
 Have the Arduino send MIDI data to the PC and have the PC recognize the data as MIDI and play it back for us using software that supports MIDI Input and Output (e.g. Reason, Logic, etc).
