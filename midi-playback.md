@@ -43,7 +43,7 @@ After weighing both options I decided that having a wireless option was more imp
 
 If you prefer Option 1 for your project all you should need is to follow the [MIDI tutorial on the Arduino website](https://www.arduino.cc/en/Tutorial/Midi) and you should be done - when you plug in the MIDI cable from the arduino's MIDI connector to the computer the computer should automatically recognize it as a MIDI port and receive MIDI data.
 
-![MIDI to USB Connection](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/gh-pages/img/midi_to_usb_connection.jpg)
+![MIDI to USB Connection](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/gh-pages/img/midi/midi_to_usb_connection.jpg)
 
 **Going further:** [Shiftmore demonstrates how to integrate the MIDI<->USB circuit in the cable into the Arduino.](http://shiftmore.blogspot.com/2010/01/quick-and-dirty-arduino-midi-over-usb.html)  In theory, one could build a plug-n-play MIDI device that would work on any computer with any USB cable using this method.  I personally haven't tried because I would prefer to get my accordion [communicating MIDI data wirelessly via bluetooth](bluetooth), which would not be able to send data in MIDI format.  I've looked into wireless MIDI transceivers and [they can be pretty expensive](https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#tbm=shop&q=wireless+midi+to+usb+transceiver).
 
@@ -88,10 +88,17 @@ Once all of the software is installed, perform the following steps to hook every
 3. Open your Serial-to-MIDI program:
     - Select your Arduino port as the Serial port
     - Select the virtual MIDI port you created in Step 2 as MIDI Out
-        - At this point, if done correctly, you should see MIDI data going through. /*insert image of hairless MIDI here*/
+        - At this point, if done correctly, you should see MIDI data going through. 
+![Serial to MIDI](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/gh-pages/img/midi/serial_to_midi.GIF)
 4. On your MIDI controller program, create a MIDI connection to the virtual MIDI port.  This step greatly depends on your program; here's how to do it in Reason and VMPK: 
 
-/*insert images of reason and vmpk here*/
+**VPMK Configuration**
+
+![VPMK Setup](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/gh-pages/img/midi/vmpk_2.JPG)
+
+**Reason Configuration**
+
+![Arduino to Reason](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/gh-pages/img/midi/arduino_to_reason.GIF)
 
 And that's it!  If done correctly, any MIDI messages being sent from the Arduino should now be playing back on your computer.  Have some fun playing around with the arduino program (changing notes and duration), and try setting different instruments on your MIDI controller - keep in mind that whatever sounds are available to you now will be hooked up to your accordion when you're done, so start thinking about how you want your accordion to sound.
 

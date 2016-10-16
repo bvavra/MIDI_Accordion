@@ -89,11 +89,11 @@ All the program is doing is playing one note at a time for 1 second each from F3
 
 Now let's upload and run the program.  If you open the output window, you'll probably see something like this:
 
-![midi_output_9600](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/gh-pages/img/midi_output_9600.JPG)
+![midi_output_9600](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/gh-pages/img/midi/midi_output_9600.JPG)
 
 Not very informative - let's change the baud rate of the output window to match our MIDI baud rate of 115200:
 
-![midi_output_115200](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/gh-pages/img/midi_output_115200.JPG)
+![midi_output_115200](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/gh-pages/img/midi/midi_output_115200.JPG)
 
 Still not great, but you can kind of see things like numbers going up and such, so it sort of looks like it's doing what we expect (if you see something remotely like this, you're good).  To make sure, though, we really need to hear what the output sounds like, and [that's what the next tutorial is for](../midi-playback)!  Before moving on, though, feel free to modify the code to try playing different notes for different durations to get a better feel for how MIDI note data translates to music.
 
