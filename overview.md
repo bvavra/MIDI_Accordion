@@ -4,6 +4,7 @@ title: Overview
 subtitle: I made a MIDI Accordion, and you can too!
 ---
 
+<div class="table-of-contents">
 | Table of Contents             |
 | ----------------------------- |
 | [General Requirements](#reqs) |
@@ -12,6 +13,7 @@ subtitle: I made a MIDI Accordion, and you can too!
 | [Required Parts](#parts)      |
 | [Required Software](#software)|
 | [Required Time](#time)        |
+</div>
 
 ### <a name="reqs"></a>General Project Requirements (what we need to accomplish)
 

@@ -552,9 +552,7 @@ footer .theme-by {
 /* --- Tables --- */
 
 table {
-  padding-right: 10px;
-  padding-bottom: 10px;
-  float: left;
+  padding: 0;
 }
 table tr {
   border-top: 1px solid #cccccc;
@@ -627,4 +625,13 @@ td.gutter {
 
 #social-share-section {
   margin-bottom: 30px;
+}
+
+/* --- BV Custom --- */
+
+.table-of-contents table {
+  float: left;
+  margin-left: -250px;
+  margin-top: -210px;
+  position: fixed;
 }
