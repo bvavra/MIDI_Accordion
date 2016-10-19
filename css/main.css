@@ -552,7 +552,8 @@ footer .theme-by {
 /* --- Tables --- */
 
 table {
-  padding-right: 10;
+  padding-right: 10px;
+  padding-bottom: 10px;
   float: left;
 }
 table tr {
