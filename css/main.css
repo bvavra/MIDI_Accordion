@@ -552,7 +552,7 @@ footer .theme-by {
 /* --- Tables --- */
 
 table {
-  padding: 0;
+  padding-right: 10;
   float: left;
 }
 table tr {
