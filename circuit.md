@@ -14,7 +14,7 @@ Plan the layout for circuit board and wire layout for the left and right hand of
 
 This is it - it all comes down to this.  Once you have a final draft of how you want to map the circuit boards all that's left is to solder everything together.
 
-**Disclaimer:** The accordion is not a standardized instrument - they vary greatly in how they are manufactured, so the inner workings can be different from accordion to accordion.  That being said, take this guide with a grain of salt, as not all of these instructions may exactly apply to your model of accordion.  Also, this guide assumes you've chosen in the previous guide to attach bockers on the inside of the accordion (unless otherwise specified).
+**Disclaimer:** The accordion is not a standardized instrument - they vary greatly in how they are manufactured, so the inner workings can be different from accordion to accordion.  That being said, take this guide with a grain of salt, as not all of these instructions may exactly apply to your model of accordion.  Also, this guide assumes you've chosen in the previous guide to attach blockers on the inside of the accordion (unless otherwise specified).
 
 ### Solution
 

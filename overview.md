@@ -4,9 +4,16 @@ title: Overview
 subtitle: I made a MIDI Accordion, and you can too!
 ---
 
-//TODO - discuss the following
+| Table of Contents             |
+| ----------------------------- |
+| [General Requirements](#reqs) |
+| [Required Skills](#skills)    |
+| [Required Tools](#tools)      |
+| [Required Parts](#parts)      |
+| [Required Software](#software)|
+| [Required Time](#time)        |
 
-### General project requirements (what we need to accomplish)
+### <a name="reqs"></a>General Project Requirements (what we need to accomplish)
 
 The goal of this project is to take a piano accordion and turn it into a MIDI Controller capable of playing music from your computer. To do this requires solving a few different problems:
 
@@ -25,7 +32,7 @@ This is enough to have a functional MIDI instrument, but there are a few additio
 6. Decoupling the accordion's power supply from the computer/wall
 7. Adding dynamic expression using the accordion bellows (via barometric pressure sensor)
 
-### Required Skills
+### <a name="skills"></a>Required Skills
 
 I've designed this tutorial to have a relatively low barrier to entry, but I will assume you have some knowledge about the following:
 
@@ -34,7 +41,7 @@ I've designed this tutorial to have a relatively low barrier to entry, but I wil
 - **Arduino**
     - You don't need to be an Arduino master or even have any experience with programming or electrical engineering, but I will assume you have successfully run a basic Arduino prototype at least once and are, hence, relatively familiar with how the Arduino IDE works.  If not, I recommend picking up an [Arduino Getting Started Kit](https://www.amazon.com/s/ref=nb_sb_ss_c_1_18?url=search-alias%3Daps&field-keywords=arduino+getting+started+kit&sprefix=arduino+getting+st%2Caps%2C202), checking out the [Getting Started Guide](https://www.arduino.cc/en/Guide/HomePage), and building a few prototypes to get a feel for how the Arduino works before before jumping too deep into this project.
 
-### Required Tools
+### <a name="tools"></a>Required Tools
 
 If you, like me, have never dabbed into electrical engineering before, you may not have the tools necessary to build a MIDI accordion.  Here are a list of tools I ended up using throughout the project:
 
@@ -57,13 +64,13 @@ If you, like me, have never dabbed into electrical engineering before, you may n
     - Used to cut the circuit boards.  More details about how I did this in the circuit layout tutorial.
 - //TODO
 
-### Required Parts
+### <a name="parts"></a>Required Parts
 
 Here is the complete Bill of Materials for this project.  Specifics may vary from project to project (since all accordions are different), but this should give you a good idea of what parts will be needed and about how much you're likely to spend on them:
 
 - //TODO
 
-### Required Software
+### <a name="software"></a>Required Software
 
 To get the most out of this project you'll need a computer (Windows, OSX, or Linux) that can run the following programs:
 
@@ -81,7 +88,7 @@ To get the most out of this project you'll need a computer (Windows, OSX, or Lin
 - Fritzing
     - I used [Fritzing](http://fritzing.org/home/) to write up diagrams and schematics for all of my prototypes and tutorials.  Images of these diagrams are provided, but if you want to dive into the files themselves this program is free to download and install.
 
-### Required Time
+### <a name="time"></a>Required Time
 
 I'm gonna be honest with you: this project will take a *long* time, especially if you're not familiar with certain aspects of this project (programming, MIDI protocol, electric engineering, etc.).  For reference, this is the work log summary for how much time I've spent on this project:
 

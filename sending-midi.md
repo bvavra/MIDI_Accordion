@@ -99,14 +99,12 @@ Still not great, but you can kind of see things like numbers going up and such, 
 
 ### Troubleshooting
 
-> When I try to upload and run the program I get an error saying: 
-> 
-> avrdude: ser_open(): can't open device "\\.\COM#"
+**"When I try to upload and run the program I get an error saying: 'avrdude: ser_open(): can't open device "\\.\COM#"'"**
 
 - Make sure that the selected Board matches your Arduino board and the select Port matches the Port number created when you installed the Arduino.
 - Sometimes, if you unplug the Arduino, make a code change, re-plug it in, and reupload the code, it might not recognize that it's plugged in immediately.  Try unplugging and replugging it in again and then re-upload the code.
 
-> "The program won't compile!"
+**"The program won't compile!"**
 
 - This program was written to work with the Arduino Uno and the Arduino Mega.  If you're running this program on a different Arduino (such as the Arduino Due) you may need to alter the MIDI_CREATE_CUSTOM_INSTANCE function call accordingly.  See the [Arduino MIDI Library Documentation](http://arduinomidilib.fortyseveneffects.com/a00020.html#a95faae7d93fc1a603f99cc7ad92d72bf) for details.
 

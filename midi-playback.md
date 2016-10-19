@@ -104,7 +104,7 @@ Up next: [How to map user input to MIDI output.](../opto-interruptor)
 
 ### Troubleshooting
 
-> I can't upload code changes to the Arduino.
+**"I can't upload code changes to the Arduino."**
 
 - You can't update the Arduino code while the COM port is in use by the MIDI<->Serial bridge, so you have to turn it off (including debug messages) when uploading new code to the Arduino.
 - If you try uploading quickly after plugging it in, sometimes it fails to find the COM port.  More often than not unplugging and replugging the USB cable seems to do the trick.
