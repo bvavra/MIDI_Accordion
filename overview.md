@@ -5,6 +5,7 @@ subtitle: I made a MIDI Accordion, and you can too!
 ---
 
 <div class="table-of-contents"></div>
+
 | Table of Contents             |
 | ----------------------------- |
 | [General Requirements](#reqs) |
