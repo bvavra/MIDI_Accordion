@@ -629,7 +629,7 @@ td.gutter {
 
 /* --- BV Custom --- */
 
-.table-of-contents table {
+.table-of-contents + table {
   float: left;
   margin-left: -250px;
   margin-top: -210px;
