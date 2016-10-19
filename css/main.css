@@ -553,6 +553,7 @@ footer .theme-by {
 
 table {
   padding: 0;
+  float: left;
 }
 table tr {
   border-top: 1px solid #cccccc;
