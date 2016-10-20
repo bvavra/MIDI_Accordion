@@ -176,7 +176,16 @@ prose:
           element: "checkbox"
           label: "Publish"
           help: "Check to publish post, uncheck to hide."
-
+      - name: "prevUrl"
+        field:
+          element: "text"
+          label: "PreviousUrl"
+          help: "Custom previous url link."
+      - name: "nextUrl"
+        field:
+          element: "text"
+          label: "NextUrl"
+          help: "Custom next url link."
 gems:
   - jekyll-paginate
 
