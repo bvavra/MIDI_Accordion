@@ -186,6 +186,16 @@ prose:
           element: "text"
           label: "NextUrl"
           help: "Custom next url link."
+      - name: "prevTitle"
+        field:
+          element: "text"
+          label: "PreviousTitle"
+          help: "Custom previous url title."
+      - name: "nextTitle"
+        field:
+          element: "text"
+          label: "NextTitle"
+          help: "Custom next url title."
 gems:
   - jekyll-paginate
 

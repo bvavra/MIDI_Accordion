@@ -3,6 +3,7 @@ layout: ordered_page
 title: Overview
 subtitle: I made a MIDI Accordion, and you can too!
 nextUrl: ../sending-midi
+nextTitle: Sending MIDI
 ---
 
 <div class="table-of-contents"></div>
