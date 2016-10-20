@@ -1,6 +1,6 @@
 ---
 layout: ordered_page
-title: Overview
+title: Project Overview
 subtitle: I made a MIDI Accordion, and you can too!
 nextUrl: /sending-midi
 nextTitle: Sending MIDI

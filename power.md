@@ -1,7 +1,11 @@
 ---
-layout: page
+layout: ordered_page
 title: Power
 subtitle: Portable Power Supply
+prevUrl: /circuit
+prevTitle: Circuit Layout
+nextUrl: /bluetooth
+nextTitle: Bluetooth
 ---
 
 //This will be the tutorial for powering the accordion.  I'm going to introduce this in steps from most simple to most complex:

@@ -1,7 +1,9 @@
 ---
-layout: page
+layout: ordered_page
 title: Dynamic Volume
-subtitle: Turning Bellow Pressure into MIDI Data
+subtitle: Turning Bellow Pressure into MIDI Velocity Data
+prevUrl: /bluetooth
+prevTitle: Bluetooth
 ---
 
 //This will be the tutorial for using the BMP sensor to allow dynamic expression using the bellows.

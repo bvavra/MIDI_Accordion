@@ -1,7 +1,11 @@
 ---
-layout: page
+layout: ordered_page
 title: Circuit Layout
 subtitle: Putting it all Together
+prevUrl: /accordion
+prevTitle: Accordion Setup
+nextUrl: /power
+nextTitle: Power
 ---
 
 //This will be the tutorial for designing the circuit layout.  I'll go over what I did and have lots of pictures/sketches available, but stress other options that are available.

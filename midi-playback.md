@@ -1,7 +1,11 @@
 ---
-layout: page
+layout: ordered_page
 title: MIDI Playback
 subtitle: Turning bytes into notes
+prevUrl: /sending-midi
+prevTitle: Sending MIDI
+nextUrl: /opto-interruptor
+nextTitle: Mapping Input
 ---
 
 So now that we have our Arduino sending MIDI data, it's time to turn that data into music!

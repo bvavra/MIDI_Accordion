@@ -1,7 +1,11 @@
 ---
-layout: page
+layout: ordered_page
 title: Accordion Setup
 subtitle: Preparing your accordion for MIDI-fication
+prevUrl: /opto-interruptor
+prevTitle: Mapping Input
+nextUrl: /circuit
+nextTitle: Circuit Layout
 ---
 
 //This will be the tutorial for obtaining an accordion and preparing it for midification - this has to be a bit vague since it will differ for each accordion, but it should include

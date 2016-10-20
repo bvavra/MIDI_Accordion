@@ -1,7 +1,11 @@
 ---
-layout: page
+layout: ordered_page
 title: Sending MIDI
 subtitle: How to MIDI with Arduino
+prevUrl: /overview
+prevTitle: Project Overview
+nextUrl: /midi-playback
+nextTitle: MIDI Playback
 ---
 
 Before we even start thinking about making an accordion, let's get the Arduino set up to start making some music.  We'll be using the [MIDI Protocol](https://en.wikipedia.org/wiki/MIDI) to do this by sending data from the Arduino to the computer, where the MIDI data will be interpreted and realized as sound.  Let's solve the data transfer problem first, then we'll tackle turning that data into music in the next tuorial.
