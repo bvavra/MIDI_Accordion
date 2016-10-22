@@ -26,9 +26,9 @@ int LeftKeysStatus[] = {
 //You will likely have to remap their pitch numbers (36-59)
 //36-47 are the bass notes, 48-59 are the chord notes
 const char left_notes_midi_numbers[][8] = {
-  {57,56,55,54,41,40,39,38},
+  {57,56,55,54,45,44,43,42},
   {49,48,59,58,37,36,47,46},
-  {53,52,51,50,45,44,43,42}
+  {53,52,51,50,41,40,39,38}
 };
 
 char right_hand_pins[] = { 2, 3, 4, 5, 6, 7 };
@@ -58,7 +58,7 @@ void setup()
     //Set serial baud rate:
     Serial.begin(9600);
   #else
-    MIDI.begin(1);
+    MIDI.begin();
     //Set MIDI baud rate:
     Serial.begin(115200);
   #endif
