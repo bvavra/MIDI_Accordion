@@ -8,8 +8,15 @@
 #include <midi_Message.h>
 #include <midi_Namespace.h>
 #include <midi_Settings.h>
+struct MySettings : public midi::DefaultSettings
+{
+   // Set MIDI baud rate. MIDI has a default baud rate of 31250,
+   // but we're setting our baud rate higher in order to 
+   // properly decode and read outgoing MIDI data on the computer.
+   static const long BaudRate = 115200;
+};
 
-MIDI_CREATE_DEFAULT_INSTANCE();
+MIDI_CREATE_CUSTOM_INSTANCE(HardwareSerial, Serial, MIDI, MySettings);
 
 int CC_Volume = 7;//Control Change code for volume
 
@@ -60,7 +67,7 @@ void setup()
   #else
     MIDI.begin();
     //Set MIDI baud rate:
-    Serial.begin(115200);
+    //Serial.begin(115200);
   #endif
   //Digital pins start turned off
   for (int i=0; i<sizeof(left_hand_pins);i++){ 
@@ -107,7 +114,7 @@ void scan_pin(int pin, int index, byte PinStatus, bool left) {
   //TODO - I wonder if we can replace this with direct port write for even better performance?
   digitalWrite(pin, HIGH);
   //A slight delay is needed here or else we'll be reading the previous pin
-  delayMicroseconds(250);//was able to cut this in half by alternating between left and right
+  delayMicroseconds(400);//was able to cut this in half by alternating between left and right
   if (left) {
     reg_values = ~PINF;
   }
