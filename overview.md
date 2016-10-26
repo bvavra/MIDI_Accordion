@@ -17,24 +17,39 @@ nextTitle: Sending MIDI
 | [Required Software](#software)|
 | [Required Time](#time)        |
 
-### <a name="reqs"></a>General Project Requirements (what we need to accomplish)
+Want to build your own MIDI accordion?  Awesome!  Here's a general overview of the project to give you an idea of what you're getting yourself into:
 
-The goal of this project is to take a piano accordion and turn it into a MIDI Controller capable of playing music from your computer. To do this requires solving a few different problems:
+### <a name="reqs"></a>General Project Requirements 
+*(what we need to accomplish)*
+
+The goal of this project is to take a piano accordion and turn it into a MIDI Controller capable of playing music from your computer.  Note that the computer is **required** for playback; this project does **not** involve installing speakers to play back MIDI-realized sound directly from the accordion.  I may delve into such a feat someday, but today is not that day.
+
+In order to build a fully functional MIDI accordion, we have a few different problems to solve:
 
 **Must-Have Requirements**
 
-1. Sending a digital signal from the accordion keys and buttons to the computer 
-2. Converting that signal to MIDI 
-3. Playing the MIDI back with music software 
-4. Communicating that signal for each button on the accordion
+The MIDI accordion must be able to:
 
-This is enough to have a functional MIDI instrument, but there are a few additional optional problems that can also be solved:
+1. Send a digital signal from the accordion keys and buttons to the computer 
+2. Convert that signal to MIDI 
+3. Play the MIDI back with music software 
+4. Communicate that signal for each button on the accordion without noticable delay
+
+This is enough to have a functional MIDI instrument, but there are a few additional optional problems that can also be solved if you wish to do so:
 
 **Nice-to-Have Requirements**
 
-5. Communicating MIDI signals wirelessly (via Bluetooth) 
-6. Decoupling the accordion's power supply from the computer/wall
-7. Adding dynamic expression using the accordion bellows (via barometric pressure sensor)
+The MIDI accordion could also:
+
+5. Communicate MIDI signals wirelessly (via Bluetooth) 
+6. Run off an external power supply (i.e. from a battery pack instead of the computer/wall)
+7. Add dynamic expression using the accordion bellows (via barometric pressure sensor)
+
+There are other possibilities, but these are the features I'll be covering in this tutorial.
+
+#### Cost
+
+[Dmitry](https://github.com/accordion-mega/AccordionMega/wiki/Accordion-Mega-story) claimed he was able to build his accordion in under $100.  I was not so lucky, as I had to buy a lot of the tools required to build the project.  I also ended up buying replacement and redundant parts because the first set either didn't work or I ended up never using.  Oh, and I had to buy the accordion itself because I didn't have one lying around that I was willing to put under the knife, so to speak.  By the time I was done I spent approximately $600 on the entire project.  However, if you know *exactly* what you're buying and you already have an accordion, you can probably expect to spend about $300 total, which is not a bad price for a MIDI accordion.  You can view more details about the price breakdown below.
 
 ### <a name="skills"></a>Required Skills
 
@@ -66,7 +81,7 @@ If you, like me, have never dabbed into electrical engineering before, you may n
     - Used to trim wires and components after they've been soldered.
 - Utility Knife
     - Used to cut the circuit boards.  More details about how I did this in the circuit layout tutorial.
-- //TODO
+- //TODO - add more
 
 ### <a name="parts"></a>Required Parts
 
@@ -91,10 +106,12 @@ To get the most out of this project you'll need a computer (Windows, OSX, or Lin
 
 - Fritzing
     - I used [Fritzing](http://fritzing.org/home/) to write up diagrams and schematics for all of my prototypes and tutorials.  Images of these diagrams are provided, but if you want to dive into the files themselves this program is free to download and install.
+	
+Note: All of the above programs are free to downaload, install, and use (for non-commerical purposes, at least).
 
 ### <a name="time"></a>Required Time
 
-I'm gonna be honest with you: this project will take a *long* time, especially if you're not familiar with certain aspects of this project (programming, MIDI protocol, electric engineering, etc.).  For reference, this is the work log summary for how much time I've spent on this project:
+I'm gonna be honest with you: this project will take a *long* time, especially if you're not familiar with certain aspects of this project (programming, MIDI protocol, electric engineering, etc.).  For reference, this is the work log summary for how much time I've spent on this project (excluding the time it took to put together this tutorial site):
 
 //TODO - include hours breakdown
 

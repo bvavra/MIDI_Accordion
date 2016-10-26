@@ -29,7 +29,7 @@ navbar-links:
   Home: "http://bvavra.github.io/MIDI_Accordion"
   About: "about"
   Instructions:
-    - Overview: "overview"
+    - Project Overview: "overview"
     - Sending MIDI: "sending-midi"
     - MIDI Playback: "midi-playback"
     - Mapping Input: "opto-interruptor"

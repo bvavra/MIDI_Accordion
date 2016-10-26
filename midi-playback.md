@@ -116,6 +116,7 @@ Up next: [How to map user input to MIDI output.](../opto-interruptor)
 ### Credit
 
 Thank you to:
+
 - Angus Gratton for making the [Hairless MIDI<->Serial Bridge](http://projectgus.github.io/hairless-midiserial/)
 - [Tobias Erichsen](http://www.tobias-erichsen.de/) for making [loopMIDI](http://www.tobias-erichsen.de/software/loopmidi.html)
 - Pedro Lopez-Cabanillas et. al. for making the [Virtual MIDI Piano Keyboard](http://vmpk.sourceforge.net/)
