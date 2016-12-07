@@ -33,9 +33,9 @@ int LeftKeysStatus[] = {
 //You will likely have to remap their pitch numbers (36-59)
 //36-47 are the bass notes, 48-59 are the chord notes
 const char left_notes_midi_numbers[][8] = {
-  {57,56,55,54,45,44,43,42},
-  {49,48,59,58,37,36,47,46},
-  {53,52,51,50,41,40,39,38}
+  {50,51,52,53,38,39,40,41},//10
+  {58,59,48,49,46,47,36,37},//11
+  {54,55,56,57,42,43,44,45} //12
 };
 
 char right_hand_pins[] = { 2, 3, 4, 5, 6, 7 };
@@ -52,7 +52,7 @@ int RightKeysStatus[] = {
 //You will likely have to remap their pitch numbers (53-93)
 const char right_notes_midi_numbers[][8] = {
   {65,64,62,60,59,57,55,53},//2
-  {79,77,76,74,72,71,69,97},//3
+  {79,77,76,74,72,71,69,67},//3
   {70,68,66,63,61,58,56,54},//4
   {93,91,89,88,86,84,83,81},//5
   {90,87,85,82,80,78,75,73},//6
@@ -114,7 +114,7 @@ void scan_pin(int pin, int index, byte PinStatus, bool left) {
   //TODO - I wonder if we can replace this with direct port write for even better performance?
   digitalWrite(pin, HIGH);
   //A slight delay is needed here or else we'll be reading the previous pin
-  delayMicroseconds(400);//was able to cut this in half by alternating between left and right
+  delayMicroseconds(300);//was able to cut this in half by alternating between left and right
   if (left) {
     reg_values = ~PINF;
   }
