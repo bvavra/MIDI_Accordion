@@ -33,9 +33,9 @@ int LeftKeysStatus[] = {
 //You will likely have to remap their pitch numbers (36-59)
 //36-47 are the bass notes, 48-59 are the chord notes
 const char left_notes_midi_numbers[][8] = {
-  {50,51,52,53,38,39,40,41},//10
-  {58,59,48,49,46,47,36,37},//11
-  {54,55,56,57,42,43,44,45} //12
+  {38,39,40,41,50,51,52,53},//10
+  {46,47,36,37,58,59,48,49},//11
+  {42,43,44,45,54,55,56,57} //12
 };
 
 char right_hand_pins[] = { 2, 3, 4, 5, 6, 7 };
@@ -172,9 +172,11 @@ void note_midi(int group, int position, boolean on, boolean left){
     }
     pitch = left_notes_midi_numbers[group][position];
     if(pitch < 48) {
+      midi_vel = 120;//Don't let bass overpower melody
       channel = 2;
     }
     else {
+      midi_vel = 110;//Don't let chords overpower melody
       channel = 3;
     }
   }
