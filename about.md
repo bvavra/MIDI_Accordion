@@ -17,3 +17,10 @@ Eventually things started coming together.  I bought an [Arduino Getting Started
 ### Anyone Can Do It
 
 One of my goals for this project was not only to build an awesome MIDI instrument, but to put everything I learned along the way (and then some) in one place for others to follow.  Now don't get me wrong, I'm eternally grateful for [Dmitry's](https://github.com/accordion-mega) work, but for someone who knew nothing about electrical engineering the documentation was quite lacking, and I'm sure there are accordion players out there who would love to take on a project like this, but have even less experience than I did.  So I put everything I've done onto this project page in hopes that it helps empower other future projects from fellow accordionists.
+
+### Credit
+
+A huge thank you to the following:
+
+- [Dmitry Yegorenkov](https://github.com/accordion-mega) for making the original project that made this project possible - I could not have done this without your work.
+- [Dean Attali](http://deanattali.com/) for making the theme of this project page, [Beautiful Jekyll](http://deanattali.com/beautiful-jekyll/).
