@@ -16,7 +16,7 @@ Have the Arduino send MIDI data whenever a blocked photo interruptor becomes uno
 
 ### The Problem
 
-We need to figure out how to make pressing a physical accordion key into a digital signal.  We can use Opto-Interruptors to do this (also known as photo interruptors, optical sensors, or optical interruptors).  Eventually we'll need to do this for all 41 keys in the right hand and all 120 buttons in the left, but for now let's just get a couple working so we know the circuit is correct.
+We need to figure out how to take pressing a physical accordion key and turn it into a digital signal.  We can use opto-interruptors to do this (also known as photo interruptors, optical sensors, or optical interruptors).  Eventually we'll need to do this for all 41 keys in the right hand and all 120 buttons in the left (which, luckily, only requires 24 mappings), but for now let's just get a couple working so we know the circuit is correct.
 
 **You will need:**
 
@@ -27,6 +27,17 @@ We need to figure out how to make pressing a physical accordion key into a digit
 - 2x 1k Ohm resistor
 - 2x NPN Transistor (eventually you'll need 9 - 6 for the right hand and 7 for the left)
     - I recommend using the 2N2222A 
+	
+#### How do opto-interruptors work?
+
+An opto-interruptor is a combination of an infrared LED and a transistor, with a gateway inbetween them.  (insert diagram)  When the gateway is unobstructed, the infrared light shines directly into the transistor and triggers the switch to flow into the emitter (TODO - reword).  When the gateway is blocked (or the LED is off), the transistor is powered through the collector.  We can control the flow of current in these interruptors two different ways:
+
+1. By unblocking the gateway (i.e. pressing a key/button on the accoridon)
+2. By turning the voltage HIGH and LOW on the interruptor's diode.
+
+The final project will use both of these methods to determine which keys are being pressed at which times, so our prototype needs to test both use cases.
+
+//TODO continue filling in.  Also discuss the importance of using pullup resistors.
 
 ### Solution
 
@@ -34,9 +45,13 @@ We need to figure out how to make pressing a physical accordion key into a digit
 
 Before we start getting the interruptor to play music, we'll just write serial output to assert that everything is hooked up properly.  The first prototype proves a few different concepts:
 
-- When the interruptor is blocked, the digital output is HIGH.
-- When the interruptor is unblocked and the input pin is HIGH, the digital output is LOW. 
-- When the interruptor is unblocked and the input pin is LOW, the digital output is HIGH.
+1. When the interruptor is blocked, the digital output is HIGH.
+2. When the interruptor is unblocked and the input pin is HIGH, the digital output is LOW. 
+3. When the interruptor is unblocked and the input pin is LOW, the digital output is HIGH.
+
+// insert fritzing board and schematics diagram
+
+//TODO - insert and discuss code in each step
 
 **1.1 - When the interruptor is blocked, the digital output is HIGH**
 
@@ -48,20 +63,19 @@ In order for digital reads to work, though, we need to make sure there is a sign
 
 This is usually the opposite of what you'd expect (normally blocked would be LOW and unblocked would be HIGH), but we're taking advantage of the Arduino's internal pullup resistors, which inverts the output. 
 // link to arduino internal pullup tutorial
+The purpose of using pullup resistors (instead of pulldown resistors) is to be able to turn the LED on and off while the interruptor is unblocked *without* the Arduino detecting a change (by only checking for changes when the LED is on).  //TODO - reword/clarify
 
 **1.3 - When the interruptor is unblocked and the input pin is LOW, digital output is HIGH**
 
 The last concept is very important for the final project to work, and it depends greatly on having the correct parts.  I had initially ordered the wrong kind of opto-interruptors (ATIR0621DS) which led to a whole slew of problems.  In order to get my circuit working with that part, I had to add a 10kΩ resistor between the cathode and ground pins and had to test the circuit in the dark because natural sunlight was being picked up by the sensor. Also, I had to increase the delay in the program from .5 ms to 12 ms to avoid unwanted notes from being picked up (which is an unacceptable amount of delay for an electronic musical instrument).
 
-// insert fritzing board and schematics diagram
-
-As soon as I replaced the ATIR0621DS with the ITR9608 all these problems went away and everything just worked.
+As soon as I replaced the ATIR0621DS with the ITR9608 all these problems went away and everything *just worked.*
 
 **2. Chaining multiple interruptors to the same analog pin**
 
 The final product will have multiple interruptors connected to a single analog pin (8 sets of 3 on the left hand, 7 sets of 5 and one set of 6 on the right hand).  The Arduino will have to be able to detect which ones are actually being triggered.  We only need 4 (2x2) to test this proof of concept.
 
-AccordionMega solves this by hooking each column of interruptors to a single digital pin (where the +5V comes from for the diode) and continuously iterates turning each one on and off and reading the column to see which interruptors are “on”.  
+AccordionMega solves this by hooking each column of interruptors to a single digital pin (where the +5V comes from for the diode) and continuously iterates turning each one on and off and reading the column to see which interruptors are "on".  We'll be doing the same. 
 
 // insert fritzing board and schematics diagram
 
@@ -69,12 +83,13 @@ We need the transistor because having all 8 interruptor diodes hooked up to a si
 
 If everything is hooked up and working correctly, you should get a single “Note on” message from the serial output when you unblock any of the four interruptors, followed by a single “Note off” event when you block it again.  Make sure that the note number is different for each interruptor, and that the number of note on and off events match the number of open and closed interruptors respectively.
 
-Bonus: I recommend altering your circuit to try different matrix combinations (1x4, 4x1) and make sure everything still works properly.  You can also add more opto-interruptors if you wish (the tutorial as written supports an 8x4 matrix of up to 32 opto-interruptors.
+#### Bonus: 
+I recommend altering your circuit to try different matrix combinations (1x4, 4x1) and make sure everything still works properly.  You can also add more opto-interruptors if you wish (the tutorial as written supports an 8x4 matrix of up to 32 opto-interruptors.
 
 
 **3. Sending MIDI**
 
-Now let's configure the interruptors to send MIDI data.  Note that the Arduino Uno only has one serial port, and we can't send non-MIDI data to the Serial<->MIDI converter, so we need to remove all the debug print statements and rely on our ears instead to make sure the circuit is working properly (or you can read debug statements from your Serial-to-MIDI converter if it supports it).
+Now let's configure the interruptors to send MIDI data.  If you're using the Arduino Uno for your prototype, note that the Uno only has one serial port, and we can't send non-MIDI data to the Serial<->MIDI converter, so we need to remove all the debug print statements and rely on our ears instead to make sure the circuit is working properly (or you can read debug statements from your Serial-to-MIDI converter if it supports it).
 
 // insert photo of midi output
 
