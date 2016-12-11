@@ -16,6 +16,7 @@ nextTitle: Sending MIDI
 | [Required Parts](#parts)      |
 | [Required Software](#software)|
 | [Required Time](#time)        |
+| [Expectetd Cost](#cost)       |
 
 Want to build your own MIDI accordion?  Awesome!  Here's a general overview of the project to give you an idea of what you're getting yourself into:
 
@@ -46,10 +47,6 @@ The MIDI accordion could also:
 7. Add dynamic expression using the accordion bellows (via barometric pressure sensor)
 
 There are other possibilities, but these are the features I'll be covering in this tutorial.
-
-#### Cost
-
-[Dmitry](https://github.com/accordion-mega/AccordionMega/wiki/Accordion-Mega-story) claimed he was able to build his accordion in under $100.  I was not so lucky, as I had to buy a lot of the tools required to build the project.  I also ended up buying replacement and redundant parts because the first set either didn't work or I ended up never using.  Oh, and I had to buy the accordion itself because I didn't have one lying around that I was willing to put under the knife, so to speak.  By the time I was done I spent approximately $600 on the entire project.  However, if you know *exactly* what you're buying and you already have an accordion, you can probably expect to spend about $300 total, which is not a bad price for a MIDI accordion.  You can view more details about the price breakdown below.
 
 ### <a name="skills"></a>Required Skills
 
@@ -115,6 +112,12 @@ I'm gonna be honest with you: this project will take a *long* time, especially i
 
 //TODO - include hours breakdown
 
-Although this project page is designed for a user with very little experience and can be followed blindly (in theory), I highly recommend taking the time to research any part of this project tutorial you don't fully understand.  Additionally, I want to make this tutorial as comprehensive as *reasonably* possible, so if you think there's something I didn't cover very well that you want elaborated I encourage you to [log an issue](https://github.com/bvavra/MIDI_Accordion/issues) for me to provide said info.
+Although this project page is designed for a user with very little experience and can be followed blindly (in theory), I highly recommend taking the time to research any part of this project tutorial you don't fully understand.  Additionally, I want to make this tutorial as comprehensive as *reasonably* possible, so if you think there's something I didn't cover very well that you want elaborated I encourage you to [log an issue](https://github.com/bvavra/MIDI_Accordion/issues) for me to provide more info.
 
-//Add more stuff here...
+### <a name="cost"></a>Expected Cost
+
+[Dmitry](https://github.com/accordion-mega/AccordionMega/wiki/Accordion-Mega-story) claimed he was able to build his accordion in under $100.  I was not so lucky, as I had to buy a lot of the tools required to build the project.  I also ended up buying replacement and redundant parts because the first set either didn't work or I ended up never using.  Oh, and I had to buy the accordion itself because I didn't have one lying around that I was willing to put under the knife, so to speak.  By the time I was done I spent approximately $600 on the entire project.  However, if you know *exactly* what you're buying and you already have an accordion, you can probably expect to spend about $300 total, which is not a bad price for a MIDI accordion when you consider [some of the alternatives](https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#tbm=shop&q=roland+v-accordion).  You can view more details about the price breakdown of this project in the Bill of Materials.
+
+### Ready?
+
+Still want to build a MIDI accordion?  Great - grab your Arduino and start making some prototypes!  The tutorials are outlined to start on the software side and work your way out to the hardware, but you could do these tutorials in just about any order you want.  Or if you already have a good handle on the fundamentals and just want to dive into the project head first, you can skip over to the [project README](https://github.com/bvavra/MIDI_Accordion) to view the bare-boned essentials.
