@@ -16,7 +16,7 @@ nextTitle: Sending MIDI
 | [Required Parts](#parts)      |
 | [Required Software](#software)|
 | [Required Time](#time)        |
-| [Expectetd Cost](#cost)       |
+| [Expected Cost](#cost)       |
 
 Want to build your own MIDI accordion?  Awesome!  Here's a general overview of the project to give you an idea of what you're getting yourself into:
 

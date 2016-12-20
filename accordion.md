@@ -60,6 +60,7 @@ Now that the accordion is in playable shape, it time to figure out how you want 
 The height of the blockers depend on the key pads.  I had to make two different heights for the left and right hand keys, so be sure to measure and make sure that the height of the blockers on the keypad is the same as the height of the opto-interruptor placed over the keypad.  Note that, when you press the key, the pad goes both down and away in a certain direction.  I suggest positioning the opto-interruptor such that the blocker moves both down and away from it (you may run into collision issues otherwise).
 
 //add a section about the glue and re-positioning the blockers if needed.
+//also discuss some potential pitfalls of doing it this way.
 
 If you choose to attach blockers to the inside of the keypads you will need to find a way to disable the register buttons from closing in on the reed hole where you placed the blockers.  I did this on my accordion by pulling a metal rod out of its slot for each register that could close in on the blockers. 
 
