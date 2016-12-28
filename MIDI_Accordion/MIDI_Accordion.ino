@@ -16,11 +16,16 @@ struct MySettings : public midi::DefaultSettings
    static const long BaudRate = 115200;
 };
 
-MIDI_CREATE_CUSTOM_INSTANCE(HardwareSerial, Serial, MIDI, MySettings);
-
-int CC_Volume = 7;//Control Change code for volume
-
 //#define DEBUG//uncomment this line to print serial messages, comment to send MIDI data
+//#define BLUETOOTH//uncomment this line to send MIDI data via bluetooth instead of USB
+
+#ifdef BLUETOOTH
+  MIDI_CREATE_CUSTOM_INSTANCE(HardwareSerial, Serial1, MIDI, MySettings);
+#else
+  MIDI_CREATE_CUSTOM_INSTANCE(HardwareSerial, Serial, MIDI, MySettings);
+#endif
+
+int CC_Volume = 11;//Control Change code for volume
 
 char left_hand_pins[] = { 10, 11, 12 };
 // array to store up/down status of left keys
@@ -62,12 +67,9 @@ const char right_notes_midi_numbers[][8] = {
 void setup()
 {
   #ifdef DEBUG
-    //Set serial baud rate:
     Serial.begin(9600);
   #else
     MIDI.begin();
-    //Set MIDI baud rate:
-    //Serial.begin(115200);
   #endif
   //Digital pins start turned off
   for (int i=0; i<sizeof(left_hand_pins);i++){ 
@@ -95,8 +97,8 @@ void loop()
     scan_pin(left_hand_pins[i%3], i%3, LeftKeysStatus[i%3], true);
   }
   //Original
-//  scan_keys(left_hand_pins, sizeof(left_hand_pins), LeftKeysStatus, true);
-//  scan_keys(right_hand_pins, sizeof(right_hand_pins), RightKeysStatus, false);
+  //scan_keys(left_hand_pins, sizeof(left_hand_pins), LeftKeysStatus, true);
+  //scan_keys(right_hand_pins, sizeof(right_hand_pins), RightKeysStatus, false);
 }
 
 //This function is currently unused
