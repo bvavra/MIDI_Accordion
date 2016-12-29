@@ -1,3 +1,7 @@
+#include <SFE_BMP180.h>
+#include <Wire.h>
+
+SFE_BMP180 pressure;
 
 void init_BMP() {
   Serial.println("REBOOT");

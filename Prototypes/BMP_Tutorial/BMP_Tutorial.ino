@@ -61,7 +61,7 @@ void loop() {
   Serial.print("Calib_Pressure: ");
   Serial.println(Calib_Pressure);
   Pressure_Delta = abs(Pressure - Calib_Pressure);
-  Serial.print("Velocity delta: ");
+  Serial.print("Pressure delta: ");
   Serial.println(Pressure_Delta);
   Pressure_Delta = constrain(Pressure_Delta, 10, 127);
   Serial.print("Velocity value: ");
