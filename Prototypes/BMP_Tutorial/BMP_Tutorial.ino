@@ -25,7 +25,7 @@
 #include <SFE_BMP180.h>
 #include <Wire.h>
 
-SFE_BMP180 pressure;
+SFE_BMP180 bmp_180;
 
 char status;
 double Calib_Pressure, Pressure;
@@ -37,7 +37,7 @@ void setup() {
   Serial.println("REBOOT");
   // Initialize the sensor 
   //(it is important to get calibration values stored on the device).
-  if (pressure.begin())
+  if (bmp_180.begin())
   {
     Serial.println("BMP180 init success");
 
@@ -71,7 +71,7 @@ void loop() {
 
 double readPressure() {
   double Temp, P;
-  status = pressure.startTemperature();
+  status = bmp_180.startTemperature();
   if (status != 0)
   {
     // Wait for the measurement to complete:
@@ -79,7 +79,7 @@ double readPressure() {
 
     // Retrieve the completed temperature measurement:
     // Function returns 1 if successful, 0 if failure.
-    status = pressure.getTemperature(Temp);//sets temperature
+    status = bmp_180.getTemperature(Temp);//sets temperature
     if (status != 0)
     {
       // Print out the measurement:
@@ -92,7 +92,7 @@ double readPressure() {
       // from 0 to 3 (highest res, longest wait).
       // If request is successful, the number of ms to wait is returned.
       // If request is unsuccessful, 0 is returned.
-      status = pressure.startPressure(0);//We probably want 0, for speed
+      status = bmp_180.startPressure(0);//We probably want 0, for speed
       if (status != 0)
       {
         // Wait for the measurement to complete:
@@ -102,7 +102,7 @@ double readPressure() {
         // (If temperature is stable, you can do one temperature measurement 
         // for a number of pressure measurements.)
         // Function returns 1 if successful, 0 if failure.
-        status = pressure.getPressure(P,Temp);//sets P to pressure
+        status = bmp_180.getPressure(P,Temp);//sets P to pressure
         if (status != 0)
         {
           // Print out the measurement:
