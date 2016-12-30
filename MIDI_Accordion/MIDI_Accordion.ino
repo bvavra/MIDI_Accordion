@@ -26,8 +26,6 @@ struct MySettings : public midi::DefaultSettings
   MIDI_CREATE_CUSTOM_INSTANCE(HardwareSerial, Serial, MIDI, MySettings);
 #endif
 
-int CC_Volume = 11;//Control Change code for volume
-
 char left_hand_pins[] = { 10, 11, 12 };
 // array to store up/down status of left keys
 int LeftKeysStatus[] = {  
@@ -89,8 +87,21 @@ void setup()
   PORTK = B11111111; // turn on pullup resistors
 }
 
+int prev_expression = 127;
+int CC_Expression = 11;//Control Change code for expression
+
 void loop()
 {
+  #ifdef BMP
+    int expression = get_expression(prev_expression);
+    if(expression != prev_expression) {
+      MIDI.sendControlChange(CC_Expression,expression,1);
+      MIDI.sendControlChange(CC_Expression,expression,2);
+      MIDI.sendControlChange(CC_Expression,expression,3);
+      prev_expression = expression;
+    }
+  #endif
+
   //Alternate between scanning the left and right hand pins 
   //to reduce necessary delay between reads
   for (int i=0; i<6;i++){ 
@@ -163,8 +174,6 @@ void note_midi(int group, int position, boolean on, boolean left){
   int pitch;
   int channel = 1;
   int midi_vel = 127;
-  //TODO - if enabled, get dynamic velocity from BMP and set here
-  //MIDI.sendControlChange(CC_Volume,midi_vel,channel);
 
   if (left){
     if (on){
@@ -193,9 +202,6 @@ void note_midi(int group, int position, boolean on, boolean left){
     pitch = right_notes_midi_numbers[group][position];
     channel = 1;
   }
-
-  //TODO - figure out dynamic velocity
-  //MIDI.sendControlChange(CC_Volume,midi_vel,channel);
 
   if (pitch){
     #ifdef DEBUG
