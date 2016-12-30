@@ -5,20 +5,11 @@
   This sketch shows how to convert BMP180 pressure readings to MIDI velocity.
   Based off the AccordionMega code and SparkFun's BMP library examples
 
-  This sketch will play a MIDI note on and off.  While the note is on,
-  blowing on the BMP should change the volume of the note.
+  This sketch is used to debug various algorithms for determing velocity based on pressure.
+  You can get readings over a specified interval or whenever the output changes.
 */
 
-#include <MIDI.h>
-#include <midi_Defs.h>
-#include <midi_Message.h>
-#include <midi_Namespace.h>
-#include <midi_Settings.h>
-
-MIDI_CREATE_DEFAULT_INSTANCE();
-
 //pressure variables
-char status;
 double Calib_Pressure, Pressure;
 int Pressure_Delta;
 
@@ -27,10 +18,7 @@ unsigned long initial_us = 0;
 unsigned long final_us = 0;
 
 void setup() {
-  MIDI.begin(1);
-  //Serial.begin(115200);//for my sanity, we may want to use the Mega to have two serial ports
   Serial.begin(9600);
-
   init_BMP();
 }
 
@@ -39,18 +27,8 @@ int velocity = 127;
 boolean velocity_active = false;
 
 void loop() {
-  //velocity_per_second();
-  constant_velocity_change();
-
-  //view the full list of CC messages here: 
-  // http://nickfever.com/music/midi-cc-list
-  //CC7 is Volume, but AccordionMega uses CC11, which is
-  // "Expression: a percentage of volume (CC7)"
-  //Ex. MIDI.sendControlChange(CC#,velocity,channel);
-  
-  //MIDI.sendControlChange(CC#,midi_velocity,1);
-  //MIDI.sendControlChange(CC#,midi_velocity,2);
-  //MIDI.sendControlChange(CC#,midi_velocity,3);
+  velocity_per_ms(500);
+  //constant_velocity_change();
 }
 
 int prev_velocity = 127;
@@ -68,9 +46,9 @@ void constant_velocity_change(){
   }
 }
 
-//Print velocity data every second
+//Print velocity data for a given number of milliseconds
 //Also includes timing data
-void velocity_per_second(){
+void velocity_per_ms(int ms){
   initial_us = micros();
 
   int midi_velocity = velocity_bv();
@@ -82,10 +60,10 @@ void velocity_per_second(){
   Serial.println(midi_velocity, DEC);
 
   final_us = micros();
-  //Serial.print("Time to read pressure: ");
-  //Serial.println(final_us-initial_us);//avg 12 ms per read
+  Serial.print("Time to read pressure: ");
+  Serial.println(final_us-initial_us);//avg 12 ms per read
   
-  delay(500);
+  delay(ms);
 }
 
 //This is done in every loop of my code before reading sensors.
@@ -116,6 +94,9 @@ int velocity_bv(){
     //Also, Jason applies different weights for pushing the bellows in or out,
     //so we may decide to something like that as well.
     velocity = map(Pressure_Delta, pressure_low_limit, pressure_high_limit, 0, 127);
+    if (velocity > 127){
+      velocity = 127;
+    } 
   }
 
   return velocity;

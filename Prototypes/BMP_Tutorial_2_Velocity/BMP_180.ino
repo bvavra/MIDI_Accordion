@@ -1,13 +1,13 @@
 #include <SFE_BMP180.h>
 #include <Wire.h>
 
-SFE_BMP180 pressure;
+SFE_BMP180 bmp_180;
 
 void init_BMP() {
   Serial.println("REBOOT");
   // Initialize the sensor 
   //(it is important to get calibration values stored on the device).
-  if (pressure.begin())
+  if (bmp_180.begin())
   {
     Serial.println("BMP180 init success");
 
@@ -25,20 +25,25 @@ void init_BMP() {
   }
 }
 
+int tempStatus;
+int pressureStatus;
+
 double readPressure() {
   double Temp, P;
   //We need to read the temperature every time because wind can affect it,
   //which in turn affects the pressure
-  status = pressure.startTemperature();
-  if (status != 0)
+  tempStatus = bmp_180.startTemperature();
+  if (tempStatus != 0)
   {
+    Serial.print("Temp status: ");
+    Serial.println(tempStatus);
     // Wait for the measurement to complete:
-    delay(status);
+    delay(tempStatus);
 
     // Retrieve the completed temperature measurement:
     // Function returns 1 if successful, 0 if failure.
-    status = pressure.getTemperature(Temp);//sets temperature
-    if (status != 0)
+    tempStatus = bmp_180.getTemperature(Temp);//sets temperature
+    if (tempStatus != 0)
     {
       // Print out the measurement:
       //Serial.print("Temperature: ");
@@ -51,18 +56,20 @@ double readPressure() {
       // If request is successful, the number of ms to wait is returned.
       // If request is unsuccessful, 0 is returned.
       
-      status = pressure.startPressure(0);//We probably want 0, for speed
-      if (status != 0)
+      pressureStatus = bmp_180.startPressure(0);//We probably want 0, for speed
+      if (pressureStatus != 0)
       {
+        Serial.print("Pressure status: ");
+        Serial.println(pressureStatus);
         // Wait for the measurement to complete:
-        delay(status);
+        delay(pressureStatus);
     
         // Retrieve the completed pressure measurement using the given temp:
         // (If temperature is stable, you can do one temperature measurement 
         // for a number of pressure measurements.)
         // Function returns 1 if successful, 0 if failure.
-        status = pressure.getPressure(P,Temp);//sets P to pressure
-        if (status != 0)
+        pressureStatus = bmp_180.getPressure(P,Temp);//sets P to pressure
+        if (pressureStatus != 0)
         {
           // Print out the measurement:
           //Serial.print("Pressure: ");
