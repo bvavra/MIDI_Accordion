@@ -10,15 +10,19 @@
 #include <midi_Settings.h>
 struct MySettings : public midi::DefaultSettings
 {
-   // Set MIDI baud rate. MIDI has a default baud rate of 31250,
-   // but we're setting our baud rate higher in order to 
-   // properly decode and read outgoing MIDI data on the computer.
-   static const long BaudRate = 115200;
+  //By default, MIDI Library tries to be smart by excluding the CC byte if it doesn't change.
+  //This is a problem when starting up Hairless MIDI after starting up the Arduino.
+  //See https://github.com/projectgus/hairless-midiserial/issues/16 for details.
+  static const bool UseRunningStatus = false;
+  // Set MIDI baud rate. MIDI has a default baud rate of 31250,
+  // but we're setting our baud rate higher in order to 
+  // properly decode and read outgoing MIDI data on the computer.
+  static const long BaudRate = 115200;
 };
 
 //#define DEBUG//uncomment this line to print serial messages, comment to send MIDI data
 //#define BLUETOOTH//uncomment this line to send MIDI data via bluetooth instead of USB
-//#define BMP//uncomment this line to use the BMP180 to add dynamics via bellows
+#define BMP//uncomment this line to use the BMP180 to add dynamics via bellows
 
 #ifdef BLUETOOTH
   MIDI_CREATE_CUSTOM_INSTANCE(HardwareSerial, Serial1, MIDI, MySettings);
@@ -85,20 +89,58 @@ void setup()
 
   DDRK = B00000000;  // PortK as input (for right hand)
   PORTK = B11111111; // turn on pullup resistors
+
+  #ifdef BMP
+    init_BMP();
+  #endif
 }
 
+//MIDI Control Change code for expression, which is a percentage of velocity
+const int CC_Expression = 11;
 int prev_expression = 127;
-int CC_Expression = 11;//Control Change code for expression
+//The BMP_180 is very sensitive, so readings can vary wildly from sample to sample.
+//We're getting around this by computing and sending the average of bmp_sample_rate samples.
+//A smaller bmp_sample_rate is more granular, but allows more "noise" to come in.
+//A larger bmp_sample_rate is less granular, but has a smoother contour.
+//Setting bmp_sample_rate too large may also lose the amount of perceived expression
+//and create a noticable delay between squeezing the bellows and hearing the volume change.
+//Tweak this value as needed.
+const int bmp_sample_rate = 10;
+int expression_avg[bmp_sample_rate];
+int e = 0;
 
 void loop()
 {
   #ifdef BMP
+    //Read pressure from the BMP_180 and convert it to MIDI expression
     int expression = get_expression(prev_expression);
+    
+    //Ignore it if it didn't change
     if(expression != prev_expression) {
-      MIDI.sendControlChange(CC_Expression,expression,1);
-      MIDI.sendControlChange(CC_Expression,expression,2);
-      MIDI.sendControlChange(CC_Expression,expression,3);
-      prev_expression = expression;
+      expression_avg[e] = expression;
+      //Only send MIDI CC every bmp_sample_rate times, 
+      //but send the average of the last bmp_sample_rate deltas
+      if (e == bmp_sample_rate - 1){
+        expression = 0;
+        for (int i=0; i<bmp_sample_rate; i++){
+          expression += expression_avg[i];
+        }
+        expression = expression/bmp_sample_rate;
+        
+        #ifdef DEBUG
+          Serial.print("Expression Change: ");
+          Serial.println(expression);
+        #else
+          MIDI.sendControlChange(CC_Expression,expression,1);
+          MIDI.sendControlChange(CC_Expression,expression,2);
+          MIDI.sendControlChange(CC_Expression,expression,3);
+        #endif
+        prev_expression = expression;
+        e = 0;
+      }
+      else {
+        e = e + 1;
+      }
     }
   #endif
 

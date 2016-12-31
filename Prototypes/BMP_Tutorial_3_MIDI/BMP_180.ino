@@ -7,11 +7,9 @@ double Temp, P;
 int tempStatus;
 int pressureStatus;
 double Calib_Pressure;
-double Pressure;
-int Pressure_Delta;
 
 void init_BMP() {
-  Serial.println("REBOOTING BMP180");
+  //Serial.println("REBOOTING BMP180");
   // Initialize and calibrate the sensor
   if (bmp_180.begin())
   {
@@ -27,7 +25,7 @@ void init_BMP() {
     Serial.println("BMP180 init fail\n\n");
     while(1); // Pause forever.
   }
-  Serial.println("BMP180 init success");
+  //Serial.println("BMP180 init success");
   reset_flags();
 }
 
@@ -159,7 +157,6 @@ int get_expression(int prev_expression) {
   return expression;
 }
 
-
 int get_expression_from_pressure(double Pressure) {
   int expression;
   //minimum amount of pressure change required to form a sound
@@ -170,7 +167,7 @@ int get_expression_from_pressure(double Pressure) {
   //Decreasing this number lets the accordion get louder with less air, but also less expression.
   int pressure_high_limit = 120;//default=120
   
-  Pressure_Delta = abs(Pressure - Calib_Pressure);
+  int Pressure_Delta = abs(Pressure - Calib_Pressure);
 
   // setting up minimal pressure to start a sound
   if (Pressure_Delta <= pressure_low_limit){
