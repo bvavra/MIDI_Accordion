@@ -162,32 +162,49 @@ int get_expression(int prev_expression) {
 }
 
 
+//Algorithm used to map pressure deltas into MIDI velocity
+//Tweaks may need to be made for each accordion based on where the BMP_180 was placed 
+//and how much air flows through the accordion when keys are pressed.
 int get_expression_from_pressure(double Pressure) {
   int expression;
   //minimum amount of pressure change required to form a sound
-  int pressure_low_limit = 10;//default=10
-  //maximum amount of pressure change to register
-  //Any change higher than this is reported as 127 velocity.
-  //Increasing this number allows for more expression, but a quieter sounding accordion
-  //Decreasing this number lets the accordion get louder with less air, but also less expression.
-  int pressure_high_limit = 120;//default=120
-  
-  int Pressure_Delta = abs(Pressure - Calib_Pressure);
+  int pressure_low_limit = 7;
 
-  // setting up minimal pressure to start a sound
-  if (Pressure_Delta <= pressure_low_limit){
-    expression = 0;
+  //This formula was taken from Jason's code.
+  //It provides a more realistic sounding output than a linear mapping,
+  //but as written it doesn't have a very large dynamic range (0 to ~50)
+  //and requires a lot of physical force to make what seems like small volume changes.
+  if (Pressure <= Calib_Pressure){ //Pulling bellows out
+    expression = int(float((pow((Calib_Pressure - Pressure),1.4)+280)/45));   
   }
-  else { 
-    //map() works if we want the correlation between pressure and velocity to be linear,
-    //which may not be ideal.  I'll have to play a bit and see how this feels.
-    //Both Dmitry and Jason use exponential functions, so I may end up switching to that.
-    //Also, Jason applies different weights for pushing the bellows in or out,
-    //so we may decide to something like that as well.
-    expression = map(Pressure_Delta, pressure_low_limit, pressure_high_limit, 0, 127);
-    if (expression > 127){
-      expression = 127;
-    } 
+  else if (Pressure > Calib_Pressure){ //Pushing bellows in
+    expression = int(float((pow((Pressure - Calib_Pressure),1.4)+280)/40));           
+  } 
+  if (expression < pressure_low_limit){ 
+    expression = 0; 
+  }
+
+  //The above formula yields a very soft output in a small dynamic range.
+  //I improved upon it by doing the following:
+
+  //Multipying by a constant to widen the dynamic range.
+  //This allows smaller bellow movements to better impact dynamic output
+  //so that the player doesn't have to squeeze as hard to acheive a louder sound.
+  //However, as this value increases changes in dynamics become more choppy,
+  //so a sweet spot needs to be found.  Values between 1.5 and 3 seem to work well.
+  expression *= 1.8;
+  
+  //I decided I would rather have a non-zero value for the minimum velocity,
+  //so I'm shifting the entire output up by a constant.
+  //Although it's less realistic, it helps to compensate for 
+  //having to push the bellows harder than a normal accordion.
+  //This also pushes up the dynamic range so that it's 
+  //actually feasible to hit a velocity of 127.
+  //I've played around with values between 50 and 60 - still need to try others.
+  expression += 55;
+  //but now it's possible to exceed 127, so we need to cap it.
+  if (expression > 127){
+    expression = 127;
   }
 
   return expression;

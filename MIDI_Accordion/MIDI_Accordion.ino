@@ -105,7 +105,7 @@ int prev_expression = 127;
 //Setting bmp_sample_rate too large may also lose the amount of perceived expression
 //and create a noticable delay between squeezing the bellows and hearing the volume change.
 //Tweak this value as needed.
-const int bmp_sample_rate = 10;
+const int bmp_sample_rate = 5;
 int expression_avg[bmp_sample_rate];
 int e = 0;
 
@@ -132,8 +132,10 @@ void loop()
           Serial.println(expression);
         #else
           MIDI.sendControlChange(CC_Expression,expression,1);
-          MIDI.sendControlChange(CC_Expression,expression,2);
-          MIDI.sendControlChange(CC_Expression,expression,3);
+          //Don't let bass overpower melody
+          MIDI.sendControlChange(CC_Expression,constrain(expression-7,0,127),2);
+          //Don't let chords overpower melody
+          MIDI.sendControlChange(CC_Expression,constrain(expression-17,0,127),3);
         #endif
         prev_expression = expression;
         e = 0;
