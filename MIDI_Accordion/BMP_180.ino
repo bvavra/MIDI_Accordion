@@ -161,11 +161,82 @@ int get_expression(int prev_expression) {
   return expression;
 }
 
+int get_expression_from_pressure(double Pressure) {
+  int expression;
+  //minimum amount of pressure change required to form a sound
+
+  //jason original
+  //int pressure_low_limit = 7;
+  //expression = int(float((pow((Calib_Pressure - Pressure),1.4)+280)/45));
+
+  //dmitry original
+  //int pressure_low_limit = 10;
+  //expression = int((log(float(abs(Pressure - Calib_Pressure))/100.0)+4.8)/0.03814);
+
+  //bv1 (from jason)
+  //int pressure_low_limit = 7;
+  //int min_velocity = 55;
+  //expression = int(float((pow((Calib_Pressure - Pressure),1.4)+280)/45)*1.8)+55;
+  
+  //bv2 (from dmitry)
+  //int pressure_low_limit = 10;
+  //int min_velocity = 65;
+  //expression = int((log(float(abs(Pressure - Calib_Pressure)-10)/72)-0.6)/0.021)+134;
+
+  //bv3 (from dmitry)
+//  int pressure_low_limit = 20;
+//  int min_velocity = 60;
+//  expression = int((log(float(abs(Pressure - Calib_Pressure))/77)-0.56)/0.016)+132;
+
+//  //bv4 (x^3)
+//  int pressure_low_limit = 20;
+//  int min_velocity = 65;
+//  expression = int((pow(float(abs(Pressure - Calib_Pressure))-80,3)*0.0001 
+//    + 0.07*float(abs(Pressure - Calib_Pressure))))+85;
+
+  //bv5 (x^3)
+//  int pressure_low_limit = 20;
+//  int min_velocity = 65;
+//  expression = int((pow(float(abs(Pressure - Calib_Pressure))-102,3)*0.000045 
+//    + 0.13*float(abs(Pressure - Calib_Pressure))))+88;
+
+  //bv6 (x^3)
+//  int pressure_low_limit = 20;
+//  int min_velocity = 65;
+//  expression = int((pow(float(abs(Pressure - Calib_Pressure))-96,3)*0.000043 
+//    + 0.11*float(abs(Pressure - Calib_Pressure))))+83;
+
+//bv7
+//  int pressure_low_limit = 20;
+//  int min_velocity = 65;
+//  expression = int((pow(float(abs(Pressure - Calib_Pressure))-97,3)*0.000043 
+//    + 0.19*float(abs(Pressure - Calib_Pressure))))+83;
+
+//  int pressure_low_limit = 10;
+//  int min_velocity = 60;
+//  expression = int((pow(float(abs(Pressure - Calib_Pressure))-117,3)*0.000028 
+//    + 0.14*float(abs(Pressure - Calib_Pressure))))+93;
+
+  int pressure_low_limit = 15;
+  int min_velocity = 60;
+  expression = int((pow(float(abs(Pressure - Calib_Pressure))-117,3)*0.000033 
+    + 0.14*float(abs(Pressure - Calib_Pressure))))+93;
+
+  if (abs(Pressure - Calib_Pressure) < pressure_low_limit){ 
+    expression = min_velocity; 
+  }
+  if (expression > 127){
+    expression = 127;
+  }
+
+  return expression;
+}
+
 
 //Algorithm used to map pressure deltas into MIDI velocity
 //Tweaks may need to be made for each accordion based on where the BMP_180 was placed 
 //and how much air flows through the accordion when keys are pressed.
-int get_expression_from_pressure(double Pressure) {
+int get_expression_from_pressure_p(double Pressure) {
   int expression;
   //minimum amount of pressure change required to form a sound
   int pressure_low_limit = 7;
