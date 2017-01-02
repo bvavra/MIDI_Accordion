@@ -166,9 +166,9 @@ int pressure_low_limit = 15;
 //I decided to use a non-zero value for the minimum velocity.
 //Although being able to sound without moving is not realistic, 
 //it helps to compensate for having to push the bellows harder.
-//Also, working with a smaller range (60-127) allows for smoother dynamics
+//Also, working with a smaller range allows for smoother dynamics
 //because larger changes in pressure will cause smaller changes in volume.
-int min_velocity = 60;
+int min_velocity = 55;
 
 //Algorithm used to map pressure deltas into MIDI velocity
 //Tweaks may need to be made for each accordion based on where the BMP_180 was placed 
@@ -179,10 +179,10 @@ int get_expression_from_pressure(double Pressure) {
   #ifdef BLUETOOTH
     //Uncomment this while sending MIDI data via Bluetooth to get
     //pressure delta output on the serial port while playing music.
-    if (Pressure_Delta > pressure_low_limit){ 
-      Serial.print("Pressure_Delta: ");
-      Serial.println(int(Pressure_Delta));
-    }
+//    if (Pressure_Delta > pressure_low_limit){ 
+//      Serial.print("Pressure_Delta: ");
+//      Serial.println(int(Pressure_Delta));
+//    }
   #endif
 
   //I derived this formula from a graphing calculator (https://www.desmos.com/) 
@@ -191,47 +191,14 @@ int get_expression_from_pressure(double Pressure) {
   //the expected pressure range and MIDI velocity output (0<x<250,0<y<127).
   //From there I tweaked values and play tested them until
   //I got something that sounded and felt right.
-  //This function may need to be tweaked for different accordions.
-  //black
-  //expression = int(0.000033*pow(Pressure_Delta-117,3) + 0.14*Pressure_Delta)+93;
-//orange
-//  expression = int(0.000043*pow(Pressure_Delta-116,3) + 0.04*Pressure_Delta)+103;
-//red
-//  expression = int(0.000039*pow(Pressure_Delta-112,3) + 0.1*Pressure_Delta)+94;
-//purple
-//  expression = int(0.00005*pow(Pressure_Delta-104,3) + 0.07*Pressure_Delta)+94;
-//green
-//  expression = int(0.000028*pow(Pressure_Delta-122,3) + 0.1*Pressure_Delta)+93;
-
-//orange dots
-//  expression = int(0.00003*pow(Pressure_Delta-112,3) + 0.17*Pressure_Delta)+85;
-
-//not sure about this one...
-//  expression = int(0.00006*pow(Pressure_Delta-93,3) + 0.23*Pressure_Delta)+85;
-
-//trying more extremes
-//blue
-//  expression = int(0.00003*pow(Pressure_Delta-105,3) + 0.13*Pressure_Delta)+80;
-//green dots
-//  expression = int(0.00006*pow(Pressure_Delta-106,3) + 0.03*Pressure_Delta)+105;
-//black dots
-//  expression = int(0.00002*pow(Pressure_Delta-123,3) + 0.12*Pressure_Delta)+83;
-//purple dots
-//  expression = int(0.00002*pow(Pressure_Delta-146,3) + 0.04*Pressure_Delta)+104;
-  //expression = int(0.000019*pow(Pressure_Delta-150,3) + 0.03*Pressure_Delta)+105;
-
-  //current candidate
-  expression = int(0.000018*pow(Pressure_Delta-148,3) + 0.025*Pressure_Delta)+102;
-
-  //other possibilities
-  //expression = int(0.000025*pow(Pressure_Delta-135,3) + 0.04*Pressure_Delta)+102;
-  //expression = int(0.00004*pow(Pressure_Delta-120,3) + 0.04*Pressure_Delta)+105;
+  //This function may need to be tweaked for different accordions and playing styles.
+  expression = int(0.000014*pow(Pressure_Delta-162,3) + 0.01*Pressure_Delta)+99;
 
   //If the pressure delta is below the defined limit, set it to the minimum velocity.
   //This works best when the mapping function hits the coordinate where
   //x = pressure_low_limit and y = min_velocity
   if (Pressure_Delta < pressure_low_limit){ 
-    expression = min_velocity; 
+    expression = min_velocity;
   }
   if (expression > 127){
     expression = 127;
