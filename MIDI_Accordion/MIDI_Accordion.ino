@@ -10,18 +10,21 @@
 #include <midi_Settings.h>
 struct MySettings : public midi::DefaultSettings
 {
-  //By default, MIDI Library tries to be smart by excluding the CC byte if it doesn't change.
-  //This is a problem when starting up Hairless MIDI after starting up the Arduino.
+  //By default, the Arduino MIDI Library tries to be smart by 
+  //excluding the CC byte if it doesn't change (to save bandwidth).
+  //This is a problem when starting up Serial<->MIDI software
+  //after starting up the Arduino because we miss the first CC byte.
+  //Setting UseRunningStatus to false removes this "feature."
   //See https://github.com/projectgus/hairless-midiserial/issues/16 for details.
   static const bool UseRunningStatus = false;
   // Set MIDI baud rate. MIDI has a default baud rate of 31250,
-  // but we're setting our baud rate higher in order to 
-  // properly decode and read outgoing MIDI data on the computer.
+  // but we're setting our baud rate higher so that the Serial<->MIDI software 
+  // can properly decode and read outgoing MIDI data on the computer.
   static const long BaudRate = 115200;
 };
 
 //#define DEBUG//uncomment this line to print serial messages, comment to send MIDI data
-//#define BLUETOOTH//uncomment this line to send MIDI data via bluetooth instead of USB
+#define BLUETOOTH//uncomment this line to send MIDI data via bluetooth instead of USB
 #define BMP//uncomment this line to use the BMP180 to add dynamics via bellows
 
 #ifdef BLUETOOTH
@@ -73,6 +76,10 @@ void setup()
     Serial.begin(9600);
   #else
     MIDI.begin();
+    //If we're sending MIDI over Serial1, open Serial for additional debugging
+    #ifdef BLUETOOTH
+      Serial.begin(9600);
+    #endif
   #endif
   //Digital pins start turned off
   for (int i=0; i<sizeof(left_hand_pins);i++){ 
@@ -103,7 +110,8 @@ int prev_expression = 127;
 //A smaller bmp_sample_rate is more granular, but allows more "noise" to come in.
 //A larger bmp_sample_rate is less granular, but has a smoother contour.
 //Setting bmp_sample_rate too large may also lose the amount of perceived expression
-//and create a noticable delay between squeezing the bellows and hearing the volume change.
+//and create a noticable delay between squeezing the bellows and hearing the volume change,
+//resulting in choppy crescendos and decrescendos.
 //Tweak this value as needed.
 const int bmp_sample_rate = 5;
 int expression_avg[bmp_sample_rate];
@@ -133,9 +141,9 @@ void loop()
         #else
           MIDI.sendControlChange(CC_Expression,expression,1);
           //Don't let bass overpower melody
-          MIDI.sendControlChange(CC_Expression,constrain(expression-7,0,127),2);
+          MIDI.sendControlChange(CC_Expression,constrain(expression-6,0,127),2);
           //Don't let chords overpower melody
-          MIDI.sendControlChange(CC_Expression,constrain(expression-17,0,127),3);
+          MIDI.sendControlChange(CC_Expression,constrain(expression-12,0,127),3);
         #endif
         prev_expression = expression;
         e = 0;

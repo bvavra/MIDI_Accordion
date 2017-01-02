@@ -112,16 +112,16 @@ void reset_flags(){
 
 /* If we're entering this function, we're in one of the following states:
 *  1 - We just entered and need a temp reading
-*  2 - We're waiting for a temp reading but it's not ready yet
+*  2 - We're waiting for temp reading but it's not ready yet
 *  3 - Temp reading is ready so we can start pressure reading
 *  4 - We're waiting for pressure reading but it's not ready yet
-*  5 - pressure reading is ready and we can get our new expression value.
+*  5 - pressure reading is ready and we can get our new expression
 */
 int get_expression(int prev_expression) {
   int expression = prev_expression;
 
   if(need_temp_reading) {//States 1-3
-    if(temp_started && !temp_ready){//2 - We're waiting for a temp reading but it's not ready yet
+    if(temp_started && !temp_ready){//2 - We're waiting for temp reading but it's not ready yet
       temp_final_ms = millis();
       temp_wait_ms = temp_wait_ms + (temp_final_ms - temp_init_ms);
       temp_init_ms = millis();
@@ -151,7 +151,7 @@ int get_expression(int prev_expression) {
         pressure_ready = true;
       }
     }
-    if(pressure_ready) {//5 - pressure reading is ready and we can get our new expression value.
+    if(pressure_ready) {//5 - pressure reading is ready and we can get our new expression
       pressureStatus = bmp_180.getPressure(P,Temp);
       expression = get_expression_from_pressure(P*100);//converting millibars to pascals
       reset_flags();
@@ -161,119 +161,78 @@ int get_expression(int prev_expression) {
   return expression;
 }
 
-int get_expression_from_pressure(double Pressure) {
-  int expression;
-  //minimum amount of pressure change required to form a sound
-
-  //jason original
-  //int pressure_low_limit = 7;
-  //expression = int(float((pow((Calib_Pressure - Pressure),1.4)+280)/45));
-
-  //dmitry original
-  //int pressure_low_limit = 10;
-  //expression = int((log(float(abs(Pressure - Calib_Pressure))/100.0)+4.8)/0.03814);
-
-  //bv1 (from jason)
-  //int pressure_low_limit = 7;
-  //int min_velocity = 55;
-  //expression = int(float((pow((Calib_Pressure - Pressure),1.4)+280)/45)*1.8)+55;
-  
-  //bv2 (from dmitry)
-  //int pressure_low_limit = 10;
-  //int min_velocity = 65;
-  //expression = int((log(float(abs(Pressure - Calib_Pressure)-10)/72)-0.6)/0.021)+134;
-
-  //bv3 (from dmitry)
-//  int pressure_low_limit = 20;
-//  int min_velocity = 60;
-//  expression = int((log(float(abs(Pressure - Calib_Pressure))/77)-0.56)/0.016)+132;
-
-//  //bv4 (x^3)
-//  int pressure_low_limit = 20;
-//  int min_velocity = 65;
-//  expression = int((pow(float(abs(Pressure - Calib_Pressure))-80,3)*0.0001 
-//    + 0.07*float(abs(Pressure - Calib_Pressure))))+85;
-
-  //bv5 (x^3)
-//  int pressure_low_limit = 20;
-//  int min_velocity = 65;
-//  expression = int((pow(float(abs(Pressure - Calib_Pressure))-102,3)*0.000045 
-//    + 0.13*float(abs(Pressure - Calib_Pressure))))+88;
-
-  //bv6 (x^3)
-//  int pressure_low_limit = 20;
-//  int min_velocity = 65;
-//  expression = int((pow(float(abs(Pressure - Calib_Pressure))-96,3)*0.000043 
-//    + 0.11*float(abs(Pressure - Calib_Pressure))))+83;
-
-//bv7
-//  int pressure_low_limit = 20;
-//  int min_velocity = 65;
-//  expression = int((pow(float(abs(Pressure - Calib_Pressure))-97,3)*0.000043 
-//    + 0.19*float(abs(Pressure - Calib_Pressure))))+83;
-
-//  int pressure_low_limit = 10;
-//  int min_velocity = 60;
-//  expression = int((pow(float(abs(Pressure - Calib_Pressure))-117,3)*0.000028 
-//    + 0.14*float(abs(Pressure - Calib_Pressure))))+93;
-
-  int pressure_low_limit = 15;
-  int min_velocity = 60;
-  expression = int((pow(float(abs(Pressure - Calib_Pressure))-117,3)*0.000033 
-    + 0.14*float(abs(Pressure - Calib_Pressure))))+93;
-
-  if (abs(Pressure - Calib_Pressure) < pressure_low_limit){ 
-    expression = min_velocity; 
-  }
-  if (expression > 127){
-    expression = 127;
-  }
-
-  return expression;
-}
-
+//Minimum amount of pressure change required to cause a change in volume.
+int pressure_low_limit = 15;
+//I decided to use a non-zero value for the minimum velocity.
+//Although being able to sound without moving is not realistic, 
+//it helps to compensate for having to push the bellows harder.
+//Also, working with a smaller range (60-127) allows for smoother dynamics
+//because larger changes in pressure will cause smaller changes in volume.
+int min_velocity = 60;
 
 //Algorithm used to map pressure deltas into MIDI velocity
 //Tweaks may need to be made for each accordion based on where the BMP_180 was placed 
 //and how much air flows through the accordion when keys are pressed.
-int get_expression_from_pressure_p(double Pressure) {
+int get_expression_from_pressure(double Pressure) {
   int expression;
-  //minimum amount of pressure change required to form a sound
-  int pressure_low_limit = 7;
+  float Pressure_Delta = abs(Pressure - Calib_Pressure);
+  #ifdef BLUETOOTH
+    //Uncomment this while sending MIDI data via Bluetooth to get
+    //pressure delta output on the serial port while playing music.
+    if (Pressure_Delta > pressure_low_limit){ 
+      Serial.print("Pressure_Delta: ");
+      Serial.println(int(Pressure_Delta));
+    }
+  #endif
 
-  //This formula was taken from Jason's code.
-  //It provides a more realistic sounding output than a linear mapping,
-  //but as written it doesn't have a very large dynamic range (0 to ~50)
-  //and requires a lot of physical force to make what seems like small volume changes.
-  if (Pressure <= Calib_Pressure){ //Pulling bellows out
-    expression = int(float((pow((Calib_Pressure - Pressure),1.4)+280)/45));   
+  //I derived this formula from a graphing calculator (https://www.desmos.com/) 
+  //I started with a cubic function: y=m(x-c)^3+nx+b
+  //I set the constants until the contour fell in line with 
+  //the expected pressure range and MIDI velocity output (0<x<250,0<y<127).
+  //From there I tweaked values and play tested them until
+  //I got something that sounded and felt right.
+  //This function may need to be tweaked for different accordions.
+  //black
+  //expression = int(0.000033*pow(Pressure_Delta-117,3) + 0.14*Pressure_Delta)+93;
+//orange
+//  expression = int(0.000043*pow(Pressure_Delta-116,3) + 0.04*Pressure_Delta)+103;
+//red
+//  expression = int(0.000039*pow(Pressure_Delta-112,3) + 0.1*Pressure_Delta)+94;
+//purple
+//  expression = int(0.00005*pow(Pressure_Delta-104,3) + 0.07*Pressure_Delta)+94;
+//green
+//  expression = int(0.000028*pow(Pressure_Delta-122,3) + 0.1*Pressure_Delta)+93;
+
+//orange dots
+//  expression = int(0.00003*pow(Pressure_Delta-112,3) + 0.17*Pressure_Delta)+85;
+
+//not sure about this one...
+//  expression = int(0.00006*pow(Pressure_Delta-93,3) + 0.23*Pressure_Delta)+85;
+
+//trying more extremes
+//blue
+//  expression = int(0.00003*pow(Pressure_Delta-105,3) + 0.13*Pressure_Delta)+80;
+//green dots
+//  expression = int(0.00006*pow(Pressure_Delta-106,3) + 0.03*Pressure_Delta)+105;
+//black dots
+//  expression = int(0.00002*pow(Pressure_Delta-123,3) + 0.12*Pressure_Delta)+83;
+//purple dots
+//  expression = int(0.00002*pow(Pressure_Delta-146,3) + 0.04*Pressure_Delta)+104;
+  //expression = int(0.000019*pow(Pressure_Delta-150,3) + 0.03*Pressure_Delta)+105;
+
+  //current candidate
+  expression = int(0.000018*pow(Pressure_Delta-148,3) + 0.025*Pressure_Delta)+102;
+
+  //other possibilities
+  //expression = int(0.000025*pow(Pressure_Delta-135,3) + 0.04*Pressure_Delta)+102;
+  //expression = int(0.00004*pow(Pressure_Delta-120,3) + 0.04*Pressure_Delta)+105;
+
+  //If the pressure delta is below the defined limit, set it to the minimum velocity.
+  //This works best when the mapping function hits the coordinate where
+  //x = pressure_low_limit and y = min_velocity
+  if (Pressure_Delta < pressure_low_limit){ 
+    expression = min_velocity; 
   }
-  else if (Pressure > Calib_Pressure){ //Pushing bellows in
-    expression = int(float((pow((Pressure - Calib_Pressure),1.4)+280)/40));           
-  } 
-  if (expression < pressure_low_limit){ 
-    expression = 0; 
-  }
-
-  //The above formula yields a very soft output in a small dynamic range.
-  //I improved upon it by doing the following:
-
-  //Multipying by a constant to widen the dynamic range.
-  //This allows smaller bellow movements to better impact dynamic output
-  //so that the player doesn't have to squeeze as hard to acheive a louder sound.
-  //However, as this value increases changes in dynamics become more choppy,
-  //so a sweet spot needs to be found.  Values between 1.5 and 3 seem to work well.
-  expression *= 1.8;
-  
-  //I decided I would rather have a non-zero value for the minimum velocity,
-  //so I'm shifting the entire output up by a constant.
-  //Although it's less realistic, it helps to compensate for 
-  //having to push the bellows harder than a normal accordion.
-  //This also pushes up the dynamic range so that it's 
-  //actually feasible to hit a velocity of 127.
-  //I've played around with values between 50 and 60 - still need to try others.
-  expression += 55;
-  //but now it's possible to exceed 127, so we need to cap it.
   if (expression > 127){
     expression = 127;
   }
