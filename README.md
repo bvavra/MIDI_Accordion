@@ -1,4 +1,4 @@
-# MIDI_Accordion
+# MIDI Accordion
 Steps and code for building an Arduino-powered MIDI accordion (based off Dmitry Yegorenkov's AccordionMega project: https://github.com/accordion-mega/AccordionMega)
 
 
@@ -32,14 +32,14 @@ That being said, while it IS theoretically possible to just follow these instruc
 
 ## <a name="p1"></a>Overview
 
-The goal of this project is to take a piano accordion and turn it into a MIDI Controller capable of playing music from your computer.  To do this requires solving a few different problems:
+The goal of this project is to take a traditional piano accordion and turn it into a MIDI controller capable of playing music from your computer.  To do this requires solving a few different problems:
 
 1. Sending a digital signal from the accordion keys and buttons to the computer
 2. Converting that signal to MIDI
 3. Playing that signal back with music software
 4. Communicating that signal for each button on the accordion
 
-This is enough to have a functional MIDI instrument, but there are a few additional optional problems that can also be solved:
+The above goals are enough to have a functional MIDI instrument, but there are a few additional optional problems that can also be solved:
 
 5. Communicating MIDI signals wirelessly (via Bluetooth)
 6. Decoupling the accordion's power supply from the computer/wall
@@ -72,10 +72,41 @@ This is enough to have a functional MIDI instrument, but there are a few additio
     - Added some extra comments to explain what some of the more obtuse lines are doing (port manipulation, bit operations, etc.)
 
 ## <a name="p3"></a>Materials
-//TODO - fill in - add BoM
+
+The final project requires the following materials and components:
+
+//TODO - link to BoM (possibly embedded table?)
+
+You will also need the following tools:
+
+//TODO - link to or list tools used
 
 ## <a name="p4"></a>Software
-//TODO - fill in - add Links to code and 3rd party software
+
+### Project Source
+
+The only files required for the final project are the Arduino files located in the [MIDI_Accordion directory](https://github.com/bvavra/MIDI_Accordion/tree/master/MIDI_Accordion).  Everything else is supplemental information to help research and build the project (e.g. Prototypes, Datasheets, Design Docs, etc.).
+
+### Third Party
+
+To play your finished MIDI Accordion you'll need the following additional software:
+
+- [Arduino IDE](https://www.arduino.cc/en/main/software)
+    - Used to write and upload the project source code to your Arduino.
+- [Arduino MIDI Library](http://playground.arduino.cc/Main/MIDILibrary)
+    - External library used to simplify sending data via the MIDI protocol.
+- Serial-to-MIDI conversion software
+    - Used to convert data coming from the Arduino from Serial to MIDI.  I recommend [Hairless MIDI <-> Serial Bridge](http://projectgus.github.io/hairless-midiserial/).
+- Virtual MIDI port
+    - Used to connect the MIDI data to playback software.  
+	- [OSX configuration instructions](http://feelyoursound.com/setup-midi-os-x/)
+	- [Linux (Debian/Ubuntu) config instructions](https://ubuntuforums.org/showthread.php?t=1445186)
+	- Windows requires 3rd party software - I recommend [LoopMIDI](http://www.tobias-erichsen.de/software/loopmidi.html).
+- MIDI controller/sequencer/playback software
+    - Used to play back MIDI data triggered by the accordion.  It can be whatever your preferred MIDI playback software is, but if you don't have one I recommend using [Virtual MIDI Piano Keyboard (VMPK)](http://vmpk.sourceforge.net/) which is free and Windows/OSX/Linux compatible.
+- [Sparkfun's Arduino BMP180 Library](https://github.com/sparkfun/BMP180_Breakout)
+- (Optional) [ASIO4All](http://www.asio4all.com/)
+    - Used to reduce latency when playing back MIDI on Windows machines without ASIO audio drivers.
 
 ## <a name="p5"></a>Quick Guide
 
@@ -86,4 +117,81 @@ This is meant to be a bare-bones guide to building your own MIDI accordion, prov
 //TODO - fill in outline steps
 
 ## <a name="p6"></a>Links
-//TODO - fill in - group by category
+
+The following links were helpful in making this project happen.  If any of these links are broken, or if you have any additional links that you found helpful, please contact me and let me know so I can update this list accordingly.
+
+### Accordion
+
+- [Lots of accordion repair resources](http://www.accordionrevival.com/Home.php)
+- [Taking apart the Stradella bass system](http://paisanoaccordions.blogspot.com/2009/09/not-for-faint-of-heart.html)
+- [Taking apart the piano keyboard](http://www.instructables.com/id/How-to-fix-an-accordion-keyboard/)
+- [Accordion repair videos](http://www.ehow.com/videos-on_2531_apart-accordion.html)
+- [Accoridon repair tools](http://accordionplus.com/tools.html)
+
+### Arduino
+
+- [Internal pullup resistor tutorial](https://www.arduino.cc/en/Tutorial/InputPullupSerial)
+- [Info about switches](http://www.gammon.com.au/switches)
+- [Arduino port manipulation](https://www.arduino.cc/en/Reference/PortManipulation)
+- [Port manipulation tutorial](http://www.instructables.com/id/Arduino-is-Slow-and-how-to-fix-it/?ALLSTEPS)
+- [Another port manipulation tutorial](http://www.instructables.com/id/Fast-digitalRead-digitalWrite-for-Arduino/?ALLSTEPS)
+- [Organizing Arduino code with tabs](https://liudr.wordpress.com/2011/02/16/using-tabs-in-arduino-ide/)
+- [Arduino baud rates](http://arduino.stackexchange.com/questions/296/how-high-of-a-baud-rate-can-i-go-without-errors)
+
+### MIDI
+
+- [MIDI Protocol essentials](https://ccrma.stanford.edu/~craig/articles/linuxmidi/misc/essenmidi.html)
+- [Arduino MIDI Library docs](http://arduinomidilib.fortyseveneffects.com/index.html)
+- [When does audio latency matter and not matter?](http://music.stackexchange.com/questions/30323/when-does-audio-latency-matter-and-not-matter)
+- [MIDI CC List](http://nickfever.com/music/midi-cc-list)
+- [Send and receive MIDI with Arduino](http://www.instructables.com/id/Send-and-Receive-MIDI-with-Arduino/?ALLSTEPS)
+- [Arduino MIDI Expression Pedal](https://www.codeproject.com/articles/38203/arduino-based-midi-expression-pedal)
+- [Latency problem using MS GS Wavetable Synth](https://answers.microsoft.com/en-us/windows/forum/windows_7-pictures/latency-problem-using-ms-gs-wavetable-synth/1e85704a-803c-438f-b472-fb0cb5211be4)
+- [Reducing latency on MIDI-over-USB keyboard](http://sound.stackexchange.com/questions/27583/reducing-latency-on-midi-over-usb-keyboard)
+- [Difference between MIDI velocity and Expression](http://www.sweetwater.com/insync/what-difference-between-midi-volume-expression/)
+- ["Unexpected data byte" error when sending CC data over Hairless MIDI](https://github.com/projectgus/hairless-midiserial/issues/16)
+
+### Opto-Interruptors
+
+- [ITR-9608 Datasheet](http://www.electrodragon.com/w/images/6/60/ITR9608.pdf)
+- [How To Set Up A Photo Interrupter (or Slotted Optical) Switch On The Arduino](http://www.utopiamechanicus.com/article/arduino-photo-interruptor-slotted-optical-switch/)
+- [Connecting a photo interrupter/optoisolator to an Arduino](http://www.martyncurrey.com/connecting-an-photo-interrupter-to-an-arduino/)
+
+### Bluetooth
+
+- [Cheap 2-Way Bluetooth Connection Between Arduino and PC](http://www.instructables.com/id/Cheap-2-Way-Bluetooth-Connection-Between-Arduino-a/?ALLSTEPS)
+- [Modify The HC-05 Bluetooth Module Defaults Using AT Commands](http://www.instructables.com/id/Modify-The-HC-05-Bluetooth-Module-Defaults-Using-A/?ALLSTEPS)
+- [Arduino with HC-05 Bluetooth module – AT MODE](http://www.martyncurrey.com/arduino-with-hc-05-bluetooth-module-at-mode/)
+
+### Barometric Pressure Sensor
+
+- [BMP180 Barometric Pressure Sensor Hookup](https://learn.sparkfun.com/tutorials/bmp180-barometric-pressure-sensor-hookup-)
+
+### Power
+
+- [Feeding power to Arduino: the ultimate guide](http://www.open-electronics.org/the-power-of-arduino-this-unknown/)
+- [Arduino power sharing](http://electronics.stackexchange.com/questions/36947/arduino-power-sharing)
+- [9V is not a good power source](http://cybergibbons.com/uncategorized/arduino-misconceptions-6-a-9v-battery-is-a-good-power-source/)
+- [Arduino power switch](http://www.instructables.com/id/Powering-Arduino-with-a-Battery/)
+- [Is it bad practice to provide power through the VIN 
+- [Powering an Arduino Mega with external USB Power Bank?](http://arduino.stackexchange.com/questions/9069/powering-an-arduino-mega-with-external-usb-power-bank)
+
+### Wiring
+
+- [Soldering tutorial](https://learn.adafruit.com/lets-put-leds-in-things/soldering)
+- [How to solder electronics](http://www.wikihow.com/Solder-Electronics)
+- [How to solder](http://www.instructables.com/id/How-to-solder/?ALLSTEPS)
+- [Basic de-soldering guide](http://www.epemag.wimborne.co.uk/desolderpix.htm)
+- [Custom Cables & Guide to Crimping Dupont PCB Interconnect Cables](https://www.youtube.com/watch?v=GkbOJSvhCgU)
+
+### Electronics
+
+- [How to read a schematic](https://learn.sparkfun.com/tutorials/how-to-read-a-schematic)
+- [Understanding the functions of a multimeter](https://learn.adafruit.com/multimeters/)
+- [Light-Emitting Diodes (LEDs)](https://learn.sparkfun.com/tutorials/light-emitting-diodes-leds)
+- [How to test diodes using a digital multimeter](http://en-us.fluke.com/training/training-library/test-tools/digital-multimeters/how-to-test-diodes-using-a-digital-multimeter.html)
+- [Why exactly can't a single resistor be used for many parallel LEDs?](http://electronics.stackexchange.com/questions/22291/why-exactly-cant-a-single-resistor-be-used-for-many-parallel-leds)
+- [8 Tips On How To Pick A Resistor For An Arduino (Circuit)](http://www.utopiamechanicus.com/article/arduino-resistor-selection/)
+- [Voltage Dividers](https://learn.sparkfun.com/tutorials/voltage-dividers)
+- [Transistors](https://learn.sparkfun.com/tutorials/transistors)
+- [How transistors work](http://www.build-electronic-circuits.com/how-transistors-work/)
