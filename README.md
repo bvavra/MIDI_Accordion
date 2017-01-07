@@ -53,7 +53,7 @@ The above goals are enough to have a functional MIDI instrument, but there are a
    - Made the following changes from the original [AccordionMega](https://github.com/accordion-mega/AccordionMega) BMP085 code:
        - Updated the temperature and pressure reading code to use SparkFun's BMP180 library.
 	   - Updated pressure<->velocity mapping algorithm according to various play tests.
-       - Pressure is now read asynchronously from the Arduino - adds approximately 2ms delay when enabled (original delay was 3-5ms).
+       - Pressure is now read asynchronously from the Arduino - adds approximately 2ms delay when enabled (original added delay was about 3-5ms).
 
 ### v1.1.00 (12/28/2016)
 
@@ -85,26 +85,30 @@ You will also need the following tools:
 
 ### Project Source
 
-The only files required for the final project are the Arduino files located in the [MIDI_Accordion directory](https://github.com/bvavra/MIDI_Accordion/tree/master/MIDI_Accordion).  Everything else is supplemental information to help research and build the project (e.g. Prototypes, Datasheets, Design Docs, etc.).
+The only files required for the final project are the Arduino files located in the root level [MIDI_Accordion directory](https://github.com/bvavra/MIDI_Accordion/tree/master/MIDI_Accordion).  Everything else in this repo is supplemental information to help research and build the project (e.g. Prototypes, Datasheets, Design docs, etc.).  Of course, you will need the [Arduino IDE](https://www.arduino.cc/en/main/software) to write and upload the project source code to your Arduino.
+
+### Arduino Libraries
+
+The following libraries are required to compile the MIDI_Accordion Arduino sketch:
+
+- [Arduino MIDI Library](http://playground.arduino.cc/Main/MIDILibrary)
+    - Used to simplify sending data via the MIDI protocol.
+- [Sparkfun's Arduino BMP180 Library](https://github.com/sparkfun/BMP180_Breakout)
+    - Used to interface with the BMP180 barometric pressure sensor.
 
 ### Third Party
 
 To play your finished MIDI Accordion you'll need the following additional software:
 
-- [Arduino IDE](https://www.arduino.cc/en/main/software)
-    - Used to write and upload the project source code to your Arduino.
-- [Arduino MIDI Library](http://playground.arduino.cc/Main/MIDILibrary)
-    - External library used to simplify sending data via the MIDI protocol.
-- Serial-to-MIDI conversion software
+- Serial-to-MIDI converter
     - Used to convert data coming from the Arduino from Serial to MIDI.  I recommend [Hairless MIDI <-> Serial Bridge](http://projectgus.github.io/hairless-midiserial/).
 - Virtual MIDI port
     - Used to connect the MIDI data to playback software.  
 	- [OSX configuration instructions](http://feelyoursound.com/setup-midi-os-x/)
 	- [Linux (Debian/Ubuntu) config instructions](https://ubuntuforums.org/showthread.php?t=1445186)
 	- Windows requires 3rd party software - I recommend [LoopMIDI](http://www.tobias-erichsen.de/software/loopmidi.html).
-- MIDI controller/sequencer/playback software
-    - Used to play back MIDI data triggered by the accordion.  It can be whatever your preferred MIDI playback software is, but if you don't have one I recommend using [Virtual MIDI Piano Keyboard (VMPK)](http://vmpk.sourceforge.net/) which is free and Windows/OSX/Linux compatible.
-- [Sparkfun's Arduino BMP180 Library](https://github.com/sparkfun/BMP180_Breakout)
+- MIDI controller/sequencer/player
+    - Used to play back MIDI data triggered by the accordion.  It can be whatever your preferred MIDI playback software is (e.g. Logic, Reason, etc.), but if you don't have one I recommend using [Virtual MIDI Piano Keyboard (VMPK)](http://vmpk.sourceforge.net/), which is free and Windows/OSX/Linux compatible.
 - (Optional) [ASIO4All](http://www.asio4all.com/)
     - Used to reduce latency when playing back MIDI on Windows machines without ASIO audio drivers.
 
@@ -161,7 +165,7 @@ The following links were helpful in making this project happen.  If any of these
 
 - [Cheap 2-Way Bluetooth Connection Between Arduino and PC](http://www.instructables.com/id/Cheap-2-Way-Bluetooth-Connection-Between-Arduino-a/?ALLSTEPS)
 - [Modify The HC-05 Bluetooth Module Defaults Using AT Commands](http://www.instructables.com/id/Modify-The-HC-05-Bluetooth-Module-Defaults-Using-A/?ALLSTEPS)
-- [Arduino with HC-05 Bluetooth module – AT MODE](http://www.martyncurrey.com/arduino-with-hc-05-bluetooth-module-at-mode/)
+- [Arduino with HC-05 Bluetooth module - AT MODE](http://www.martyncurrey.com/arduino-with-hc-05-bluetooth-module-at-mode/)
 
 ### Barometric Pressure Sensor
 
@@ -173,14 +177,14 @@ The following links were helpful in making this project happen.  If any of these
 - [Arduino power sharing](http://electronics.stackexchange.com/questions/36947/arduino-power-sharing)
 - [9V is not a good power source](http://cybergibbons.com/uncategorized/arduino-misconceptions-6-a-9v-battery-is-a-good-power-source/)
 - [Arduino power switch](http://www.instructables.com/id/Powering-Arduino-with-a-Battery/)
-- [Is it bad practice to provide power through the VIN 
+- [Is it bad practice to provide power through the VIN Pin?](https://www.reddit.com/r/arduino/comments/2jdyba/is_it_bad_practice_to_provide_power_through_the/)
 - [Powering an Arduino Mega with external USB Power Bank?](http://arduino.stackexchange.com/questions/9069/powering-an-arduino-mega-with-external-usb-power-bank)
 
 ### Wiring
 
-- [Soldering tutorial](https://learn.adafruit.com/lets-put-leds-in-things/soldering)
-- [How to solder electronics](http://www.wikihow.com/Solder-Electronics)
-- [How to solder](http://www.instructables.com/id/How-to-solder/?ALLSTEPS)
+- [Soldering 101 (adafruit)](https://learn.adafruit.com/lets-put-leds-in-things/soldering)
+- [How to solder electronics (wikiHow)](http://www.wikihow.com/Solder-Electronics)
+- [How to solder (instructables)](http://www.instructables.com/id/How-to-solder/?ALLSTEPS)
 - [Basic de-soldering guide](http://www.epemag.wimborne.co.uk/desolderpix.htm)
 - [Custom Cables & Guide to Crimping Dupont PCB Interconnect Cables](https://www.youtube.com/watch?v=GkbOJSvhCgU)
 
@@ -192,6 +196,6 @@ The following links were helpful in making this project happen.  If any of these
 - [How to test diodes using a digital multimeter](http://en-us.fluke.com/training/training-library/test-tools/digital-multimeters/how-to-test-diodes-using-a-digital-multimeter.html)
 - [Why exactly can't a single resistor be used for many parallel LEDs?](http://electronics.stackexchange.com/questions/22291/why-exactly-cant-a-single-resistor-be-used-for-many-parallel-leds)
 - [8 Tips On How To Pick A Resistor For An Arduino (Circuit)](http://www.utopiamechanicus.com/article/arduino-resistor-selection/)
-- [Voltage Dividers](https://learn.sparkfun.com/tutorials/voltage-dividers)
-- [Transistors](https://learn.sparkfun.com/tutorials/transistors)
+- [Voltage Dividers tutorial](https://learn.sparkfun.com/tutorials/voltage-dividers)
+- [Transistors tutorial](https://learn.sparkfun.com/tutorials/transistors)
 - [How transistors work](http://www.build-electronic-circuits.com/how-transistors-work/)
