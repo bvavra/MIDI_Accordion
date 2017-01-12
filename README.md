@@ -59,11 +59,37 @@ The above goals are enough to have a functional MIDI instrument, but there are a
 
 The final project requires the following materials and components:
 
-//TODO - link to BoM (possibly embedded table?)
+**Item Name (Part Number)**|**Quantity**
+:-----:|:-----:
+Accordion|1
+Arduino Mega 2560 R3|1
+Barometric Pressure Sensor (BMP 180)|1
+Bluetooth Transceiver Module (HC-05 RS232)|1
+USB Bluetooth Dongle|1
+Photo/Opto Interruptor (ITR-9608)|65
+270 O Resistor 1/4W 5%|65
+1k O Resistor 1/4W 5%|11
+BJT NPN Transistor (2N 2222A)|8
+Black 8" Zip Ties|65
+USB 2.0 Type A Type B M/M Cable|1
+USB 2.0 Type A to Type B F/F Adapter Header|1
+SB404 PCB (BB400)|2
+BR1 PCB (830)|5
+.5"x.5" 90 Degree Angle Corner Plate (H# 884487)|10
+2.54mm Breakaway PCB Board 40 Pin Header Kit|1
+2.54mm Dupont M/F 40 Pin Connector Kit|1
+Multicolored Jumper Wire Ribbon Cable Kit|1
+M3 M/F Brass Spacer Standoff Assortment Kit|1
+Threaded Insert M3 9.52mm|8
+White 4" Zip Ties (100pc)|1
+
+The total cost of these materials can vary. [Dmitry](https://github.com/accordion-mega/AccordionMega/wiki/Accordion-Mega-story) claimed he was able to build his accordion for under $100.  If you exclude the accordion, I spent about $200 on the above materials.  If you don't have an accordion you can get one on eBay as low as $50 - it doesn't have to sound good; it just needs to function mechanically.  I bought mine for $150 (plus shipping).
 
 You will also need the following tools:
 
 //TODO - link to or list tools used
+
+I had to buy most of these tools for this project - it rang up to about $100 total.
 
 ## <a name="software"></a>Software
 
@@ -120,7 +146,7 @@ This is meant to be a bare-bones guide to building your own MIDI accordion, prov
 	
 #### Building, mounting, and wiring the circuits
 
-1. Design and build circuits for each of the keys that need to be mapped according to the [final project schematics](//TODO - finish and upload final project schematics).  You can refer to [these design docs](https://github.com/bvavra/MIDI_Accordion/tree/master/pdf/design) and my [project photos](http://imgur.com/a/U7L83) for reference.
+1. Design and build circuits for each of the keys that need to be mapped according to the [final project schematics](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/master/MIDI_Accordion/schematics/MIDI_Accordion_schem.png).  You can refer to [these design docs](https://github.com/bvavra/MIDI_Accordion/tree/master/pdf/design) and my [project photos](http://imgur.com/a/U7L83) for reference.
 	* Note: Each accordion is different, so the designs that worked for my accordion may not work for yours.  Stick to the schamtics and plan your boards accordingly.  Be sure to leave enough room for wires to connect everything and for the accordion to be closed up.
 2. Mount the circuit boards to the accordion and wire everything together.  If you plan on adding the BMP180 for bellow expression, be sure to provide enough slack for the wires connecting the treble and bass side to allow for pulling the bellows out.
 3. Drill a hole to allow for connecting the USB cable from the Arduino to the computer and mount the USB port in the hole.
