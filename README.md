@@ -87,9 +87,23 @@ The total cost of these materials can vary. [Dmitry](https://github.com/accordio
 
 You will also need the following tools:
 
-//TODO - link to or list tools used
+**Item**|**Usage**
+:-----:|:-----:
+Multimeter|Used to debug circuit connectivity.
+Soldering Iron|Used to join components to the circuit boards.
+60-40 Rosin Core Solder|Used to create circuit joints.
+Brass Wire and Holder|Used to clean the soldering iron tip.
+Desoldering Wick/Pump/Bulb|Used to fix soldering mistakes.
+Adjustable Circuit Board Holder|Used to hold the circuit board in place while I solder.
+Wire Strippers|Used to cut and strip wires to size.
+Wire Cutters|Used to trim wires and components after they've been soldered.
+Utility Knife|Used to cut the circuit boards and sever bad solder connections.
+Sandpaper|Used to smooth cuts made to circuit boards.
+Power Drill|Used to drill holes in the circuit boards and the accordion.
+Small Flathead Screwdriver (c.1/8")|Used to open up the accordion.
+Crimping pliers|(Optional) Used to make jumper wire ends.
 
-I had to buy most of these tools for this project - it rang up to about $100 total.
+I had to buy most of these tools for this project, which rang up to about $100 total.
 
 ## <a name="software"></a>Software
 
