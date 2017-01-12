@@ -3,8 +3,6 @@ Steps and code for building an Arduino-powered MIDI accordion (based off Dmitry 
 
 [MIDI Accordion Photo Gallery](http://imgur.com/a/U7L83)
 
-//TODO - add demo videos
-
 | Table of Contents      |
 | ---------------------- |
 | [Overview](#overview)  |
@@ -83,7 +81,7 @@ M3 M/F Brass Spacer Standoff Assortment Kit|1
 Threaded Insert M3 9.52mm|8
 White 4" Zip Ties (100pc)|1
 
-The total cost of these materials can vary. [Dmitry](https://github.com/accordion-mega/AccordionMega/wiki/Accordion-Mega-story) claimed he was able to build his accordion for under $100.  If you exclude the accordion, I spent about $200 on the above materials.  If you don't have an accordion you can get one on eBay as low as $50 - it doesn't have to sound good; it just needs to function mechanically.  I bought mine for $150 (plus shipping).
+The total cost of these materials can vary. [Dmitry](https://github.com/accordion-mega/AccordionMega/wiki/Accordion-Mega-story) was able to build his accordion for under $100.  If you exclude the accordion, I spent about $220 on the above materials.  If you don't have an accordion you can get a decent enough one on eBay for as low as $100 - it doesn't have to sound good; it just needs to function mechanically.  I bought mine for $150 (plus $30 shipping), bringing my grand total to $400.
 
 You will also need the following tools:
 
