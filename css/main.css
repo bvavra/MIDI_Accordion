@@ -626,3 +626,12 @@ td.gutter {
 #social-share-section {
   margin-bottom: 30px;
 }
+
+/* --- BV Custom --- */
+
+.table-of-contents + table {
+  float: left;
+  margin-left: -250px;
+  margin-top: -210px;
+  position: fixed;
+}

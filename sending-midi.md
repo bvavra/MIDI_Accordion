@@ -1,42 +1,49 @@
 ---
-layout: page
+layout: ordered_page
 title: Sending MIDI
 subtitle: How to MIDI with Arduino
-published: true
+prevUrl: /overview
+prevTitle: Project Overview
+nextUrl: /midi-playback
+nextTitle: MIDI Playback
 ---
 
-//This will be the tutorial for creating and sending midi data.  Include some info about the MIDI protocol, some info about Arduino, and detailed isntructions for using the tutorials (with link to the tutorial folder in the GitHub repo).
+Before we even start thinking about making an accordion, let's get the Arduino set up to start making some music.  We'll be using the [MIDI Protocol](https://en.wikipedia.org/wiki/MIDI) to do this by sending data from the Arduino to the computer, where the MIDI data will be interpreted and realized as sound.  Let's solve the data transfer problem first, then we'll tackle turning that data into music in the next tuorial.
 
+### Goal
 
-**Goal:** Have the Arduino send MIDI data to the computer.
+Have the Arduino send MIDI data to the computer.
 
-**The Problem:** We need to make sure whatever data we send follows the MIDI protocol in order for the data to be interpreted properly.  We will use the [Arduino MIDI library](http://playground.arduino.cc/Main/MIDILibrary) to make it simple for us.
+### The Problem 
+
+We need to make sure whatever data we send follows the MIDI protocol in order for the data to be interpreted properly.  We will use the [Arduino MIDI library](http://playground.arduino.cc/Main/MIDILibrary) to make it simple for us.
 
 **You will need:**
 
 - Arduino (Uno, Mega, etc)
+    - If you're reading this and ready to try this tutorial, I'm assuming that you have a vague idea of how to compile, upload, and run Arduino programs.  If not, I recommend picking up an [Arduino Getting Started Kit](https://www.amazon.com/s/ref=nb_sb_ss_c_1_18?url=search-alias%3Daps&field-keywords=arduino+getting+started+kit&sprefix=arduino+getting+st%2Caps%2C202), checking out the [Getting Started Guide](https://www.arduino.cc/en/Guide/HomePage), and building a few prototypes to get a feel for how the Arduino works before before jumping into this tutorial.
 - [MIDI Accordion's MIDI Tutorial](https://github.com/bvavra/MIDI_Accordion/tree/master/Prototypes/MIDI_Tutorial)
 - [Arduino MIDI Library](http://playground.arduino.cc/Main/MIDILibrary)
 
-## Solution
+### Solution
 
 The [MIDI Tutorial on the Arduino website](https://www.arduino.cc/en/Tutorial/Midi) provides a brief overview of how MIDI data is structured, along with [some links](http://www.tigoe.net/pcomp/code/communication/midi/) to [more extensive information](http://hinton-instruments.co.uk/reference/midi/protocol/index.htm).  For the sake of this project I'll give you the [tl;dr:](https://en.wikipedia.org/wiki/Wikipedia:Too_long;_didn%27t_read)
 
 - There are two kinds of MIDI bytes: Data and Commands
-- All MIDI data bytes (notes, volume, etc.) range between 0 and 127.
+- All MIDI data bytes (notes, velocity, etc.) range between 0 and 127.
     - For notes, 60 is middle C on the piano, and each number below or above is the difference of one semitone (e.g. 60 is C4, 61 is C#/Db4, 62 is D4, etc.).
-    - For velocity, 0 is silence and 127 is the max volume.
-- Command bytes range from 127 to 511 and are used to do things with the corresponding data bytes, like turning a note on or off, or setting the note velocity (i.e. volume).  The Arduino MIDI Library makes it easy to execute common MIDI commands because they're wrapped in functions such as sendNoteOn() and sendNoteOff().
-- MIDI data is assigned to and sent on a designated channel.  MIDI supports up to 16 channels, each of which can be used to represent different instruments.  Channel 10 is reserved for drums.
+    - For velocity (e.g. volume), 0 is silence and 127 is the max volume.
+- Command bytes are used to do things with the corresponding data bytes, like turning a note on or off, or setting the note velocity.  The Arduino MIDI Library makes it easy to execute common MIDI commands because they're wrapped in functions such as sendNoteOn() and sendNoteOff(), so we won't go into any byte-specific details here (yet).
+- MIDI data is assigned to and sent on a designated channel. MIDI supports up to 16 channels, each of which can be used to represent different instruments. Channel 10 is reserved for drums.
 
-Again, there's a lot more to it than this, but I'll dive into details in future sections when necessary.
+Again, there's a lot more to it than this, and I'll dive into details in future sections when necessary, but this is all you need to knnow for this tutorial.
 
-**Steps**
+### Steps
+
 
 1. Install the [Arduino MIDI Library](http://playground.arduino.cc/Main/MIDILibrary) to your Arduino IDE.
-    - See [Installing Additional Arduino Libraries](https://www.arduino.cc/en/Guide/Libraries) for details.
+    - See [Installing Additional Arduino Libraries](https://www.arduino.cc/en/Guide/Libraries) for details on how to do this.
 2. Download and open the [MIDI Tutorial](https://github.com/bvavra/MIDI_Accordion/tree/master/Prototypes/MIDI_Tutorial) for this project.
-    - Note: when viewing the Serial output window, be sure to set the [baud rate](https://www.arduino.cc/en/Serial/Begin) to the same baud rate set by the program (115200 bits/second).
     
 Before running the program, let's take a look and see what the code is doing.
 
@@ -48,7 +55,7 @@ In order for us to use the Arduino MIDI library, we have to include it at the to
     #include <midi_Namespace.h>
     #include <midi_Settings.h>
     
-Now we're going to [override the MIDI default baud rate](http://arduinomidilib.fortyseveneffects.com/a00013.html), changing it from 31250 to 115200.  We need to do this in order to properly decode and read outgoing MIDI data in Serial output windows on the computer:
+Now we're going to [override the MIDI default baud rate](http://arduinomidilib.fortyseveneffects.com/a00013.html), changing it from 31250 to 115200.  We need to do this in order to properly decode and read outgoing MIDI data on the computer:
 
     struct MySettings : public midi::DefaultSettings
     {
@@ -71,24 +78,40 @@ This is starting up the MIDI library to listen for MIDI In messages on the defau
 
 Now for the program we want to execute:
 
+    // Play notes from F3 (53) to A6 (93):
     void loop() {
-      // Play notes from F3 (53) to A6 (93):
+      // For each note from 53 to 93, perform the following code for that note,
+	  // incrementing note by 1 each time.
       for (int note = 53; note <= 93; note ++) {
-        // Send a NoteOn message, wait a second, turn the note off
-        MIDI.sendNoteOn(note, velocity, channel);  
-        delay(1000);
-        MIDI.sendNoteOff(note, velocity, channel);
+        MIDI.sendNoteOn(note, velocity, channel);  // Turn the note on.
+        delay(1000);                               // Wait 1000 milliseconds.
+        MIDI.sendNoteOff(note, velocity, channel); // Turn the note off.
       }
     }
     
-All the program is doing is playing one note at a time for 1 second each from F3 to A6, which is the full range of the accordion right hand.
+All the program is doing is playing one note at a time for 1 second each from F3 to A6, which is the [full range of the accordion right hand](https://en.wikipedia.org/wiki/Piano_accordion).  If you're not familiar with Arduino code and don't quite understand how this syntax works, [check out the reference for For loops](https://www.arduino.cc/en/Reference/For).
 
-Now let's run the program:
+Now let's upload and run the program.  If you open the output window, you'll probably see something like this:
 
-**Troubleshooting**
+![midi_output_9600](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/gh-pages/img/midi/midi_output_9600.JPG)
 
-//todo
+Not very informative - let's change the baud rate of the output window to match our MIDI baud rate of 115200:
 
-**Credit**
+![midi_output_115200](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/gh-pages/img/midi/midi_output_115200.JPG)
 
-//TODO thank the makers of arduino midi library
+Still not great, but you can kind of see things like numbers going up and such, so it sort of looks like it's doing what we expect (if you see something remotely like this, you're good).  To make sure, though, we really need to hear what the output sounds like, and [that's what the next tutorial is for](../midi-playback)!
+
+### Troubleshooting
+
+**"When I try to upload and run the program I get an error saying: 'avrdude: ser_open(): can't open device "\\.\COM#"'"**
+
+- Make sure that the selected Board matches your Arduino board and the select Port matches the Port number created when you installed the Arduino.
+- Sometimes, if you unplug the Arduino, make a code change, re-plug it in, and reupload the code, it might not recognize that it's plugged in immediately.  Try unplugging and replugging it in again and then re-upload the code.
+
+**"The program won't compile!"**
+
+- This program was written to work with the Arduino Uno and the Arduino Mega.  If you're running this program on a different Arduino (such as the Arduino Due) you may need to alter the MIDI_CREATE_CUSTOM_INSTANCE function call accordingly.  See the [Arduino MIDI Library Documentation](http://arduinomidilib.fortyseveneffects.com/a00020.html#a95faae7d93fc1a603f99cc7ad92d72bf) for details.
+
+### Credit
+
+- Thank you to [FortySevenEffects](https://github.com/FortySevenEffects) for making the [Arduino MIDI Library](https://github.com/FortySevenEffects/arduino_midi_library).

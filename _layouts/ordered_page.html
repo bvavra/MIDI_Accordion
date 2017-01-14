@@ -29,14 +29,14 @@ layout: base
       {% endif %}
 
       <ul class="pager blog-pager">
-        {% if page.previous.url %}
+        {% if page.prevUrl %}
         <li class="previous">
-          <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">&larr; {{page.previous.title}}</a>
+          <a href="{{ page.prevUrl | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.prevTitle}}">&larr; {{page.prevTitle}}</a>
         </li>
         {% endif %}
-        {% if page.next.url %}
+        {% if page.nextUrl %}
         <li class="next">
-          <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">{{page.next.title}} &rarr;</a>
+          <a href="{{ page.nextUrl | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.nextTitle}}">{{page.nextTitle}} &rarr;</a>
         </li>
         {% endif %}
       </ul>
