@@ -53,7 +53,34 @@ If you're lucky, your accordion is already in great shape and there's nothing yo
 
 **4. Deciding how to trigger the opto-interruptors**
 
-Now that the accordion is in playable shape, it time to figure out how you want to trigger the opto-interruptor sensors.  AccordionMega solved this problem by gluing metal rods to every key pad on both the left and right hand keys. /*link to his images online*/  If you choose to follow this path, you're on your own to figure out the details.  If you wish to explore an alternative, I decided to solve this problem from the other side by attaching blockers on the underside of the key pads of both the left and right hand keys. /*insert image of inserted blockers*/ I made the blockers out of zip ties and glued them to the key pads using E6000 (//add link), as shown here: 
+Now that the accordion is in playable shape, it time to figure out how you want to trigger the opto-interruptor sensors.  AccordionMega solved this problem by gluing metal rods to every key pad on the outside of both the left and right hand keys. /*link to his images online*/  If you choose to follow this path, you're on your own to figure out the details of making this work.  As an alternative, I decided to solve this problem from the bellows side by attaching blockers on the underside of the key pads of both the left and right hand keys. /*insert image of inserted blockers*/ 
+
+There are pros and cons to doing it one way or the other:
+
+**Using blockers on the outside**
+
+Pros:
+- Sturdier design
+- Better support for realistic bellow movement for dynamic expression (see BMP page for details explaining why)
+
+Cons:
+- Harder to install (requires taking apart the entire stradella bass system)
+- No room on the right hand inside the grill to hide the circuitry //link to image/video
+- Need more/longer wires to connect everything
+
+**Using blockers on the inside**
+
+Pros:
+- Easy to install (details below) and wire
+- Everything is well hidden inside the accordion
+
+Cons:
+- Can cause key "sticking" if the key moves around a lot when pressing it
+- Requires larger airways, meaning looser bellows movement for dynamic expression
+
+**Installing the blockers inside the bellows**
+
+I made the blockers out of zip ties and glued them to the key pads using E6000 (//add link), as shown here: 
 
 // insert images of making zip tie blockers here
 
