@@ -1,7 +1,13 @@
 # MIDI Accordion
 Steps and code for building an Arduino-powered MIDI accordion (based off Dmitry Yegorenkov's [AccordionMega project](https://github.com/accordion-mega/AccordionMega))
 
-[MIDI Accordion Photo Gallery](http://imgur.com/a/U7L83)
+[MIDI Accordion Project Photo Gallery](http://imgur.com/a/U7L83)
+
+[Demo Video #1 - Professor Layton Main Theme (Intro)](https://www.youtube.com/watch?v=s197ojk8npI)
+
+[Demo Video #2 - Stolen Moments (by Oliver Nelson)](https://www.youtube.com/watch?v=Z_4_YdG65XQ)
+
+[Demo Video #3 - Everfrost Peak (from Diddy Kong Racing)](https://www.youtube.com/watch?v=8d2E2YQPqnI)
 
 | Table of Contents      |
 | ---------------------- |
@@ -65,8 +71,8 @@ Barometric Pressure Sensor (BMP 180)|1
 Bluetooth Transceiver Module (HC-05 RS232)|1
 USB Bluetooth Dongle|1
 Photo/Opto Interruptor (ITR-9608)|65
-270 O Resistor 1/4W 5%|65
-1k O Resistor 1/4W 5%|11
+270 Ohm Resistor 1/4W 5%|65
+1k Ohm Resistor 1/4W 5%|11
 BJT NPN Transistor (2N 2222A)|8
 Black 8" Zip Ties|65
 USB 2.0 Type A Type B M/M Cable|1
@@ -81,7 +87,7 @@ M3 M/F Brass Spacer Standoff Assortment Kit|1
 Threaded Insert M3 9.52mm|8
 White 4" Zip Ties (100pc)|1
 
-The total cost of these materials can vary. [Dmitry](https://github.com/accordion-mega/AccordionMega/wiki/Accordion-Mega-story) was able to build his accordion for under $100.  If you exclude the accordion, I spent about $220 on the above materials.  If you don't have an accordion you can get a decent enough one on eBay for as low as $100 - it doesn't have to sound good; it just needs to function mechanically.  I bought mine for $150 (plus $30 shipping), bringing my grand total to $400.
+The total cost of these materials can vary. [Dmitry](https://github.com/accordion-mega/AccordionMega/wiki/Accordion-Mega-story) was able to build his accordion for under $100.  If you exclude the accordion, I spent about $220 on the above materials.  If you don't have an accordion you can get a decent enough one on eBay for as low as $100 (normally I'd advise against buying an accordion off eBay, but it doesn't have to sound good; it just needs to function mechanically).  I bought mine for $150 (plus $30 shipping), bringing my grand total to $400.
 
 You will also need the following tools:
 
@@ -92,13 +98,13 @@ Soldering Iron|Used to join components to the circuit boards.
 60-40 Rosin Core Solder|Used to create circuit joints.
 Brass Wire and Holder|Used to clean the soldering iron tip.
 Desoldering Wick/Pump/Bulb|Used to fix soldering mistakes.
-Adjustable Circuit Board Holder|Used to hold the circuit board in place while I solder.
+Adjustable Circuit Board Holder|Used to hold the circuit board in place while soldering.
 Wire Strippers|Used to cut and strip wires to size.
 Wire Cutters|Used to trim wires and components after they've been soldered.
 Utility Knife|Used to cut the circuit boards and sever bad solder connections.
 Sandpaper|Used to smooth cuts made to circuit boards.
 Power Drill|Used to drill holes in the circuit boards and the accordion.
-Small Flathead Screwdriver (c.1/8")|Used to open up the accordion.
+Small Flathead Screwdriver (c.1/8")|Used to open up and take apart the accordion.
 Crimping pliers|(Optional) Used to make jumper wire ends.
 
 I had to buy most of these tools for this project, which rang up to about $100 total.
@@ -136,7 +142,9 @@ To play your finished MIDI Accordion you'll need the following additional softwa
 
 ## <a name="guide"></a>Quick Guide
 
-This is meant to be a bare-bones guide to building your own MIDI accordion, providing only a general roadmap for those who already know what they're doing or for those who are curious about the process, but only want a tl;dr.  A complete guide is in the works and will be made available soon.  In the meantime, I've provided a [set of links](#links) that I've used to help get my project up and running - if any of them are broken please let me know and I'll update the list accordingly.
+This is meant to be a bare-bones guide to building your own MIDI accordion, providing only a general roadmap for those who already know what they're doing or for those who are curious about the process, but only want a tl;dr.  A complete guide that breaks down each step is in the works and will be made available soon.  In the meantime, I've provided a [set of links](#links) that I used to help get my project up and running - if any of them are broken please let me know and I'll update the list accordingly.
+
+Note: Although this quide is "quick", the project is not.  I spent over 200 hours on this project - however, much of this time was spent making mistakes (and learning from them), researching, building prototypes, and documenting everything.  I made this guide in hopes that others can do this project with all the necessary information and resources available in one place.
 
 ### Basic Assembly/Installation Instructions
 
@@ -166,8 +174,8 @@ This is meant to be a bare-bones guide to building your own MIDI accordion, prov
 	
 #### (Optional) Communicating MIDI signals wirelessly via Bluetooth
 
-1. Upload the [Bluetooth_Tutorial](https://github.com/bvavra/MIDI_Accordion/tree/master/Prototypes/Bluetooth_Tutorial) prototype to your Arduino and follow the instructions on [this instructables page](http://www.instructables.com/id/Cheap-2-Way-Bluetooth-Connection-Between-Arduino-a/?ALLSTEPS) to hook up the transceiver to the Arduino, configure it with your Bluetooth receiver, and test that it works properly.
-1. Upload the [Bluetooth_Tutorial_2](https://github.com/bvavra/MIDI_Accordion/tree/master/Prototypes/Bluetooth_Tutorial_2) prototype to your Arduino and follow the instructions on [this instructables page](http://www.instructables.com/id/Modify-The-HC-05-Bluetooth-Module-Defaults-Using-A/?ALLSTEPS) to access the Bluetooth transceiver's AT mode.  While in AT mode, update the baud rate to 115,200 kb/sec by entering the command "AT+UART=115200,1,0".  You can optionally also change the name and password of the Bluetooth device.
+1. Upload the [Bluetooth_Tutorial](https://github.com/bvavra/MIDI_Accordion/tree/master/Prototypes/Bluetooth/Bluetooth_Tutorial) prototype to your Arduino and follow the instructions on [this instructables page](http://www.instructables.com/id/Cheap-2-Way-Bluetooth-Connection-Between-Arduino-a/?ALLSTEPS) to hook up the transceiver to the Arduino, configure it with your Bluetooth receiver, and test that it works properly.
+1. Upload the [Bluetooth_Tutorial_2](https://github.com/bvavra/MIDI_Accordion/tree/master/Prototypes/Bluetooth/Bluetooth_Tutorial_2) prototype to your Arduino and follow the instructions on [this instructables page](http://www.instructables.com/id/Modify-The-HC-05-Bluetooth-Module-Defaults-Using-A/?ALLSTEPS) to access the Bluetooth transceiver's AT mode.  While in AT mode, update the baud rate to 115,200 kb/sec by entering the command "AT+UART=115200,1,0".  You can optionally also change the name and password of the Bluetooth device.
 2. Open the [MIDI_Accordion](https://github.com/bvavra/MIDI_Accordion/tree/master/MIDI_Accordion) sketch and uncomment the "//#define BLUETOOTH" line of code to enable the bluetooth serial port.  Upload the changes to your Arduino. 
 3. Update your Serial<->MIDI conversion software to point to the Bluetooth COM port instead of the Arduino port.
 4. (Optional) Instead of plugging the Arduino into the computer via USB cable, you can now use a battery pack to power the accordion.  A 4xAA pack is recommended, but certain 5V USB phone charger packs may also work.
