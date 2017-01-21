@@ -16,12 +16,11 @@ nextTitle: Sending MIDI
 | [Required Parts](#parts)      |
 | [Required Software](#software)|
 | [Required Time](#time)        |
-| [Expected Cost](#cost)       |
+| [Expected Cost](#cost)        |
 
 Want to build your own MIDI accordion?  Awesome!  Here's a general overview of the project to give you an idea of what you're getting yourself into:
 
 ### <a name="reqs"></a>General Project Requirements 
-*(what we need to accomplish)*
 
 The goal of this project is to take a piano accordion and turn it into a MIDI Controller capable of playing music from your computer.  Note that the computer is **required** for playback; this project does **not** involve installing speakers to play back MIDI-realized sound directly from the accordion.  I may delve into such a feat someday, but today is not that day.
 
@@ -61,30 +60,64 @@ I've designed this tutorial to have a relatively low barrier to entry, but I wil
 
 If you, like me, have never dabbed into electrical engineering before, you may not have the tools necessary to build a MIDI accordion.  Here are a list of tools I ended up using throughout the project:
 
-//TODO - include images of everything
+[//]: # (TODO - include images of everything, and links where appropriate)
 
 - Multimeter
-    - This will be your primary debugging tool when putting together prototypes and the final project.  I use it to double check voltage and current in my prototypes as well as to check connectivity after soldering.  It doesn't have to be anything fancy; I picked up mine at a local hardware store for $20.  //TODO - include links
+    - This will be your primary debugging tool when putting together prototypes and the final project.  I use it to double check voltage and current in my prototypes as well as to check connectivity after soldering.  It doesn't have to be anything fancy; I picked up mine at a local hardware store for $20.
 - Soldering Iron (& Accessories)
-    - Used to solder wires and components together when building the final project.  I'll go into some basic details on using the iron in the final tutorial.  //TODO - details on what kind to get if you don't have one.  Other things to accompany the soldering iron include:
+    - Used to solder wires and components together when building the final project.  I'll go into some basic details on using the iron in the final tutorial.  Other things to accompany the soldering iron include:
 	    - Solder (I recommend 60/40 with rosin core)
 		- Solder pump/wick/bulb
-		    - Used to fix your mistakes.
-		- Solder tip cleaning wire
+		    - Used to fix your  soldering mistakes.  You _will_ make mistakes.
+		- Solder tip cleaning wire (brass)
 		    - Used to routinely clean your soldering iron tip(s).
+- Adjustable Circuit Board Holder
+    - Used to hold the circuit board in place while soldering.
 - Wire Strippers
-    - Used to cut and strip wires to size.  Can also be used to cut various components as needed.
+    - Used to cut and strip wires to size.  Can also be used to cut various components and trim circuit boards as needed.
 - Wire Cutters
     - Used to trim wires and components after they've been soldered.
 - Utility Knife
     - Used to cut the circuit boards.  More details about how I did this in the circuit layout tutorial.
-- //TODO - add more
+- Sandpaper
+    - Used to smooth cuts made to circuit boards.
+- Power Drill
+    - Used to drill holes in the circuit boards and the accordion.  
+	    - For the circuit boards I recommend using a tungsten carbide drill bit (1/8") to drill through the fiberglass.
+- Small Flathead Screwdriver (c.1/8")
+    - Used to open up and take apart the accordion.
+- Crimping pliers (Optional)
+    - Used to make jumper wire ends.  Only needed if you want to reduce the amount of wire clutter in your final project by cutting jumper wires to size.
 
 ### <a name="parts"></a>Required Parts
 
-Here is the complete Bill of Materials for this project.  Specifics may vary from project to project (since all accordions are different), but this should give you a good idea of what parts will be needed and about how much you're likely to spend on them:
+Here is the complete Bill of Materials for this project.  Specifics may vary from project to project (since all accordions are different), but this should give you a good idea of what parts will be needed:
 
-- //TODO
+[//]: # (TODO - consider linking full BoM)
+
+**Item Name (Part Number)**|**Quantity**
+:-----:|:-----:
+Accordion|1
+Arduino Mega 2560 R3|1
+Barometric Pressure Sensor (BMP 180)|1
+Bluetooth Transceiver Module (HC-05 RS232)|1
+USB Bluetooth Dongle|1
+Photo/Opto Interruptor (ITR-9608)|65
+270 Ohm Resistor 1/4W 5%|65
+1k Ohm Resistor 1/4W 5%|11
+BJT NPN Transistor (2N 2222A)|8
+Black 8" Zip Ties|65
+USB 2.0 Type A Type B M/M Cable|1
+USB 2.0 Type A to Type B F/F Adapter Header|1
+SB404 PCB (BB400)|2
+BR1 PCB (830)|5
+.5"x.5" 90 Degree Angle Corner Plate (H# 884487)|10
+2.54mm Breakaway PCB Board 40 Pin Header Kit|1
+2.54mm Dupont M/F 40 Pin Connector Kit|1
+Multicolored Jumper Wire Ribbon Cable Kit|1
+M3 M/F Brass Spacer Standoff Assortment Kit|1
+Threaded Insert M3 9.52mm|8
+White 4" Zip Ties (100pc)|1
 
 ### <a name="software"></a>Required Software
 
@@ -108,11 +141,20 @@ Note: All of the above programs are free to downaload, install, and use (for non
 
 ### <a name="time"></a>Required Time
 
-I'm gonna be honest with you: this project will take a *long* time, especially if you're not familiar with certain aspects of this project (programming, MIDI protocol, electric engineering, etc.).  For reference, this is the work log summary for how much time I've spent on this project (excluding the time it took to put together this tutorial site):
+I'm gonna be honest with you: this project will take a *long* time, especially if you're not familiar with certain aspects of this project (programming, MIDI protocol, electric engineering, etc.).  For reference, this is the work log summary for how much time I've spent on this project (excluding the time it took to put together this tutorial site and other documentation):
 
-//TODO - include hours breakdown
+**Hours**|**Category**|**Description**
+:-----:|:-----:|:-----:
+57|Research|Learning how the code and circuits work, ordering parts
+20|Design|Drafting plans to build the final project
+101|Development|Building prototypes and the final project
+27|Testing|Testing circuits and code, play testing final project
+11|Maintenance|Mostly fixing sticky keys on the accordion
+216|Total|
 
-Although this project page is designed for a user with very little experience and can be followed blindly (in theory), I highly recommend taking the time to research any part of this project tutorial you don't fully understand.  Additionally, I want to make this tutorial as comprehensive as *reasonably* possible, so if you think there's something I didn't cover very well that you want elaborated I encourage you to [log an issue](https://github.com/bvavra/MIDI_Accordion/issues) for me to provide more info.
+I'm hoping, though, that having all the necessary information here in one place will enable future projects to be completed much faster.  Knowing what I know now, if I were to make a second MIDI accordion I could probably do it in less than half the time.
+
+Although this project page is designed for a user with very little experience and can be followed blindly (in theory), I highly recommend taking the time to research any part of this project tutorial you don't fully understand.  Additionally, I want to make this tutorial as comprehensive as *reasonably* possible, so if you think there's something I didn't cover very well that you think should be explained in greater detail I encourage you to [log an issue](https://github.com/bvavra/MIDI_Accordion/issues) for me to provide more info.
 
 ### <a name="cost"></a>Expected Cost
 
