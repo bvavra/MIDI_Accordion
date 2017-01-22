@@ -1,5 +1,5 @@
-# MIDI Accordion
-Steps and code for building an Arduino-powered MIDI accordion (based off Dmitry Yegorenkov's [AccordionMega project](https://github.com/accordion-mega/AccordionMega))
+# DIY MIDI Accordion
+Steps and code for building your own Arduino-powered MIDI accordion (based off Dmitry Yegorenkov's [AccordionMega project](https://github.com/accordion-mega/AccordionMega))
 
 [MIDI Accordion Project Photo Gallery](http://imgur.com/a/U7L83)
 
@@ -163,7 +163,7 @@ _In-depth instructions coming soon!_
 	1. When the interruptor is blocked, the digital output is HIGH.
 	2. When the interruptor is unblocked and the input pin is HIGH, the digital output is LOW. 
 	3. When the interruptor is unblocked and the input pin is LOW, the digital output is HIGH.
-2. Cut and mount opto-interruptor blockers to each of the 24 key pads on the left hand and each of the 41 keys on the right hand.  I did this by [cutting and gluing zip ties to the bottom of the keypads](http://i.imgur.com/JqKlctF.jpg) and [mounting circuits inside the bellows](http://i.imgur.com/5CT6w8J.jpg), whereas [Dmitry attached metal rods on the other side of the keypads](http://dimon.shopopalo.com/arduino/left_hand_24.jpg).  You can choose whichever method works best for you and your accordion.
+2. Cut and mount opto-interruptor blockers to each of the 24 key pads on the left hand and each of the 41 keys on the right hand.  I did this by [cutting and gluing zip ties to the bottom of the keypads](http://i.imgur.com/JqKlctF.jpg) and [mounting circuits inside the bellows](http://i.imgur.com/5CT6w8J.jpg), whereas Dmitry [attached metal rods on the other side of the keypads](http://dimon.shopopalo.com/arduino/left_hand_24.jpg).  You can choose whichever method works best for you and your accordion.
 3. Test that the blockers work by uploading the [MIDI_Accordion](https://github.com/bvavra/MIDI_Accordion/tree/master/MIDI_Accordion) sketch to your Arduino, wiring a prototype of 1 or more opto-interruptors away from the breadboard (using M/F jumper wires), and [temporarily adhering them over the blockers](http://i.imgur.com/zXNV6vj.jpg?1) where they will be for the finished product.  Pressing the corresponding accordion keys when all the MIDI software is running should trigger sound playback (though the pitches may be incorrect).
 	
 #### Building, mounting, and wiring the circuits
@@ -171,7 +171,7 @@ _In-depth instructions coming soon!_
 1. Design and build circuits for each of the keys that need to be mapped according to the [final project schematics](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/master/MIDI_Accordion/schematics/MIDI_Accordion_schem.png).  You can refer to [these design docs](https://github.com/bvavra/MIDI_Accordion/tree/master/pdf/design), [this Fritzing reference](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/master/MIDI_Accordion/schematics/MIDI_Accordion_bb.png), and my [project photos](http://imgur.com/a/U7L83) for reference.
 	* Note: Each accordion is different, so the designs that worked for my accordion may not work for yours.  Stick to the schamtics and plan your boards accordingly.  Be sure to leave enough room for wires to connect everything and for the accordion to be closed up.
 2. Mount the circuit boards to the accordion and wire everything together.  If you plan on adding the BMP180 for bellow expression, be sure to provide enough slack for the wires connecting the treble and bass side to allow for pulling the bellows out.
-3. Drill a hole to allow for connecting the USB cable from the Arduino to the computer and [mount the USB port in the hole](http://i.imgur.com/rvxLVdk.jpg).
+3. Drill a hole to allow for connecting the USB cable from the Arduino to the computer and [mount the USB port in the hole](http://i.imgur.com/rvxLVdk.jpg?1).
 4. Once [everything is connected](http://i.imgur.com/3HWcnyW.jpg), upload the [MIDI_Accordion](https://github.com/bvavra/MIDI_Accordion/tree/master/MIDI_Accordion) sketch to your Arduino, open all of your connection software, and test that every key works properly by asserting that the key doesn't stick and that the key or button plays the correct pitch(es).  You will likely have to adjust the pitch mappings in the code based on how you organized and wired your sensor circuits.
 	
 #### (Optional) Communicating MIDI signals wirelessly via Bluetooth
