@@ -1,7 +1,11 @@
 # DIY MIDI Accordion
 Schematics, code, and guide for building your own Arduino-powered MIDI accordion _(based off Dmitry Yegorenkov's [AccordionMega project](https://github.com/accordion-mega/AccordionMega))_
 
+### Photos
+
 [MIDI Accordion Project Photo Gallery](http://imgur.com/a/U7L83)
+
+### Videos
 
 [Demo Video #1 - Professor Layton Main Theme (Intro)](https://www.youtube.com/watch?v=s197ojk8npI)
 
