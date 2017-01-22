@@ -20,18 +20,18 @@ Steps and code for building an Arduino-powered MIDI accordion (based off Dmitry 
 
 ## <a name="overview"></a>Overview
 
-The goal of this project is to take a traditional piano accordion and turn it into a MIDI controller capable of playing music from your computer.  To do this requires solving a few different problems:
+The goal of this project is to take a traditional piano accordion and turn it into a MIDI controller capable of playing music through your computer.  To do this requires solving a few different problems; the finished MIDI Accordion needs to be able to:
 
-1. Sending a digital signal from the accordion keys and buttons to the computer
-2. Converting that signal to MIDI
-3. Playing that signal back with music software
-4. Communicating that signal for each button on the accordion
+1. Send a digital signal from the accordion keys and buttons to the computer
+2. Convert that signal to MIDI
+3. Play that signal back with music software
+4. Communicate that signal for each button on the accordion
 
-The above goals are enough to have a functional MIDI instrument, but there are a few additional optional problems that can also be solved:
+The above goals are enough to have a functional MIDI instrument, but there are a few additional "nice to have" requirements that can also be implemented, such as the ability to:
 
-5. Communicating MIDI signals wirelessly (via Bluetooth)
-6. Decoupling the accordion's power supply from the computer/wall
-7. Adding dynamic expression using the accordion bellows (via barometric pressure sensor)
+5. Communicate MIDI signals wirelessly (via Bluetooth)
+6. Decouple the accordion's power supply from the computer/wall
+7. Add dynamic expression using the accordion bellows (via barometric pressure sensor)
 
 ## <a name="changelog"></a>Changelog
 
@@ -46,7 +46,7 @@ The above goals are enough to have a functional MIDI instrument, but there are a
 ### v1.1.00 (12/28/2016)
 
 - Added Bluetooth support (e.g. HC-05), allowing MIDI data to communicate wirelessly instead of over USB
-    - Uses #DEFINE variable to toggle between using USB and additional serial port to reduce bandwidth usage
+    - Uses #DEFINE variable to toggle between using USB and additional serial port at compile time to reduce bandwidth usage
 
 ### v1.0.00 (12/09/2016)
 
@@ -87,7 +87,7 @@ M3 M/F Brass Spacer Standoff Assortment Kit|1
 Threaded Insert M3 9.52mm|8
 White 4" Zip Ties (100pc)|1
 
-The total cost of these materials can vary. [Dmitry](https://github.com/accordion-mega/AccordionMega/wiki/Accordion-Mega-story) was able to build his accordion for under $100.  If you exclude the accordion, I spent about $220 on the above materials.  If you don't have an accordion you can get a decent enough one on eBay for as low as $100 (normally I'd advise against buying an accordion off eBay, but it doesn't have to sound good; it just needs to function mechanically).  I bought mine for $150 (plus $30 shipping), bringing my grand total to $400.
+The total cost of these materials can vary. [The original accordion project](https://github.com/accordion-mega/AccordionMega/wiki/Accordion-Mega-story) cost under $100.  If you exclude the accordion, I spent about $220 on the above materials.  If you don't have an accordion you can get a decent enough one on eBay for as low as $100 (normally I'd advise against buying an accordion off eBay, but it doesn't have to sound good; it just needs to function mechanically).  I bought mine for $150 (plus $30 shipping), bringing my project's grand total cost to about $400.
 
 You will also need the following tools:
 
@@ -111,7 +111,7 @@ I had to buy most of these tools for this project, which rang up to about $100 t
 
 ## <a name="software"></a>Software
 
-### Project Source
+### Project Source Code
 
 The only files required for the final project are the Arduino files located in the root level [MIDI_Accordion directory](https://github.com/bvavra/MIDI_Accordion/tree/master/MIDI_Accordion).  Everything else in this repo is supplemental information to help research and build the project (e.g. Prototypes, Datasheets, Design docs, etc.).  Of course, you will need the [Arduino IDE](https://www.arduino.cc/en/main/software) to write and upload the project source code to your Arduino.
 
@@ -140,13 +140,15 @@ To play your finished MIDI Accordion you'll need the following additional softwa
 - (Optional) [ASIO4All](http://www.asio4all.com/)
     - Used to reduce latency when playing back MIDI on Windows machines without ASIO audio drivers.
 
-## <a name="guide"></a>Quick Guide
+## <a name="guide"></a>Project Quick Guide
 
 This is meant to be a bare-bones guide to building your own MIDI accordion, providing only a general roadmap for those who already know what they're doing or for those who are curious about the process, but only want a tl;dr.  A complete guide that breaks down each step is in the works and will be made available soon.  In the meantime, I've provided a [set of links](#links) that I used to help get my project up and running - if any of them are broken please let me know and I'll update the list accordingly.
 
-Note: Although this quide is "quick", the project is not.  I spent over 200 hours on this project - however, much of this time was spent making mistakes (and learning from them), researching, building prototypes, and documenting everything.  I made this guide in hopes that others can do this project with all the necessary information and resources available in one place.
+Note: Although this guide is labelled as "quick", the project itself is not.  Between researching, building prototypes, making a lot mistakes (and learning from them), and designing/building/testing the final product, I spent over 200 hours on this project.  However, I made this guide in hopes that others can do this project with all the necessary information and resources available in one place, which I believe will enable future makers to complete this project in far less time.
 
 ### Basic Assembly/Installation Instructions
+
+_In-depth instructions coming soon!_
 
 #### Sending MIDI data from the Arduino and playing it back with music software
 
@@ -161,30 +163,32 @@ Note: Although this quide is "quick", the project is not.  I spent over 200 hour
 	1. When the interruptor is blocked, the digital output is HIGH.
 	2. When the interruptor is unblocked and the input pin is HIGH, the digital output is LOW. 
 	3. When the interruptor is unblocked and the input pin is LOW, the digital output is HIGH.
-2. Cut and mount opto-interruptor blockers to each of the 24 key pads on the left hand and each of the 41 keys on the right hand.  I did this by gluing zip ties to the bottom of the keypads and mounting circuits inside the bellows, whereas [Dmitry](https://github.com/accordion-mega/AccordionMega) attached metal rods on the other side of the keypads.  You can choose whichever method works best for you and your accordion.
-3. Test that the blockers work by uploading the [MIDI_Accordion](https://github.com/bvavra/MIDI_Accordion/tree/master/MIDI_Accordion) sketch to your Arduino, wiring a prototype of 1 or more opto-interruptors away from the breadboard (using M/F jumper wires), and temporarily adhering them over the blockers where they will be for the finished product.  Pressing the corresponding accordion keys when all the MIDI software is running should trigger sound playback (though the pitches may be incorrect).
+2. Cut and mount opto-interruptor blockers to each of the 24 key pads on the left hand and each of the 41 keys on the right hand.  I did this by [cutting and gluing zip ties to the bottom of the keypads](http://i.imgur.com/JqKlctF.jpg) and [mounting circuits inside the bellows](http://i.imgur.com/5CT6w8J.jpg), whereas [Dmitry attached metal rods on the other side of the keypads](http://dimon.shopopalo.com/arduino/left_hand_24.jpg).  You can choose whichever method works best for you and your accordion.
+3. Test that the blockers work by uploading the [MIDI_Accordion](https://github.com/bvavra/MIDI_Accordion/tree/master/MIDI_Accordion) sketch to your Arduino, wiring a prototype of 1 or more opto-interruptors away from the breadboard (using M/F jumper wires), and [temporarily adhering them over the blockers](http://i.imgur.com/zXNV6vj.jpg?1) where they will be for the finished product.  Pressing the corresponding accordion keys when all the MIDI software is running should trigger sound playback (though the pitches may be incorrect).
 	
 #### Building, mounting, and wiring the circuits
 
-1. Design and build circuits for each of the keys that need to be mapped according to the [final project schematics](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/master/MIDI_Accordion/schematics/MIDI_Accordion_schem.png).  You can refer to [these design docs](https://github.com/bvavra/MIDI_Accordion/tree/master/pdf/design) and my [project photos](http://imgur.com/a/U7L83) for reference.
+1. Design and build circuits for each of the keys that need to be mapped according to the [final project schematics](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/master/MIDI_Accordion/schematics/MIDI_Accordion_schem.png).  You can refer to [these design docs](https://github.com/bvavra/MIDI_Accordion/tree/master/pdf/design), [this Fritzing reference](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/master/MIDI_Accordion/schematics/MIDI_Accordion_bb.png), and my [project photos](http://imgur.com/a/U7L83) for reference.
 	* Note: Each accordion is different, so the designs that worked for my accordion may not work for yours.  Stick to the schamtics and plan your boards accordingly.  Be sure to leave enough room for wires to connect everything and for the accordion to be closed up.
 2. Mount the circuit boards to the accordion and wire everything together.  If you plan on adding the BMP180 for bellow expression, be sure to provide enough slack for the wires connecting the treble and bass side to allow for pulling the bellows out.
-3. Drill a hole to allow for connecting the USB cable from the Arduino to the computer and mount the USB port in the hole.
-4. Once everything is connected, upload the [MIDI_Accordion](https://github.com/bvavra/MIDI_Accordion/tree/master/MIDI_Accordion) sketch to your Arduino, open all of your connection software, and test that every key works properly by asserting that the key doesn't stick and that the key or button plays the correct pitch(es).  You will likely have to adjust the pitch mappings in the code based on how you organized and wired your sensor circuits.
+3. Drill a hole to allow for connecting the USB cable from the Arduino to the computer and [mount the USB port in the hole](http://i.imgur.com/rvxLVdk.jpg).
+4. Once [everything is connected](http://i.imgur.com/3HWcnyW.jpg), upload the [MIDI_Accordion](https://github.com/bvavra/MIDI_Accordion/tree/master/MIDI_Accordion) sketch to your Arduino, open all of your connection software, and test that every key works properly by asserting that the key doesn't stick and that the key or button plays the correct pitch(es).  You will likely have to adjust the pitch mappings in the code based on how you organized and wired your sensor circuits.
 	
 #### (Optional) Communicating MIDI signals wirelessly via Bluetooth
 
 1. Upload the [Bluetooth_Tutorial](https://github.com/bvavra/MIDI_Accordion/tree/master/Prototypes/Bluetooth/Bluetooth_Tutorial) prototype to your Arduino and follow the instructions on [this instructables page](http://www.instructables.com/id/Cheap-2-Way-Bluetooth-Connection-Between-Arduino-a/?ALLSTEPS) to hook up the transceiver to the Arduino, configure it with your Bluetooth receiver, and test that it works properly.
-1. Upload the [Bluetooth_Tutorial_2](https://github.com/bvavra/MIDI_Accordion/tree/master/Prototypes/Bluetooth/Bluetooth_Tutorial_2) prototype to your Arduino and follow the instructions on [this instructables page](http://www.instructables.com/id/Modify-The-HC-05-Bluetooth-Module-Defaults-Using-A/?ALLSTEPS) to access the Bluetooth transceiver's AT mode.  While in AT mode, update the baud rate to 115,200 kb/sec by entering the command "AT+UART=115200,1,0".  You can optionally also change the name and password of the Bluetooth device.
-2. Open the [MIDI_Accordion](https://github.com/bvavra/MIDI_Accordion/tree/master/MIDI_Accordion) sketch and uncomment the "//#define BLUETOOTH" line of code to enable the bluetooth serial port.  Upload the changes to your Arduino. 
-3. Update your Serial<->MIDI conversion software to point to the Bluetooth COM port instead of the Arduino port.
-4. (Optional) Instead of plugging the Arduino into the computer via USB cable, you can now use a battery pack to power the accordion.  A 4xAA pack is recommended, but certain 5V USB phone charger packs may also work.
+2. Upload the [Bluetooth_Tutorial_2](https://github.com/bvavra/MIDI_Accordion/tree/master/Prototypes/Bluetooth/Bluetooth_Tutorial_2) prototype to your Arduino and follow the instructions on [this instructables page](http://www.instructables.com/id/Modify-The-HC-05-Bluetooth-Module-Defaults-Using-A/?ALLSTEPS) to access the Bluetooth transceiver's AT mode.  While in AT mode, update the baud rate to 115,200 kb/sec by entering the command "AT+UART=115200,1,0".  You can optionally also change the name and password of the Bluetooth device.
+3. If you haven't already, [solder, mount, and wire a circuit board for the HC-05](http://i.imgur.com/t24RJP1.jpg) according to the given [design](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/master/MIDI_Accordion/schematics/MIDI_Accordion_bb.png) and [schematics](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/master/MIDI_Accordion/schematics/MIDI_Accordion_schem.png).
+4. Open the [MIDI_Accordion](https://github.com/bvavra/MIDI_Accordion/tree/master/MIDI_Accordion) sketch and uncomment the "//#define BLUETOOTH" line of code to enable the bluetooth serial port.  Upload the changes to your Arduino. 
+5. Update your Serial<->MIDI conversion software to point to the Bluetooth COM port instead of the Arduino port.
+6. (Optional) Instead of plugging the Arduino into the computer via USB cable, you can now use a battery pack to power the accordion.  A 4xAA pack is recommended, but certain 5V USB phone charger packs may also work (but I haven't tested this yet, so your mileage may vary).
 	
 #### (Optional) Adding dynamic expression using the accordion bellows via barometric pressure sensor
 
-1. Open the [MIDI_Accordion](https://github.com/bvavra/MIDI_Accordion/tree/master/MIDI_Accordion) sketch and uncomment the "//#define BMP" line of code to enable using the BMP180 to map bellow pressure to MIDI expression.  Upload the changes to your Arduino. 
-2. Cover as many unused air holes in the accordion bellows as possible to maximize the amount of air resistance you will feel when squeezing the bellows.
-3. (Optional) The bellows may not feel right based on your playing style or the amount of air resistance.  To improve this, you may need to tweak the numbers in the function used to map the difference in air pressure to MIDI expression values.
+1. If you haven't already, [solder, mount, and wire a circuit board for the BMP180](http://i.imgur.com/t24RJP1.jpg) according to the given [design](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/master/MIDI_Accordion/schematics/MIDI_Accordion_bb.png) and [schematics](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/master/MIDI_Accordion/schematics/MIDI_Accordion_schem.png).
+2. Open the [MIDI_Accordion](https://github.com/bvavra/MIDI_Accordion/tree/master/MIDI_Accordion) sketch and uncomment the "//#define BMP" line of code to enable using the BMP180 to map bellow pressure to MIDI expression.  Upload the changes to your Arduino. 
+3. Cover as many unused air holes in the accordion bellows as possible to maximize the amount of air resistance you will feel when squeezing the bellows.
+4. (Optional) The bellows may not feel right based on your playing style or the amount of air resistance.  To improve this, you may need to tweak the numbers in the function used to map the difference in air pressure to MIDI expression values.
 
 ## <a name="links"></a>Links
 
@@ -202,22 +206,22 @@ The following links were helpful in making this project happen.  If any of these
 
 - [Internal pullup resistor tutorial](https://www.arduino.cc/en/Tutorial/InputPullupSerial)
 - [Info about switches](http://www.gammon.com.au/switches)
+- [Arduino baud rates](http://arduino.stackexchange.com/questions/296/how-high-of-a-baud-rate-can-i-go-without-errors)
 - [Arduino port manipulation](https://www.arduino.cc/en/Reference/PortManipulation)
 - [Port manipulation tutorial](http://www.instructables.com/id/Arduino-is-Slow-and-how-to-fix-it/?ALLSTEPS)
 - [Another port manipulation tutorial](http://www.instructables.com/id/Fast-digitalRead-digitalWrite-for-Arduino/?ALLSTEPS)
 - [Organizing Arduino code with tabs](https://liudr.wordpress.com/2011/02/16/using-tabs-in-arduino-ide/)
-- [Arduino baud rates](http://arduino.stackexchange.com/questions/296/how-high-of-a-baud-rate-can-i-go-without-errors)
 
 ### MIDI
 
 - [MIDI Protocol essentials](https://ccrma.stanford.edu/~craig/articles/linuxmidi/misc/essenmidi.html)
 - [Arduino MIDI Library docs](http://arduinomidilib.fortyseveneffects.com/index.html)
-- [When does audio latency matter and not matter?](http://music.stackexchange.com/questions/30323/when-does-audio-latency-matter-and-not-matter)
 - [MIDI CC List](http://nickfever.com/music/midi-cc-list)
 - [Send and receive MIDI with Arduino](http://www.instructables.com/id/Send-and-Receive-MIDI-with-Arduino/?ALLSTEPS)
-- [Arduino MIDI Expression Pedal](https://www.codeproject.com/articles/38203/arduino-based-midi-expression-pedal)
+- [When does audio latency matter and not matter?](http://music.stackexchange.com/questions/30323/when-does-audio-latency-matter-and-not-matter)
 - [Latency problem using MS GS Wavetable Synth](https://answers.microsoft.com/en-us/windows/forum/windows_7-pictures/latency-problem-using-ms-gs-wavetable-synth/1e85704a-803c-438f-b472-fb0cb5211be4)
 - [Reducing latency on MIDI-over-USB keyboard](http://sound.stackexchange.com/questions/27583/reducing-latency-on-midi-over-usb-keyboard)
+- [Arduino MIDI Expression Pedal](https://www.codeproject.com/articles/38203/arduino-based-midi-expression-pedal)
 - [Difference between MIDI velocity and Expression](http://www.sweetwater.com/insync/what-difference-between-midi-volume-expression/)
 - ["Unexpected data byte" error when sending CC data over Hairless MIDI](https://github.com/projectgus/hairless-midiserial/issues/16)
 
