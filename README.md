@@ -1,7 +1,5 @@
 # DIY MIDI Accordion
-Steps and code for building your own Arduino-powered MIDI accordion 
-
-_(based off Dmitry Yegorenkov's [AccordionMega project](https://github.com/accordion-mega/AccordionMega))_
+Schematics, code, and guide for building your own Arduino-powered MIDI accordion _(based off Dmitry Yegorenkov's [AccordionMega project](https://github.com/accordion-mega/AccordionMega))_
 
 [MIDI Accordion Project Photo Gallery](http://imgur.com/a/U7L83)
 
