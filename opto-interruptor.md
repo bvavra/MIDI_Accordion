@@ -31,9 +31,13 @@ We need to figure out how to take the action of pressing a physical accordion ke
 #### How do opto-interruptors work?
 
 An opto-interruptor is a combination of an infrared LED and a transistor, with a gateway inbetween them.  
-[//]: # (insert diagram)  
-When the gateway is unobstructed, the infrared light shines directly into the transistor and triggers the switch to flow into the emitter 
-[//]: # (TODO - reword).  
+
+[//]: # (TODO - insert diagram)  
+
+When the gateway is unobstructed, the infrared light shines directly into the transistor and triggers the switch to flow into the emitter.
+
+[//]: # (TODO - reword)
+
 When the gateway is blocked (or the LED is off), the transistor is powered through the collector.  We can control the flow of current in these interruptors two different ways:
 
 1. By unblocking the gateway (i.e. pressing a key/button on the accoridon)
@@ -60,14 +64,19 @@ Before we start getting the interruptor to play music, we'll just write serial o
 **1.1 - When the interruptor is blocked, the digital output is HIGH**
 
 Interruptors are typically read as analog output, but we can read digital output hundreds of times faster. 
+
 [//]: # (TODO - insert image of timing output)
+
 In order for digital reads to work, though, we need to make sure there is a significant difference in the analog output when the interruptor is blocked or unblocked.  Analog output can range anywhere between 0 and 1023.  In order to convert our interruptor output to a digital signal, the analog output must be less than 512 when it is unblocked and greater than 512 when it's blocked, and wider the difference in those values are, the more reliable these outputs will be.
 
 **1.2 - When the interruptor is unblocked and the input pin is HIGH, digital output is LOW**
 
 This is usually the opposite of what you'd expect (normally blocked would be LOW and unblocked would be HIGH), but we're taking advantage of the Arduino's internal pullup resistors, which inverts the output. 
+
 [//]: # (TODO - link to arduino internal pullup tutorial)
-The purpose of using pullup resistors (instead of pulldown resistors) is to be able to turn the LED on and off while the interruptor is unblocked *without* the Arduino detecting a change (by only checking for changes when the LED is on).  
+
+The purpose of using pullup resistors (instead of pulldown resistors) is to be able to turn the LED on and off while the interruptor is unblocked *without* the Arduino detecting a change (by only checking for changes when the LED is on). 
+ 
 [//]: # (TODO - reword/clarify)
 
 **1.3 - When the interruptor is unblocked and the input pin is LOW, digital output is HIGH**
