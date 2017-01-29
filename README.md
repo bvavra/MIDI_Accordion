@@ -37,6 +37,8 @@ The above goals are enough to have a functional MIDI instrument, but there are a
 6. Decouple the accordion's power supply from the computer/wall
 7. Add dynamic expression using the accordion bellows (via barometric pressure sensor)
 
+_Note: In the project, the computer is **required** for playback; this project does **not** involve installing speakers to play back MIDI-realized sound directly from the accordion.  I may delve into such a feat someday, but today is not that day._
+
 ## <a name="changelog"></a>Changelog
 
 ### v1.2.00 (1/2/2017)
