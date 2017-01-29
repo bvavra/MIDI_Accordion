@@ -36,7 +36,7 @@ The [MIDI Tutorial on the Arduino website](https://www.arduino.cc/en/Tutorial/Mi
 - Command bytes are used to do things with the corresponding data bytes, like turning a note on or off, or setting the note velocity.  The Arduino MIDI Library makes it easy to execute common MIDI commands because they're wrapped in functions such as sendNoteOn() and sendNoteOff(), so we won't go into any byte-specific details here (yet).
 - MIDI data is assigned to and sent on a designated channel. MIDI supports up to 16 channels, each of which can be used to represent different instruments. Channel 10 is reserved for drums.
 
-Again, there's a lot more to it than this, and I'll dive into details in future sections when necessary, but this is all you need to knnow for this tutorial.
+Again, there's a lot more to it than this, and I'll dive into details in future sections when necessary, but this is all you need to know for this tutorial.
 
 ### Steps
 

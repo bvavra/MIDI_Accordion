@@ -1,7 +1,7 @@
 ---
 layout: ordered_page
 title: MIDI Playback
-subtitle: Turning bytes into notes
+subtitle: Turning bytes into soundwaves
 prevUrl: /sending-midi
 prevTitle: Sending MIDI
 nextUrl: /opto-interruptor
@@ -16,7 +16,7 @@ Have the Arduino send MIDI data to the PC and have the PC recognize the data as 
 
 ### The Problem
 
-Arduino communicates with the PC over a Serial port, but we want to communicate using MIDI.  We need a way to convert the serial output into something the PC understands to be a MIDI port.  There are two ways to solve this problem, and both have theri pros and cons:
+Arduino communicates with the PC over a Serial port, but we want to communicate using MIDI.  We need a way to convert the serial output into something the PC understands to be a MIDI port.  There are two ways to solve this problem, and both have their pros and cons:
 
 1. [Create a MIDI port on the Arduino](https://www.arduino.cc/en/Tutorial/Midi) - this allows you to plug the Arduino into the computer with a [MIDI-to-USB cable](https://www.amazon.com/USB-MIDI-Converter-Keyboard-Window/dp/B0047AVN3M).
     - Pros:
@@ -35,15 +35,17 @@ After weighing both options I decided that having a wireless option was more imp
 
 - Arduino (Uno, Mega, etc)
 - [MIDI Accordion's MIDI Tutorial](https://github.com/bvavra/MIDI_Accordion/tree/master/Prototypes/MIDI_Tutorial)
-- For Option 1 Only:
-    - MIDI-USB cable
-    - MIDI connector PIN
-    - 2x220Ω resistors
-    - Jumper Wires
 
 ### Solution #1
 
 If you prefer Option 1 for your project all you should need is to follow the [MIDI tutorial on the Arduino website](https://www.arduino.cc/en/Tutorial/Midi) and you should be done - when you plug in the MIDI cable from the arduino's MIDI connector to the computer the computer should automatically recognize it as a MIDI port and receive MIDI data.
+
+**You will also need:**
+
+- MIDI-USB cable
+- MIDI connector PIN
+- 2x220Ω resistors
+- Jumper Wires
 
 [![MIDI to USB Connection](/MIDI_Accordion/img/midi/midi_to_usb_connection.jpg)](/MIDI_Accordion/img/midi/midi_to_usb_connection.jpg)
 
@@ -51,11 +53,13 @@ If you prefer Option 1 for your project all you should need is to follow the [MI
 
 ### Solution #2
 
-For solving the Serial to MIDI conversion on the Computer side, we need three pieces of software: one to convert the serial output from the Arduino to MIDI, a virtual MIDI port to connect the converted output to your MIDI playback software of choice, and your MIDI playback software of choice.  
+For solving the Serial to MIDI conversion on the Computer side, we need three pieces of software: 
 
-- *Note that, while I have this tutorial working on a Windows machine, this tutorial can be adjusted to work on OSX and Linux machines as well.*
+- one to convert the serial output from the Arduino to MIDI, 
+- a virtual MIDI port to connect the converted output to your MIDI playback software of choice, 
+- and, of course, your MIDI playback software of choice.  
 
-/*insert serial to midi conversion diagram here, along with a brief explanation of each component*/
+[//]: # (TODO - insert serial to midi conversion diagram here, along with a brief explanation of each component)
 
 #### Serial to MIDI conversion software
 
@@ -68,16 +72,16 @@ I decided to go with [Hairless MIDI](http://projectgus.github.io/hairless-midise
 
 #### Virtual MIDI port software
 
-A virtual MIDI port is used in lieu of a physical USB port to tell the computer that MIDI data from an internal program can be used with MIDI output software.  Luckily for OSX and Linux users, this is already built into the operating system and can be used with some configuration (see [OSX instructions](http://feelyoursound.com/setup-midi-os-x/), [Linux (Debian/Ubuntu) instructions](https://ubuntuforums.org/showthread.php?t=1445186)).  Windows users are not as fortunate, however, will have to install third party virtual MIDI port software.  Here are some options for Windows users:
+A virtual MIDI port is used in lieu of a physical USB port to tell the computer that MIDI data from an internal program can be used with MIDI output software.  Luckily for OSX and Linux users, this is already built into the operating system and can be used with some configuration (see [OSX instructions](http://feelyoursound.com/setup-midi-os-x/), [Linux (Debian/Ubuntu) instructions](https://ubuntuforums.org/showthread.php?t=1445186)).  Windows users are not as fortunate, however, and will have to install third party virtual MIDI port software.  Here are some options for Windows users:
 
 - [LoopMIDI](http://www.tobias-erichsen.de/software/loopmidi.html)
 - [LoopBe1](http://nerds.de/en/loopbe1.html)
 
-I decided to go with LoopMIDI because I liked having the communication display telling me it's actually receiving data.
+I decided to go with LoopMIDI because I liked having the communication display telling me when it's receiving data.  It's also capable of creating multiple MIDI ports, which is not necessary for this project, but it could open the door for future work involving multiple MIDI inputs.
 
 #### Virtual MIDI Controller/Playback Software
 
-Any virtual MIDI controller will get the job done, so you can pick your favorite.  [Logic (Mac)](http://www.apple.com/logic-pro/) and [Reason (Mac, Windows)](https://www.propellerheads.se/reason) are two popular options.  I'll be using Reason for my final project; it's overqualified for the job, but it offers a wide variety of high quality sounds with practically limitless configuration ability.
+Any virtual MIDI controller will get the job done, so you can pick your favorite.  [Logic (Mac)](http://www.apple.com/logic-pro/) and [Reason (Mac, Windows)](https://www.propellerheads.se/reason) are two popular options, but there are many others.  I'll be using Reason for my final project; it's overqualified for the job, but it offers a wide variety of high quality sounds with practically limitless configuration ability.
 
 If you don't have a virtual MIDI controller program and don't want to shell out the money for a high-end [DAW](https://en.wikipedia.org/wiki/Digital_audio_workstation), I recommend using [Virtual MIDI Piano Keyboard (VMPK)](http://vmpk.sourceforge.net/) which is free, compatible with Windows/Mac/Linux, and comes with the FluidSynth MIDI OUT driver which, for Windows users, is vastly superior to Microsoft GS Wavetable Synth in both sound quality and response time.
 
