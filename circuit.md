@@ -8,7 +8,7 @@ nextUrl: /assembly
 nextTitle: Final Assembly
 ---
 
-//This will be the tutorial for designing the circuit layout.  I'll go over what I did and have lots of pictures/sketches available, but stress other options that are available.
+[//]: # (This will be the tutorial for designing the circuit layout.  I'll go over what I did and have lots of pictures/sketches available, but stress other options that are available.)
 
 ### Goal
 
@@ -16,7 +16,7 @@ Plan the layout for circuit board and wire layout for the left and right hand of
 
 ### The Problem
 
-Making everything connect can be fairly straightforward, but designing the best way to do it is an art form in itself.  Once you have a final draft of how you want to map the circuit boards it's time to solder everything onto them.
+Making everything connect can be fairly straightforward, but designing the best way to do it is an art form in itself.  Once you have a final draft of how you want to map the circuit boards it'll be time to solder everything onto them.
 
 **Disclaimer:** The accordion is not a standardized instrument - they vary greatly in how they are manufactured, so the inner workings can be different from accordion to accordion.  That being said, take this guide with a grain of salt, as not all of these instructions may exactly apply to your model of accordion.  Also, this guide assumes you've chosen in the previous guide to attach blockers on the inside of the accordion (unless otherwise specified).
 
