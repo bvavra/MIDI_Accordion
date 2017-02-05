@@ -49,6 +49,7 @@ If a key or button makes too many sounds, try the following:
 - Use your multimeter to verify there is no connectivity between the collector pin of that opto-interruptor and any other opto-interruptors.
 - Try altering the code to increase the delayMicroseconds amount between each port read (start by doubling it).  If this makes a difference, the opto-interruptors may be reading light interference.  Try covering the sensors or closing the accordion and then try pressing the key again with the original delay.  If it works now, you're good to go.  If not, you may have to either keep the increased delay (which may prove to be unacceptable in the long run), or replace the opto-interruptors with a different component.  [Don't say I didn't warn you](../opto-interruptor).
 
+
 #### 2. Are all keys mapped correctly to their proper pitches?
 
 Unless you followed my designs verbatim, chances are you will have to alter the code to remap which pitch is played for each key and button.  This is where your music theory skills come into play.  There area few ways to do this, but here's the general idea:
@@ -59,3 +60,7 @@ Unless you followed my designs verbatim, chances are you will have to alter the 
 4. Rinse and repeat on both hands until all pitches are mapped correctly.
 
 [//]: # (TODO - maybe include some visual examples)
+
+#### 3. Do any keys stick?
+
+These will either become painfully obvious to you while doing Step 1, or they will sneak up on you over hours of play testing.  This happened to several keys of mine - each of which were a result of me not gluing my sensor blockers in the exact place needed to avoid collisions.  However, before going in, taking out the circuit, ripping out the blocker, and regluing it in the right place, see if you can't bend it around the obstacle first.  If that doesn't work, then yeah, do all that.
