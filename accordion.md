@@ -37,7 +37,7 @@ Some things you should be considering when selecting an accordion:
 
 For reference, this is the accordion I finally decided to buy, which I bought on eBay for $150:
 
-[![Accordion](/MIDI_Accordion/img/accoridon/accordion_before.jpg)](/MIDI_Accordion/img/accoridon/accordion_before.jpg)
+[![Accordion](/MIDI_Accordion/img/accordion/accordion_before.jpg)](/MIDI_Accordion/img/accordion/accordion_before.jpg)
 
 Some specs:
 
@@ -58,8 +58,8 @@ Once you get your accordion, you should test it to assert its condition.  Press 
 
 Once the bellows have been removed from both sides, it's time to remove the reed blocks.  For both sides, there should only be a screw or two that need to be removed before you're able to take out all of the reed blocks. 
 
-[![Bass Reeds](/MIDI_Accordion/img/accoridon/bass_reeds.jpg)](/MIDI_Accordion/img/accoridon/bass_reeds.jpg)
-[![Treble Reeds](/MIDI_Accordion/img/accoridon/treble_reeds.jpg)](/MIDI_Accordion/img/accoridon/treble_reeds.jpg)
+[![Bass Reeds](/MIDI_Accordion/img/accordion/bass_reeds.jpg)](/MIDI_Accordion/img/accordion/bass_reeds.jpg)
+[![Treble Reeds](/MIDI_Accordion/img/accordion/treble_reeds.jpg)](/MIDI_Accordion/img/accordion/treble_reeds.jpg)
 
 #### 3. Fixing up the accordion (if necessary)
 
@@ -79,7 +79,7 @@ Now that the accordion is in playable shape, it time to figure out how you want 
 
 If you choose to follow this path, you're on your own to figure out the details of making this work.  As an alternative, I decided to solve this problem from the bellows side by attaching blockers on the underside of the key pads of both the left and right hand keys. 
 
-[![Bass Blockers](/MIDI_Accordion/img/accoridon/bass_blockers.jpg)](/MIDI_Accordion/img/accoridon/bass_blockers.jpg)
+[![Bass Blockers](/MIDI_Accordion/img/accordion/bass_blockers.jpg)](/MIDI_Accordion/img/accordion/bass_blockers.jpg)
 
 There are pros and cons to doing it one way or the other:
 
@@ -116,9 +116,9 @@ Cons:
 
 I made the blockers out of zip ties and glued them to the key pads using [E6000](https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=e6000&tbm=shop), as shown here: 
 
-[![Zip Tie 1](/MIDI_Accordion/img/accoridon/zip_tie_1.jpg)](/MIDI_Accordion/img/accoridon/zip_tie_1.jpg)
-[![Zip Tie 2](/MIDI_Accordion/img/accoridon/zip_tie_2.jpg)](/MIDI_Accordion/img/accoridon/zip_tie_2.jpg)
-[![Zip Tie 3](/MIDI_Accordion/img/accoridon/zip_tie_3.jpg)](/MIDI_Accordion/img/accoridon/zip_tie_3.jpg)
+[![Zip Tie 1](/MIDI_Accordion/img/accordion/zip_tie_1.jpg)](/MIDI_Accordion/img/accordion/zip_tie_1.jpg)
+[![Zip Tie 2](/MIDI_Accordion/img/accordion/zip_tie_2.jpg)](/MIDI_Accordion/img/accordion/zip_tie_2.jpg)
+[![Zip Tie 3](/MIDI_Accordion/img/accordion/zip_tie_3.jpg)](/MIDI_Accordion/img/accordion/zip_tie_3.jpg)
 
 I chose to use E6000 for a couple reasons:
 
@@ -130,14 +130,14 @@ The height of the blockers depend on the key pads.  I had to make two different 
 
 If you choose to do this my way and attach blockers to the inside of the keypads you will need to find a way to disable the register buttons from closing in on the reed holes where you placed the blockers.  I did this on my accordion by pulling a metal rod out of its slot for each register that could close in on the blockers.  Some of them I could not unhook, though, so I removed those components entirely by unscrewing them from the metal plate where they were attached.
 
-[![Bass Register Trigger](/MIDI_Accordion/img/accoridon/bass_register_trigger.jpg)](/MIDI_Accordion/img/accoridon/bass_register_trigger.jpg)
+[![Bass Register Trigger](/MIDI_Accordion/img/accordion/bass_register_trigger.jpg)](/MIDI_Accordion/img/accordion/bass_register_trigger.jpg)
 
 #### 6. Testing
 
 Once all the blockers are in place, press every key and button to make sure they're still working properly and that the blockers do not prevent them from fully returning to their resting position.  You may need to pull off the zip tie and re-position it - I had to do that for a few different keys.  Also try placing opto-interruptors over the keypad hole to make sure the zip ties completely block the sensor and assert that pressing the keys and buttons do not cause the blockers to collide with the components.
 
-[![Bass Blockers Opto-Interruptors](/MIDI_Accordion/img/accoridon/bass_blockers_opto.jpg)](/MIDI_Accordion/img/accoridon/bass_blockers_opto.jpg)
-[![Treble Opto-Interruptor Layout](/MIDI_Accordion/img/accoridon/treble_blockers_opto_mega.jpg)](/MIDI_Accordion/img/accoridon/treble_blockers_opto_mega.jpg)
+[![Bass Blockers Opto-Interruptors](/MIDI_Accordion/img/accordion/bass_blockers_opto.jpg)](/MIDI_Accordion/img/accordion/bass_blockers_opto.jpg)
+[![Treble Opto-Interruptor Layout](/MIDI_Accordion/img/accordion/treble_blockers_opto_mega.jpg)](/MIDI_Accordion/img/accordion/treble_blockers_opto_mega.jpg)
 
 From here you should take some time to analyze the inner layout of your accordion's key pads and determine the best way to lay out the circuits for the opto-interruptors.  Also decide where you want to place the Arduino Mega (I chose the middle of the treble side because my accordion's layout leaves a gap in where the keypads are placed right in the center).  I'll discuss some of the options I considered for my project in the next guide.
 
