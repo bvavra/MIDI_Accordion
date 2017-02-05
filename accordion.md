@@ -58,8 +58,7 @@ Once you get your accordion, you should test it to assert its condition.  Press 
 
 Once the bellows have been removed from both sides, it's time to remove the reed blocks.  For both sides, there should only be a screw or two that need to be removed before you're able to take out all of the reed blocks. 
 
-[![Bass Reeds](/MIDI_Accordion/img/accordion/bass_reeds.jpg)](/MIDI_Accordion/img/accordion/bass_reeds.jpg)
-[![Treble Reeds](/MIDI_Accordion/img/accordion/treble_reeds.jpg)](/MIDI_Accordion/img/accordion/treble_reeds.jpg)
+<a href="/MIDI_Accordion/img/accordion/bass_reeds.jpg"><img style="max-width: 33%;" alt="Bass Reeds" src="/MIDI_Accordion/img/accordion/bass_reeds.jpg"/></a> <a href="/MIDI_Accordion/img/accordion/treble_reeds.jpg"><img style="max-width: 33%;" alt="Treble Reeds" src="/MIDI_Accordion/img/accordion/treble_reeds.jpg"/></a>
 
 #### 3. Fixing up the accordion (if necessary)
 
@@ -75,7 +74,7 @@ If you're lucky, your accordion is already in great shape and there's nothing yo
 Now that the accordion is in playable shape, it time to figure out how you want to trigger the opto-interruptor sensors.  The AccordionMega project solved this problem by gluing metal rods to every key pad on the outside of both the left and right hand keys. 
 
 [![AccordionMega Left Hand](http://dimon.shopopalo.com/arduino/left_hand_24.jpg)](http://dimon.shopopalo.com/arduino/left_hand_24.jpg)
-[![Accordion Mega Right Hand](http://dimon.shopopalo.com/arduino/left_hand_24.jpg)](http://dimon.shopopalo.com/arduino/left_hand_24.jpg)
+[![AccordionMega Right Hand](http://dimon.shopopalo.com/arduino/right_hand_41.jpg)](http://dimon.shopopalo.com/arduino/right_hand_41.jpg)
 
 If you choose to follow this path, you're on your own to figure out the details of making this work.  As an alternative, I decided to solve this problem from the bellows side by attaching blockers on the underside of the key pads of both the left and right hand keys. 
 
@@ -116,9 +115,7 @@ Cons:
 
 I made the blockers out of zip ties and glued them to the key pads using [E6000](https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=e6000&tbm=shop), as shown here: 
 
-[![Zip Tie 1](/MIDI_Accordion/img/accordion/zip_tie_1.jpg)](/MIDI_Accordion/img/accordion/zip_tie_1.jpg)
-[![Zip Tie 2](/MIDI_Accordion/img/accordion/zip_tie_2.jpg)](/MIDI_Accordion/img/accordion/zip_tie_2.jpg)
-[![Zip Tie 3](/MIDI_Accordion/img/accordion/zip_tie_3.jpg)](/MIDI_Accordion/img/accordion/zip_tie_3.jpg)
+<a href="/MIDI_Accordion/img/accordion/zip_tie_1.jpg"><img style="max-width: 33%;" alt="Zip Tie 1" src="/MIDI_Accordion/img/accordion/zip_tie_1.jpg"/></a> <a href="/MIDI_Accordion/img/accordion/zip_tie_2.jpg"><img style="max-width: 33%;" alt="Zip Tie 2" src="/MIDI_Accordion/img/accordion/zip_tie_2.jpg"/></a> <a href="/MIDI_Accordion/img/accordion/zip_tie_3.jpg"><img style="max-width: 33%;" alt="Zip Tie 3" src="/MIDI_Accordion/img/accordion/zip_tie_3.jpg"/></a>
 
 I chose to use E6000 for a couple reasons:
 
