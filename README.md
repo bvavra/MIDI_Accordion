@@ -1,6 +1,8 @@
 # DIY MIDI Accordion
 Schematics, code, and guide for building your own Arduino-powered MIDI accordion _(based off Dmitry Yegorenkov's [AccordionMega project](https://github.com/accordion-mega/AccordionMega))_
 
+### [Full Project Page](http://bvavra.github.io/MIDI_Accordion/)
+
 ### Photos
 
 [MIDI Accordion Project Photo Gallery](http://imgur.com/a/U7L83)
@@ -148,37 +150,37 @@ To play your finished MIDI Accordion you'll need the following additional softwa
 
 ## <a name="guide"></a>Project Quick Guide
 
-This is meant to be a bare-bones guide to building your own MIDI accordion, providing only a general roadmap for those who already know what they're doing or for those who are curious about the process, but only want a tl;dr.  A complete guide that breaks down each step is in the works and will be made available soon.  In the meantime, I've provided a [set of links](#links) that I used to help get my project up and running - if any of them are broken please let me know and I'll update the list accordingly.
+This is meant to be a bare-bones guide to building your own MIDI accordion, providing only a general roadmap for those who already know what they're doing or for those who are curious about the process, but only want a tl;dr.  You can view the [complete guide here](http://bvavra.github.io/MIDI_Accordion/).  I also provided a [set of links](#links) that were helpful to me in getting my project up and running - if any of them are broken please let me know and I'll update the list accordingly.
 
 Note: Although this guide is labelled as "quick", the project itself is not.  Between researching, building prototypes, making a lot mistakes (and learning from them), and designing/building/testing the final product, I spent over 200 hours on this project.  However, I made this guide in hopes that others can do this project with all the necessary information and resources available in one place, which I believe will enable future makers to complete this project in far less time.
 
 ### Basic Assembly/Installation Instructions
 
-_In-depth instructions coming soon!_
+_In-depth instructions can be found on the [**MIDI Accordion Project Page**](http://bvavra.github.io/MIDI_Accordion/)_
 
-#### Sending MIDI data from the Arduino and playing it back with music software
+#### [Sending MIDI data from the Arduino](http://bvavra.github.io/MIDI_Accordion/sending-midi/) and [playing it back with music software](http://bvavra.github.io/MIDI_Accordion/midi-playback/)
 
 1. Upload the [MIDI_Tutorial](https://github.com/bvavra/MIDI_Accordion/tree/master/Prototypes/MIDI_Tutorial) prototype to your Arduino.
 2. Install the Serial-to-MIDI conversion software of your choice (e.g. [Hairless MIDI](http://projectgus.github.io/hairless-midiserial/))
 3. Install (or configure) a virtual MIDI port (e.g. [LoopMIDI](http://www.tobias-erichsen.de/software/loopmidi.html)) and configure the Serial-to-MIDI converter to send data from the connected Arduino to the virtual MIDI port.
 4. Open the MIDI playback software of your choice (e.g. [VMPK](http://vmpk.sourceforge.net/)) and configure the MIDI input to read from the virtual MIDI port.  At this point you should hear MIDI being played by the Arduino.
 
-#### Mapping Accordion button and key presses to digital MIDI signals
+#### [Mapping Accordion button and key presses to digital MIDI signals](http://bvavra.github.io/MIDI_Accordion/opto-interruptor/)
 
 1. Build and upload the [Opto_Interruptor_1](https://github.com/bvavra/MIDI_Accordion/tree/master/Prototypes/Opto_Interruptor/Opto_Interruptor_1) prototype to your Arduino and assert the following:
 	1. When the interruptor is blocked, the digital output is HIGH.
 	2. When the interruptor is unblocked and the input pin is HIGH, the digital output is LOW. 
 	3. When the interruptor is unblocked and the input pin is LOW, the digital output is HIGH.
-2. Cut and mount opto-interruptor blockers to each of the 24 key pads on the left hand and each of the 41 keys on the right hand.  I did this by [cutting and gluing zip ties to the bottom of the keypads](http://i.imgur.com/JqKlctF.jpg) and [mounting circuits inside the bellows](http://i.imgur.com/5CT6w8J.jpg), whereas Dmitry [attached metal rods on the other side of the keypads](http://dimon.shopopalo.com/arduino/left_hand_24.jpg).  You can choose whichever method works best for you and your accordion.
+2. [Cut and mount opto-interruptor blockers](http://bvavra.github.io/MIDI_Accordion/accordion/) to each of the 24 key pads on the left hand and each of the 41 keys on the right hand.  I did this by [cutting and gluing zip ties to the bottom of the keypads](http://i.imgur.com/JqKlctF.jpg) and [mounting circuits inside the bellows](http://i.imgur.com/5CT6w8J.jpg), whereas Dmitry [attached metal rods on the other side of the keypads](http://dimon.shopopalo.com/arduino/left_hand_24.jpg).  You can choose whichever method works best for you and your accordion.
 3. Test that the blockers work by uploading the [MIDI_Accordion](https://github.com/bvavra/MIDI_Accordion/tree/master/MIDI_Accordion) sketch to your Arduino, wiring a prototype of 1 or more opto-interruptors away from the breadboard (using M/F jumper wires), and [temporarily adhering them over the blockers](http://i.imgur.com/zXNV6vj.jpg?1) where they will be for the finished product.  Pressing the corresponding accordion keys when all the MIDI software is running should trigger sound playback (though the pitches may be incorrect).
 	
-#### Building, mounting, and wiring the circuits
+#### [Designing](http://bvavra.github.io/MIDI_Accordion/circuit/), [building](http://bvavra.github.io/MIDI_Accordion/assembly/), mounting, and wiring the circuits
 
 1. Design and build circuits for each of the keys that need to be mapped according to the [final project schematics](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/master/MIDI_Accordion/schematics/MIDI_Accordion_schem.png).  You can refer to [these design docs](https://github.com/bvavra/MIDI_Accordion/tree/master/pdf/design), [this Fritzing reference](https://raw.githubusercontent.com/bvavra/MIDI_Accordion/master/MIDI_Accordion/schematics/MIDI_Accordion_bb.png), and my [project photos](http://imgur.com/a/U7L83) for reference.
 	* Note: Each accordion is different, so the designs that worked for my accordion may not work for yours.  Stick to the schamtics and plan your boards accordingly.  Be sure to leave enough room for wires to connect everything and for the accordion to be closed up.
 2. Mount the circuit boards to the accordion and wire everything together.  If you plan on adding the BMP180 for bellow expression, be sure to provide enough slack for the wires connecting the treble and bass side to allow for pulling the bellows out.
 3. Drill a hole to allow for connecting the USB cable from the Arduino to the computer and [mount the USB port in the hole](http://i.imgur.com/rvxLVdk.jpg?1).
-4. Once [everything is connected](http://i.imgur.com/3HWcnyW.jpg), upload the [MIDI_Accordion](https://github.com/bvavra/MIDI_Accordion/tree/master/MIDI_Accordion) sketch to your Arduino, open all of your connection software, and test that every key works properly by asserting that the key doesn't stick and that the key or button plays the correct pitch(es).  You will likely have to adjust the pitch mappings in the code based on how you organized and wired your sensor circuits.
+4. Once [everything is connected](http://i.imgur.com/3HWcnyW.jpg), upload the [MIDI_Accordion](https://github.com/bvavra/MIDI_Accordion/tree/master/MIDI_Accordion) sketch to your Arduino, open all of your connection software, and [test that every key works properly](http://bvavra.github.io/MIDI_Accordion/testing/) by asserting that the key doesn't stick and that the key or button plays the correct pitch(es).  You will likely have to adjust the pitch mappings in the code based on how you organized and wired your sensor circuits.
 	
 #### (Optional) Communicating MIDI signals wirelessly via Bluetooth
 
