@@ -31,3 +31,20 @@ Start by booting up all the software and getting the [final project](https://git
 4. Start your Serial-to-MIDI conversion software and connect it to your Arduino and virtual MIDI port.
 
 Now it's time to start testing.  It's easier if you already have the accordion open and still have access to pressing all of the buttons so you can easily switch between key testing and circuit testing.
+
+#### 1. Do all keys sound?
+
+Press all of the keys one by one and make sure each one sounds.  All the melody keys should play a single pitch, all the bass root/third buttons (first two rows) should play two pitches, and all the bass chord buttons should play three pitches. 
+
+*Note: You don't have to play each of the 120 bass buttons - 12 root buttons and a few random chord buttons should suffice.*
+
+If a key or button doesn't sound, try the following:
+
+- Open the accordion and verify everything is wired to the silent key correctly.
+- Use your multimeter to verify connectivity on each of the 4 pins on the silent key's opto-interruptor.
+
+If a key or button makes too many sounds, try the following:
+
+- Verify that the opto-interruptor's cathode pin is wired directly to the corresponding transistor.
+- Use your multimeter to verify there is no connectivity between the collector pin of that opto-interruptor and any other opto-interruptors.
+- Try altering the code to increase the delayMicroseconds amount between each port read (start by doubling it).  If this makes a difference, the opto-interruptors may be reading light interference.  Try covering the sensors or closing the accordion and then try pressing the key again with the original delay.  If it works now, you're good to go.  If not, you may have to either keep the increased delay (which may prove to be unacceptable in the long run), or replace the opto-interruptors with a different component.  [Don't say I didn't warn you](../opto-interruptor).
