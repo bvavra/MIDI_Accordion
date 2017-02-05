@@ -132,4 +132,8 @@ If everything's hooked up properly (which should have been proven in Part 2 abov
 
 ### Credit
 
-[//]: # (TODO - insert thanks and links to pages/people that helped me out, including AccordionMega for his code)
+Thank you to:
+
+- [David Pankhurst](http://www.utopiamechanicus.com/) for making a solid breakdown of [using opto-interruptors with Arduino](http://www.utopiamechanicus.com/article/arduino-photo-interruptor-slotted-optical-switch/).
+- [Martyn Currey](http://www.martyncurrey.com/) for also making a solid breakdown of [using opto-interruptors with Arduino](http://www.martyncurrey.com/connecting-an-photo-interrupter-to-an-arduino/).
+- [Dmitry Yegorenkov] again for his code that proves you can use port manipulation to do lightning-fast digital reads against the opto-interruptors, which would otherwise make this instrument practically unplayable.
