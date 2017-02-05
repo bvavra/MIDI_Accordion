@@ -19,7 +19,7 @@ Can't build a MIDI accordion without an accordion!  Once you have one, you'll ne
 **Disclaimer:** The accordion is *not* a standardized instrument - they vary greatly in how they are manufactured, so the inner workings can be different from accordion to accordion.  That being said, take this guide with a grain of salt, as not all of these instructions may exactly apply to your model of accordion.  Take discretion and seek other accordion repair guides if needed.
 
 ### Solution
-<br/>
+
 
 #### 1. Finding an accordion
 
@@ -68,7 +68,7 @@ If you're lucky, your accordion is already in great shape and there's nothing yo
 - [How to take apart the piano keyboard](http://www.instructables.com/id/How-to-fix-an-accordion-keyboard/)
 - [Lots of various accordion repair information](http://www.accordionrevival.com/Home.php)
 
-<br/>
+
 #### 4. Deciding how to trigger the opto-interruptors
 
 Now that the accordion is in playable shape, it time to figure out how you want to trigger the opto-interruptor sensors.  The AccordionMega project solved this problem by gluing metal rods to every key pad on the outside of both the left and right hand keys. 
@@ -108,7 +108,7 @@ Cons:
     - This may be more noticable on some keys (or accordions) than others.  This may also be a con for the other method, but I can't say for certain.
 - Requires larger airways, meaning looser bellows movement for dynamic expression
 
-<br/>
+
 #### 5. Installing the blockers inside the bellows
 
 I made the blockers out of zip ties (shown below) and glued them to the bottom of the key pads using [E6000](https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=e6000&tbm=shop): 
