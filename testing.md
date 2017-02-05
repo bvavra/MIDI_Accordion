@@ -61,6 +61,18 @@ Unless you followed my designs verbatim, chances are you will have to alter the 
 
 [//]: # (TODO - maybe include some visual examples)
 
+
 #### 3. Do any keys stick?
 
 These will either become painfully obvious to you while doing Step 1, or they will sneak up on you over hours of play testing.  This happened to several keys of mine - each of which were a result of me not gluing my sensor blockers in the exact place needed to avoid collisions.  However, before going in, taking out the circuit, ripping out the blocker, and regluing it in the right place, see if you can't bend it around the obstacle first.  If that doesn't work, then yeah, do all that.
+
+
+#### 4. Are there latency issues?
+
+So this is a big one that's kind of hard to quantify.  There will *always* be latency - the question is, "How much latency can you take before the instrument becomes unplayable, and has your MIDI accordion passed that threshold?"  I don’t have the tools to measure the exact timespan from key input to sound output, but I believe you should be able to acheive a latency less than 20ms, [which can be considered an acceptable amount for keyboard players](http://music.stackexchange.com/questions/30323/when-does-audio-latency-matter-and-not-matter).  For Windows users, you may need a piece of software called [ASIO4All](http://www.asio4all.com/), which can help reduce the amount of latency your audio driver creates when generating sound from MIDI data.  Ideally you would want a sound card that already has an ASIO driver, which would reduce the latency even further.
+
+### Play Testing
+
+From this point on, it's just a matter of making minor tweaks here and there until find yourself tweaking no more.  Play a lot of different kinds of tunes that exercise various parts of your accordion to make sure everything feels right.  Play fast, play slow, play chords, play everything: this is your instrument now.
+
+Congratulations on making your own MIDI Accordion!
