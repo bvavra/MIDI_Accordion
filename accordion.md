@@ -133,7 +133,7 @@ Once all the blockers are in place, press every key and button to make sure they
 
 <a href="/MIDI_Accordion/img/accordion/bass_blockers_opto.jpg"><img style="max-width: 40%;" alt="Bass Blockers Opto-Interruptors" src="/MIDI_Accordion/img/accordion/bass_blockers_opto.jpg"/></a> <a href="/MIDI_Accordion/img/accordion/treble_blockers_opto_mega.jpg"><img style="max-width: 56%;" alt="Treble Opto-Interruptor Layout" src="/MIDI_Accordion/img/accordion/treble_blockers_opto_mega.jpg"/></a>
 
-From here you should take some time to analyze the inner layout of your accordion's key pads and determine the best way to lay out the circuits for the opto-interruptors.  Also decide where you want to place the Arduino Mega (I chose the middle of the treble side because my accordion's layout leaves a gap in where the keypads are placed right in the center).  I'll discuss some of the options I considered for my project in the next guide.
+From here you should take some time to analyze the inner layout of your accordion's key pads and determine the best way to lay out the circuits for the opto-interruptors.  Also decide where you want to place the Arduino Mega (I chose the middle of the treble side because my accordion's layout leaves a gap in where the keypads are placed right in the center).  I'll discuss some of the options I considered for my project [in the next guide](../circuit).
 
 ### Troubleshooting
 
