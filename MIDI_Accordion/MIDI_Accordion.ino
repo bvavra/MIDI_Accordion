@@ -1,7 +1,7 @@
 /*******************************************************************************
  MIDI Accordion
  https://github.com/bvavra/MIDI_Accordion
- Copyright © 2016-2017 Brendan Vavra
+ Copyright ï¿½ 2016-2017 Brendan Vavra
  based on projects by Dimon Yegorenkov 2011 and Jason Bugeja 2014
  *******************************************************************************
  This program is free software: you can redistribute it and/or modify
@@ -174,16 +174,6 @@ void loop()
   for (int i=0; i<6;i++){ 
     scan_pin(right_hand_pins[i], i, RightKeysStatus[i], false);
     scan_pin(left_hand_pins[i%3], i%3, LeftKeysStatus[i%3], true);
-  }
-  //Original
-  //scan_keys(left_hand_pins, sizeof(left_hand_pins), LeftKeysStatus, true);
-  //scan_keys(right_hand_pins, sizeof(right_hand_pins), RightKeysStatus, false);
-}
-
-//This function is currently unused
-void scan_keys(char *pins, int pinLength, int *KeysStatus, bool left) {
-  for (int i=0; i<pinLength;i++){ 
-    scan_pin(pins[i], i, KeysStatus[i], left);
   }
 }
 
