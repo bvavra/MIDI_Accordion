@@ -48,7 +48,7 @@ struct MySettings : public midi::DefaultSettings
   MIDI_CREATE_CUSTOM_INSTANCE(HardwareSerial, Serial, MIDI, MySettings);
 #endif
 
-char left_hand_pins[] = { 10, 11, 12 };
+char left_hand_pins[] = { 53, 52, 50 };
 // array to store up/down status of left keys
 int LeftKeysStatus[] = {  
   B0000000,
@@ -59,12 +59,12 @@ int LeftKeysStatus[] = {
 //You will likely have to remap their pitch numbers (36-59)
 //36-47 are the bass notes, 48-59 are the chord notes
 const char left_notes_midi_numbers[][8] = {
-  {38,39,40,41,50,51,52,53},//10
-  {46,47,36,37,58,59,48,49},//11
-  {42,43,44,45,54,55,56,57} //12
+  {38,39,40,41,50,51,52,53},//53
+  {46,47,36,37,58,59,48,49},//52
+  {42,43,44,45,54,55,56,57} //50
 };
 
-char right_hand_pins[] = { 2, 3, 4, 5, 6, 7 };
+char right_hand_pins[] = { 23, 25, 27, 26, 24, 22 };
 // array to store up/down status of right keys
 int RightKeysStatus[] = {  
   B0000000,
@@ -77,12 +77,12 @@ int RightKeysStatus[] = {
 //Note: Based on how the opto-interruptors are laid out,
 //You will likely have to remap their pitch numbers (53-93)
 const char right_notes_midi_numbers[][8] = {
-  {65,64,62,60,59,57,55,53},//2
-  {79,77,76,74,72,71,69,67},//3
-  {70,68,66,63,61,58,56,54},//4
-  {93,91,89,88,86,84,83,81},//5
-  {90,87,85,82,80,78,75,73},//6
-  {92,0,0,0,0,0,0,0}        //7
+  {65,64,62,60,59,57,55,53},//23
+  {79,77,76,74,72,71,69,67},//25
+  {70,68,66,63,61,58,56,54},//27
+  {93,91,89,88,86,84,83,81},//26
+  {90,87,85,82,80,78,75,73},//24
+  {92,0,0,0,0,0,0,0}        //22
 };
 
 void setup()
