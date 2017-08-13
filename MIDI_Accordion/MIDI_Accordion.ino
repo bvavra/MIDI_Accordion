@@ -106,11 +106,11 @@ void setup()
     digitalWrite(right_hand_pins[i], LOW);
   }
 
-  DDRF = B00000000;  // PortF as input (for left hand)
-  PORTF = B11111111; // turn on pullup resistors
+  DDRL = B00000000;  // PortL (42-49) as input (for left hand)
+  PORTL = B11111111; // turn on pullup resistors
 
-  DDRK = B00000000;  // PortK as input (for right hand)
-  PORTK = B11111111; // turn on pullup resistors
+  DDRC = B00000000;  // PortC (30-37) as input (for right hand)
+  PORTC = B11111111; // turn on pullup resistors
 
   #ifdef BMP
     init_BMP();
@@ -187,10 +187,10 @@ void scan_pin(int pin, int index, byte PinStatus, bool left) {
   //A slight delay is needed here or else we'll be reading the previous pin
   delayMicroseconds(300);//was able to cut this in half by alternating between left and right
   if (left) {
-    reg_values = ~PINF;
+    reg_values = ~PINL;
   }
   else {
-    reg_values = ~PINK;
+    reg_values = ~PINC;
   }
   digitalWrite(pin, LOW);
 
