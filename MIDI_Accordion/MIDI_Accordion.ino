@@ -41,6 +41,7 @@ struct MySettings : public midi::DefaultSettings
 //#define DEBUG//uncomment this line to print serial messages, comment to send MIDI data
 //#define BLUETOOTH//uncomment this line to send MIDI data via bluetooth instead of USB
 //#define BMP//uncomment this line to use the BMP180 to add dynamics via bellows
+#define JOYSTICK//uncomment this line to use a joystick as a pitch-bend controller
 
 #ifdef BLUETOOTH
   MIDI_CREATE_CUSTOM_INSTANCE(HardwareSerial, Serial1, MIDI, MySettings);
@@ -115,6 +116,10 @@ void setup()
   #ifdef BMP
     init_BMP();
   #endif
+
+  #ifdef JOYSTICK
+    init_joystick();
+  #endif
 }
 
 //MIDI Control Change code for expression, which is a percentage of velocity
@@ -131,6 +136,8 @@ int prev_expression = 127;
 const int bmp_sample_rate = 5;
 int expression_avg[bmp_sample_rate];
 int e = 0;
+
+int joystick_prev_val = 0;
 
 void loop()
 {
@@ -166,6 +173,17 @@ void loop()
       else {
         e = e + 1;
       }
+    }
+  #endif
+
+  #ifdef JOYSTICK
+    int pitch_bend_val = scan_joystick();
+    if(pitch_bend_val != joystick_prev_val) {
+      //Comment and uncomment to select which channels you want pitch bend to affect.
+      MIDI.sendPitchBend(pitch_bend_val, 1);
+      //MIDI.sendPitchBend(pitch_bend_val, 2);
+      //MIDI.sendPitchBend(pitch_bend_val, 3);
+      joystick_prev_val = pitch_bend_val;
     }
   #endif
 
