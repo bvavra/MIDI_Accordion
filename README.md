@@ -15,7 +15,7 @@ Schematics, code, and guide for building your own Arduino-powered MIDI accordion
 
 [Demo Video #3 - Everfrost Peak (from Diddy Kong Racing)](https://www.youtube.com/watch?v=8d2E2YQPqnI)
 
-[Demo Video #4 - Stickerbrush Symphony (from Donkey Kong Country 2)](https://www.youtube.com/watch?v=)
+[Demo Video #4 - Stickerbrush Symphony (from Donkey Kong Country 2)](https://youtu.be/sQWZQSPkWCQ)
 
 | Table of Contents      |
 | ---------------------- |
