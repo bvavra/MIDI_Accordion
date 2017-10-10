@@ -15,6 +15,8 @@ Schematics, code, and guide for building your own Arduino-powered MIDI accordion
 
 [Demo Video #3 - Everfrost Peak (from Diddy Kong Racing)](https://www.youtube.com/watch?v=8d2E2YQPqnI)
 
+[Demo Video #4 - Stickerbrush Symphony (from Donkey Kong Country 2)](https://www.youtube.com/watch?v=)
+
 | Table of Contents      |
 | ---------------------- |
 | [Overview](#overview)  |
@@ -38,10 +40,18 @@ The above goals are enough to have a functional MIDI instrument, but there are a
 5. Communicate MIDI signals wirelessly (via Bluetooth)
 6. Decouple the accordion's power supply from the computer/wall
 7. Add dynamic expression using the accordion bellows (via barometric pressure sensor)
+8. Add other expressions such as pitch bend, panning, and other sound control effects with potentiometers (sliders, knobs, joysticks, etc.)
 
 _Note: In the project, the computer is **required** for playback; this project does **not** involve installing speakers to play back MIDI-realized sound directly from the accordion.  I may delve into such a feat someday, but today is not that day._
 
 ## <a name="changelog"></a>Changelog
+
+### v1.3.00 (10/2/2017)
+
+- Added joystick to control pitch bend
+    - Can be configured (at compile time) to bend pitch up or down
+	- Can be configured (at compile time) to bend pitch for melody, bass, and/or chords
+- **Breaking Change!** - Opto-interruptor pin connections have been moved in order to free up analog and PWM pins for future components.  If you are upgrading to v1.3 from an earlier version you will need to adjust your Arduino pin connections and/or code.  [Schematics and Breadboard docs](https://github.com/bvavra/MIDI_Accordion/tree/master/MIDI_Accordion/schematics) have been updated accordingly.
 
 ### v1.2.00 (1/2/2017)
 
