@@ -41,6 +41,7 @@ navbar-links:
 #    - 9. Power: "power"
 #    - 10. Dynamic Volume: "volume"
 #  Author: "https://bvavra.github.io/" #TODO - put back in when full site is in a decent enough condition
+  GitHub: "https://github.com/bvavra/MIDI_Accordion"
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
