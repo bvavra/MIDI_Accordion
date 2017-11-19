@@ -179,11 +179,16 @@ void loop()
   #ifdef JOYSTICK
     int pitch_bend_val = scan_joystick();
     if(pitch_bend_val != joystick_prev_val) {
-      //Comment and uncomment to select which channels you want pitch bend to affect.
-      MIDI.sendPitchBend(pitch_bend_val, 1);
-      //MIDI.sendPitchBend(pitch_bend_val, 2);
-      //MIDI.sendPitchBend(pitch_bend_val, 3);
-      joystick_prev_val = pitch_bend_val;
+      #ifdef DEBUG
+        Serial.print("Pitch Bend Change: ");
+        Serial.println(pitch_bend_val);
+      #else
+        //Comment and uncomment to select which channels you want pitch bend to affect.
+        MIDI.sendPitchBend(pitch_bend_val, 1);
+        //MIDI.sendPitchBend(pitch_bend_val, 2);
+        //MIDI.sendPitchBend(pitch_bend_val, 3);
+        joystick_prev_val = pitch_bend_val;
+      #endif
     }
   #endif
 
