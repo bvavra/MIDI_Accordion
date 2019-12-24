@@ -8,8 +8,6 @@ nextUrl: /power
 nextTitle: Power
 ---
 
-[//]: # (This will be the tutorial for communicating the MIDI data via bluetooth.  This, coupled with using a battery pack, will make the accordion "wireless".)
-
 Now that we've established a MIDI connection over the USB wire, let's take it one step further and send the data over bluetooth instead so that the accordion can be played wirelessly.
 
 ### Goal
@@ -31,7 +29,7 @@ Note: This step is optional to build a working MIDI accordion and only necessary
 - 1x2k Ω resistor
     - You can also use 10k and 20k if you don’t have 1k/2k
 
-[![HC-05 Breadboard](/MIDI_Accordion/img/hc-05/working_bt_connection.jpg)](/MIDI_Accordion/img/hc-05/working_bt_connection.jpg)
+[![HC-05 Breadboard](/MIDI_Accordion/img/hc-05/working_bt_connection.gif)](/MIDI_Accordion/img/hc-05/working_bt_connection.gif)
 
 ### Solution
 
@@ -49,7 +47,7 @@ Up next: [Using an external power supply](../power)
 
 ### Troubleshooting Notes
 
-** Using Tera Term**
+**Using Tera Term**
 
 - When I first booted Tera Term the Serial COM ports were not available - it took a few minutes after pairing the BT devices for them to show up.
 - Note: You can't use TeraTerm while trying to establish a connection to the Serial-to-MIDI converter (because it's occupying the port you need).

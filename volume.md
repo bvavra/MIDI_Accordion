@@ -42,18 +42,19 @@ Once it's hooked up, you should be ready to test the circuit using [this first B
     //Get a temperature reading, then use it to retrieve a pressure measurement
     double Temp, Pressure;
     status = bmp_180.startTemperature();
-    if (status != 0) // If request is successful, the number of ms to wait is returned.
+    if (status != 0) //If successful, the number of ms to wait is returned
     {
       delay(status);
-      status = bmp_180.getTemperature(Temp);// Function returns 1 if successful
+      status = bmp_180.getTemperature(Temp);//Returns 1 if successful
       if (status != 0)
       {
-        status = bmp_180.startPressure(0);//Param can be set from 0 to 3, where 0 is fastest and 3 is most accurate
-        if (status != 0) // If request is successful, the number of ms to wait is returned.
+        //Param can be set from 0 to 3, where 0 is fastest and 3 is most accurate
+        status = bmp_180.startPressure(0);
+        if (status != 0) //If successful, the number of ms to wait is returned
         {
           delay(status);
-          // Retrieve the completed pressure measurement using the given temp.
-          status = bmp_180.getPressure(Pressure,Temp);// Function returns 1 if successful.
+          //Retrieve the completed pressure measurement using the given temp
+          status = bmp_180.getPressure(Pressure,Temp); //Returns 1 if successful
           if (status != 0)
           {
             Serial.print("Pressure: ");
@@ -142,7 +143,9 @@ In my testing, we spend about 12ms waiting for this function to return.  This ma
 
 [//]: # (TODO: a flowchart would be helpful here.)
 
-This way, the time originally spent waiting and doing nothing can now be spent doing more important things like scanning the accordion for more key presses.  The downside is you now have to call the function several times to get a single pressure reading, which makes it less intuitive to use and read.  In this case the pros far outweigh the cons since we're following one of the golden rules in programming: **Performance > Readability > Brevity**
+This way, the time originally spent waiting and doing nothing can now be spent doing more important things like scanning the accordion for more key presses.  The downside is you now have to call the function several times to get a single pressure reading, which makes it less intuitive to use and read.  In this case the pros far outweigh the cons since we're following one of the golden rules in programming: 
+
+**Performance > Readability > Brevity**
 
 To test this tutorial code, boot up Hairless MIDI and click the Debug checkbox to see the MIDI CCs being sent.
 
@@ -155,7 +158,7 @@ Now that we have the sensor up and running, here comes the tricky part: we need 
 
 At this point you're going to need your accordion.  It doesn't need to be fully working (though it helps), but you'll need to at least put the Arduino and BMP inside it wherever you plan on putting it when it's completed so that pressure readings remain relatively the same.
 
-##### 4.1. Plug the leaks
+#### 4.1. Plug the leaks
 
 When playing a real accoustic accordion there is a lot of resistance when squeezing the bellows because air has to go through the reeds to make sound, and the airways to do so are quite small.  Our MIDI accordion, however, has no reeds, so the airways are much larger and it doesn't take a lot of effort to pull and push the bellows.  We need to try and mitigate this discrepancy as much as possible, which means closing any airways that aren't being used.
 
@@ -165,17 +168,18 @@ The number of airways that need to be blocked largely depend on the type of acco
 [![Left Hand Key Holes](/MIDI_Accordion/img/bmp180/lh_key_holes.jpg)](/MIDI_Accordion/img/bmp180/lh_key_holes.jpg)
 
 If your MIDI accordion is set up to read the opto-interrupers on the bellows side with blockers on the key pads then at least one air hole needs to remain open per key - the rest can and should be closed.  However, If you decided to do what Dmitry and Jason did and put the interruptors on the outside with metal rods blockers, you have the option of closing all air holes and leaving one row open slightly for each key, which will give you a much more realistic feel when moving the bellows while playing.  Most of these holes can probably be closed by moving the register switches to the off position, unhooking the plates from the register buttons, and securing them so that they don't move. 
-[//]: # (TODO: insert images)
+
 Some key hole rows might not have plates though (particularly the left hand) - in this case cover the holes any way you see fit.  For starters, I just taped strips of cardboard, which really only helps ever-so-slightly (I do not recommend this, even as a short-term solution):
+
 [![Left Hand Cardboard](/MIDI_Accordion/img/bmp180/lh_cardboard.jpg)](/MIDI_Accordion/img/bmp180/lh_cardboard.jpg)
 
 Once you're done closing as many air holes as you can, put the accordion back together and try squeezing the bellows in and out while fingering some tunes - it'll likely still not feel as tight as a real accoustic accordion, but it should be close enough to get the job done as a first time pass.
 
-##### 4.2 - Adjust the pressure mapping function
+#### 4.2 - Adjust the pressure mapping function
 
 You can view a [graph of these functions](https://github.com/bvavra/MIDI_Accordion/blob/master/Prototypes/BMP/MIDI%20Accordion%20Pressure%20Sensor.pdf) to better see how they differ (created using [desmos](https://www.desmos.com/calculator)):
 
-[![Velocity Mapping Functions](/MIDI_Accordion/img/bmp180/velocity_maps.jpg)](/MIDI_Accordion/img/bmp180/velocity_maps.jpg)
+[![Velocity Mapping Functions](/MIDI_Accordion/img/bmp180/velocity_maps.png)](/MIDI_Accordion/img/bmp180/velocity_maps.png)
 
 You can also [play with these functions yourself](https://www.desmos.com/calculator/xhcld72xqy).
 
