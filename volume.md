@@ -201,7 +201,7 @@ The X-axis shows how much pressure is being applied, and the Y-axis shows the re
     - While playing normally the pressure hung out a lot between 100 and 220 pascals - to make this playing sound more natural I made the function almost flat here so that minor changes in pressure while playing did not result in sudden, unnatural-sounding jumps in volume.
     - I did end up making a minimum velocity of 40, even when the pressure difference was 0 - this removes the ability to stop the sound the way you can with a real accoridion (e.g. bellow shakes), but prevented the sound from unintenionally stopping when you don't want it to, which was more important to me.
 
-##### 4.3. Plug the leaks some more
+#### 4.3. Plug the leaks some more
 
 So while the pressure expression is now usable, the work described so far is NOT a suitable long-term solution because it is likely still not *completely* air-tight; you will still find yourself pushing and pulling the bellows a lot further than you would with a real accordion.  In order to fully solve this problem, you will need to go the extra mile and close *everything* up such that the space where the sensor and bellows live have no way to escape the air except for a very small window.  I personally still have a lot of work to do on this front to make this work the way I want it to on my accordion.
 
