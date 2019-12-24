@@ -50,8 +50,6 @@ When the gateway is blocked (or the LED is off), the transistor is powered throu
 
 The final project will use both of these methods to determine which keys are being pressed at which times, so our prototype needs to test both use cases.
 
-[//]: # (TODO continue filling in.  Also discuss the importance of using pullup resistors.)
-
 #### 1. Hooking up a single interruptor to the Arduino
 
 Before we start getting the interruptor to play music, we'll just write serial output to assert that everything is hooked up properly.  The first prototype proves a few different concepts:
@@ -80,6 +78,8 @@ This is usually the opposite of what you'd expect (normally blocked would be LOW
 - [Info about switches](http://www.gammon.com.au/switches)
 
 For this project, the purpose of using pullup resistors (as opposed to pulldown resistors) is to be able to turn the LED on and off while the interruptor is unblocked *without* the Arduino detecting a change, and we can do so by only checking for changes when the LED is on.  This allows us to wire together multiple opto-interruptors to the same analog pin, which is necessary because we need 65 sensors for the final project, but the Arduino Mega only has 16 analog pins.
+
+*UPDATE:* Thanks to mojca for [pointing out to me](https://github.com/bvavra/MIDI_Accordion/issues/2) that, since we're performing digital reads on these sensors, they do not have to be on analog pins.  This is great news because it means we can free up these analog pins to do something else in the future (like add potentiometer sliders/faders).
  
 [//]: # (TODO - reword/clarify)
 
