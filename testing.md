@@ -4,6 +4,8 @@ title: Testing
 subtitle: Making sure it actually works
 prevUrl: /assembly
 prevTitle: Final Assembly
+nextUrl: /bluetooth
+nextTitle: Bluetooth
 ---
 
 [//]: # (This will be the tutorial for testing the final product.  I'll go over what we're testing and highlight some of the issues I ran into.)
@@ -75,4 +77,4 @@ So this is a big one that's kind of hard to quantify.  There will *always* be la
 
 From this point on, it's just a matter of making minor tweaks here and there until find yourself tweaking no more.  Play a lot of different kinds of tunes that exercise various parts of your accordion to make sure everything feels right.  Play fast, play slow, play chords, play everything: this is your instrument now.
 
-Congratulations on making your own MIDI Accordion!
+Congratulations on making your own MIDI Accordion!  From here all other pages are bonus tutorials for optional improvements you can make to add additional features like wireless capabilities or dynamic volume control with the bellows.

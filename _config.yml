@@ -37,9 +37,10 @@ navbar-links:
     - 5. Circuit Layout: "circuit"
     - 6. Assembly: "assembly"
     - 7. Testing: "testing"
-#    - 8. Bluetooth: "bluetooth"
-#    - 9. Power: "power"
-#    - 10. Dynamic Volume: "volume"
+    - B1. Bluetooth: "bluetooth"
+    - B2. Power: "power"
+    - B3. Dynamic Volume: "volume"
+#    - B4. Pitch Bend: "pitchbend"
 #  Author: "https://bvavra.github.io/" #TODO - put back in when full site is in a decent enough condition
   GitHub: "https://github.com/bvavra/MIDI_Accordion"
 
