@@ -23,4 +23,5 @@ One of my goals for this project was not only to build an awesome MIDI instrumen
 A huge thank you to the following:
 
 - [Dmitry Yegorenkov](https://github.com/accordion-mega) for making the original project that made this project possible - I could not have done this without your work.
+- [Jason Bugeja](https://github.com/JasonBugeja/AccordionMega_USB_Keyb) for additional resources on improvements to Dmitry's project and for providing additional suggestions for improvements to my project.
 - [Dean Attali](http://deanattali.com/) for making the theme of this project page, [Beautiful Jekyll](http://deanattali.com/beautiful-jekyll/).
