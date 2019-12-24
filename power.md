@@ -8,7 +8,7 @@ nextUrl: /volume
 nextTitle: Dynamic Volume
 ---
 
-If you've followed the [Bluetooth tutorial](../bluetooth), you'll need an alternative way to provide power to the Arduino now that you're no longer getting it from the USB port.
+If you've followed the [Bluetooth tutorial](../bluetooth) and want to play your MIDI accordion wirelessly, you'll need an alternative way to provide power to the Arduino now that you're no longer getting it from the USB port.
 
 ### Goal
 
