@@ -27,14 +27,16 @@ int velocity = 127;
 boolean velocity_active = false;
 
 void loop() {
-  velocity_per_ms(500);
-  //constant_velocity_change();
+  //Choose which function you want to test:
+  velocity_per_ms(500);//Displays the current velocity every x ms
+  //constant_velocity_change();//Displays the velocity whenever it changes
 }
 
 int prev_velocity = 127;
 //Print velocity data whenever it changes
 void constant_velocity_change(){
-  
+
+  //Choose which algorithm you want to test:
   int midi_velocity = velocity_bv();
   //int midi_velocity = velocity_dmitry();
   //int midi_velocity = velocity_jason();
@@ -51,6 +53,7 @@ void constant_velocity_change(){
 void velocity_per_ms(int ms){
   initial_us = micros();
 
+  //Choose which algorithm you want to test:
   int midi_velocity = velocity_bv();
   //int midi_velocity = velocity_dmitry();
   //int midi_velocity = velocity_jason();
