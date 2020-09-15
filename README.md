@@ -233,7 +233,7 @@ The following links were helpful in making this project happen.  If any of these
 ### MIDI
 
 - [MIDI Protocol essentials](https://ccrma.stanford.edu/~craig/articles/linuxmidi/misc/essenmidi.html)
-- [Arduino MIDI Library docs](http://arduinomidilib.fortyseveneffects.com/index.html)
+- [Arduino MIDI Library docs](http://fortyseveneffects.github.io/arduino_midi_library/index.html)
 - [MIDI CC List](http://nickfever.com/music/midi-cc-list)
 - [Send and receive MIDI with Arduino](http://www.instructables.com/id/Send-and-Receive-MIDI-with-Arduino/?ALLSTEPS)
 - [When does audio latency matter and not matter?](http://music.stackexchange.com/questions/30323/when-does-audio-latency-matter-and-not-matter)
