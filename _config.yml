@@ -37,10 +37,12 @@ navbar-links:
     - 5. Circuit Layout: "circuit"
     - 6. Assembly: "assembly"
     - 7. Testing: "testing"
+  Bonus Features:
     - B1. Bluetooth: "bluetooth"
     - B2. Power: "power"
     - B3. Dynamic Volume: "volume"
 #    - B4. Pitch Bend: "pitchbend"
+#    - B5. Button Pad: "button pad"
 #  Author: "https://bvavra.github.io/" #TODO - put back in when full site is in a decent enough condition
   GitHub: "https://github.com/bvavra/MIDI_Accordion"
 
@@ -97,7 +99,7 @@ share-links-active:
 # --- Don't need to touch anything below here (but you can if you want) --- #
 
 # Output options (more information on Jekyll's site)
-timezone: "America/Vancouver"
+timezone: "America/New_York"
 markdown: kramdown
 highlighter: rouge
 permalink: /:year-:month-:day-:title/

@@ -16,8 +16,6 @@ Have the Arduino send MIDI data to the PC wirelessly using Bluetooth.
 
 ### Why Bluetooth?
 
-Why Bluetooth There are many ways to send serial data wirelessly; we're going to use a Bluetooth transceiver 
-
 Note: This step is optional to build a working MIDI accordion and only necessary if you want to be able to play the accordion wirelessly.  Also, this tutorial assumes you've established your MIDI connection using a Serial-to-MIDI converter (see Sending MIDI guide) and does not apply if you're connecting with a MIDI cable.
 
 **You will need:**
