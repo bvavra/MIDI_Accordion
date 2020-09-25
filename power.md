@@ -1,7 +1,7 @@
 ---
 layout: ordered_page
 title: Portable Power
-subtitle: Portable Power Supply
+subtitle: External Power Supply
 prevUrl: /bluetooth
 prevTitle: Bluetooth
 nextUrl: /volume

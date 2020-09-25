@@ -6,7 +6,7 @@ prevUrl: /volume
 prevTitle: Power
 ---
 
-If your MIDI accordion has a master palm switch, you can hook it up to a joystick potentiometer and use it to sned MIDI pitch bend (or other modulation) data.
+If your MIDI accordion has a master palm switch, you can hook it up to a joystick potentiometer and use it to send MIDI pitch bend (or other modulation) data.
 
 ### Goal
 
