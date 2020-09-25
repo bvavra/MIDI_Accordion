@@ -1,6 +1,6 @@
 ---
 layout: ordered_page
-title: Power
+title: Portable Power
 subtitle: Portable Power Supply
 prevUrl: /bluetooth
 prevTitle: Bluetooth

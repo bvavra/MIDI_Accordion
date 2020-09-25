@@ -5,7 +5,7 @@ subtitle: Sending MIDI wirelessly
 prevUrl: /testing
 prevTitle: Testing
 nextUrl: /power
-nextTitle: Power
+nextTitle: Portable Power
 ---
 
 Now that we've established a MIDI connection over the USB wire, let's take it one step further and send the data over bluetooth instead so that the accordion can be played wirelessly.

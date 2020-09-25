@@ -39,7 +39,7 @@ navbar-links:
     - 7. Testing: "testing"
   Bonus Features:
     - Bluetooth: "bluetooth"
-    - Power: "power"
+    - Portable Power: "power"
     - Dynamic Volume: "volume"
 #    - Pitch Bend: "pitchbend"
 #    - Button Pad: "button pad"
