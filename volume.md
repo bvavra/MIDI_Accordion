@@ -3,7 +3,9 @@ layout: ordered_page
 title: Dynamic Volume
 subtitle: Turning Bellow Pressure into MIDI Velocity Data
 prevUrl: /power
-prevTitle: Power
+prevTitle: Portable Power
+nextUrl: /pitchbend
+nextTitle: Pitch Bend
 ---
 
 [//]: # (This will be the tutorial for using the BMP sensor to allow dynamic expression using the bellows.)
