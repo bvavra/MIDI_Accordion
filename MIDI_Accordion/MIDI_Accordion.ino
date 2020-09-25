@@ -41,7 +41,7 @@ struct MySettings : public midi::DefaultSettings
 //#define DEBUG//uncomment this line to print serial messages, comment to send MIDI data
 //#define BLUETOOTH//uncomment this line to send MIDI data via bluetooth instead of USB
 //#define BMP//uncomment this line to use the BMP180 to add dynamics via bellows
-#define JOYSTICK//uncomment this line to use a joystick as a pitch-bend controller
+//#define JOYSTICK//uncomment this line to use a joystick as a pitch-bend controller
 
 #ifdef BLUETOOTH
   MIDI_CREATE_CUSTOM_INSTANCE(HardwareSerial, Serial1, MIDI, MySettings);

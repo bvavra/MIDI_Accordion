@@ -208,6 +208,12 @@ _In-depth instructions can be found on the [**MIDI Accordion Project Page**](htt
 3. Cover as many unused air holes in the accordion bellows as possible to maximize the amount of air resistance you will feel when squeezing the bellows.
 4. (Optional) The bellows may not feel right based on your playing style or the amount of air resistance.  To improve this, you may need to tweak the numbers in the function used to map the difference in air pressure to MIDI expression values.
 
+#### (Optional) Adding a joystick to pend pitch when pressing the master palm switch
+
+1. Solder, mount, and wire a circuit board for a mini joystick so it [gets triggered when you press the register switch](https://i.imgur.com/hfIESQA.gif).
+2. Open the [MIDI_Accordion](https://github.com/bvavra/MIDI_Accordion/tree/master/MIDI_Accordion) sketch and uncomment the "//#define JOYSTICK" line of code to enable mapping the joystick tilt to MIDI pitch bend data. 
+3. Adjust the configuration variables in [Pitch_Bend.ino](https://github.com/bvavra/MIDI_Accordion/blob/master/MIDI_Accordion/Pitch_Bend.ino) as desired.
+
 ## <a name="links"></a>Links
 
 The following links were helpful in making this project happen.  If any of these links are broken, or if you have any additional links that you found helpful, please [contact me](https://github.com/bvavra/MIDI_Accordion/issues) and let me know so I can update this list accordingly.

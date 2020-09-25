@@ -3,7 +3,7 @@ int joy_start_val = 0;
 int joy_prev_val = 0;
 int joy_bendDir = -1; //Set to 1 to bend pitch up, -1 to bend pitch down
 int joy_limit = 8191; //Adjust to set the pitch bend range (max: 8191)
-int joy_rest_threshold = 80; //Adjust based on the joystick's sensitivity
+int joy_rest_threshold = 50; //Adjust based on the joystick's sensitivity
 
 void init_joystick() {
   //Need to get the joystick's starting position.
