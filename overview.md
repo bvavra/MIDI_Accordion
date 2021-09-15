@@ -105,6 +105,7 @@ USB Bluetooth Dongle|1
 Photo/Opto Interruptor (ITR-9608)|65
 270 Ohm Resistor 1/4W 5%|65
 1k Ohm Resistor 1/4W 5%|9
+2k Ohm Resistor 1/4W 5%|1
 BJT NPN Transistor (2N 2222A)|8
 Black 8" Zip Ties|65
 USB 2.0 Type A Type B M/M Cable|1
