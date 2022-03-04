@@ -3,6 +3,8 @@ Schematics, code, and guide for building your own Arduino-powered MIDI accordion
 
 ### [Full Project Page](http://bvavra.github.io/MIDI_Accordion/)
 
+### [Donate](https://www.paypal.com/donate/?business=CWXV7YRSFDTXU&no_recurring=0&item_name=Thank+you+supporting+the+work+that+went+into+creating+the+MIDI+Accordion+project+and+page%21&currency_code=USD)
+
 ### Photos
 
 [MIDI Accordion Project Photo Gallery](http://imgur.com/a/U7L83)
